@@ -25,29 +25,35 @@ header .container {
 
 section {
 
-
+  & #generalInfo {
+    display: flex;
+  }
 
   & #generalInfo > div {
-    display: inline-block;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 
     & label {
       display: flex;
       justify-content: space-between;
-
-       & input {
-        margin-left: 1vmin;
-        width: 0;
-        display: block;
-        padding: 0;
-        border-width: 0;
-      }
+      width: 100px;
     }
 
-    & label{
-      & input:focus {
-        width: 100%;
-        border-width: 1px;
-      }
+    & input {
+      width: 0;
+      display: block;
+      padding: 0;
+      border-width: 0;
+      transition-property: width;
+      transition-duration: 2s;
+      outline: none;
+      border: none;
     }
+
+    & input:focus {
+      width: 100%;
+      border-bottom: 2px solid green;
+    }
+
   }
 }

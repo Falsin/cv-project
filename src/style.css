@@ -14,21 +14,29 @@ header .container img {
 header .container h1 {
   margin-left: 1vmin;
 }
+section #generalInfo {
+  display: flex;
+}
 section #generalInfo > div {
-  display: inline-block;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 section #generalInfo > div label {
   display: flex;
   justify-content: space-between;
+  width: 100px;
 }
-section #generalInfo > div label input {
-  margin-left: 1vmin;
+section #generalInfo > div input {
   width: 0;
   display: block;
   padding: 0;
   border-width: 0;
+  transition-property: width;
+  transition-duration: 2s;
+  outline: none;
+  border: none;
 }
-section #generalInfo > div label input:focus {
+section #generalInfo > div input:focus {
   width: 100%;
-  border-width: 1px;
+  border-bottom: 2px solid green;
 }
