@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  border: solid red 1px;
 }
 header .container {
   display: flex;
@@ -15,7 +16,7 @@ header .container h1 {
   margin-left: 1vmin;
 }
 section #generalInfo > div {
-  display: inline-block;
+  display: flex;
 }
 section #generalInfo > div label {
   display: flex;
