@@ -1,0 +1,53 @@
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+* {
+  box-sizing: border-box;
+  //border: solid red 1px;
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & img {
+    .size(10vmin; 10vmin);
+    margin-right: 1vmin;
+  }
+
+  & h1{
+    margin-left: 1vmin;
+  }
+}
+
+section {
+
+
+
+  & #generalInfo > div {
+    display: inline-block;
+
+    & label {
+      display: flex;
+      justify-content: space-between;
+
+       & input {
+        margin-left: 1vmin;
+        width: 0;
+        display: block;
+        padding: 0;
+        border-width: 0;
+      }
+    }
+
+    & label{
+      & input:focus {
+        width: 100%;
+        border-width: 1px;
+      }
+    }
+  }
+}
