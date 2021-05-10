@@ -1,13 +1,21 @@
 import React from 'react';
 
 class TemplateCV extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeElemArr: [],
+    }
+  }
+
 
   getCountryList() {
     return fetch(`https://restcountries.eu/rest/v2/all`, {mode: 'cors'})
     .then(response => response.json())
     .then(response => {
       this.setState({
-        cityArray: response
+        cityArray: response,
       })
     })
   }
@@ -19,7 +27,13 @@ class TemplateCV extends React.Component {
   }
 
   changeHandler(e) {
-    console.log(this.state.cityArray)
+    if (e.target.value.length >= 0 && ![...e.target.classList].includes('active')) {
+      e.target.classList.add('active')
+      console.log(this.state.activeElemArr)
+      this.setState({
+        activeElemArr: [...this.state.activeElemArr, e.target]
+      })
+    } 
   }
 
   render() {
@@ -28,16 +42,16 @@ class TemplateCV extends React.Component {
         <div id='generalInfo'>
           <div>
             <label htmlFor='name'>Name</label>
-            <input id='name'></input>
+            <input id='name' onChange={this.changeHandler.bind(this)} className='classEX DCCWF'></input>
 
             <label htmlFor='email'>Email</label>
-            <input id='email' type='email'></input>
+            <input id='email' type='email' onChange={this.changeHandler.bind(this)}></input>
 
             <label htmlFor='phone' type='tel'>Phone</label>
-            <input id='phone'></input>
+            <input id='phone' onChange={this.changeHandler.bind(this)}></input>
 
             <label htmlFor='country'>Country</label>
-            <input id='country' type='country' onChange={(e) => this.changeHandler(e)} list='cityName'></input>
+            <input id='country' type='country' onChange={this.changeHandler.bind(this)} list='cityName'></input>
           </div>
           <div className='photo'>Hello!</div>
         </div>

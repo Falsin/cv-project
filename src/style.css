@@ -36,7 +36,8 @@ section #generalInfo > div input {
   outline: none;
   border: none;
 }
-section #generalInfo > div input:focus {
+section #generalInfo > div input:focus,
+section #generalInfo > div input.active {
   width: 100%;
   border-bottom: 2px solid green;
 }
