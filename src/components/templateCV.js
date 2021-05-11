@@ -6,16 +6,16 @@ class TemplateCV extends React.Component {
 
     this.state = {
       activeElemArr: [],
+      cityNamesArr: []
     }
   }
-
 
   getCountryList() {
     return fetch(`https://restcountries.eu/rest/v2/all`, {mode: 'cors'})
     .then(response => response.json())
     .then(response => {
       this.setState({
-        cityArray: response,
+        cityNamesArr: response,
       })
     })
   }
@@ -29,14 +29,16 @@ class TemplateCV extends React.Component {
   changeHandler(e) {
     if (e.target.value.length >= 0 && ![...e.target.classList].includes('active')) {
       e.target.classList.add('active')
-      console.log(this.state.activeElemArr)
       this.setState({
         activeElemArr: [...this.state.activeElemArr, e.target]
       })
-    } 
+    } else {
+      e.target.classList.remove('active')
+    }
   }
 
   render() {
+    console.log(this.state.cityNamesArr)
     return (
       <section>
         <div id='generalInfo'>
@@ -51,9 +53,17 @@ class TemplateCV extends React.Component {
             <input id='phone' onChange={this.changeHandler.bind(this)}></input>
 
             <label htmlFor='country'>Country</label>
-            <input id='country' type='country' onChange={this.changeHandler.bind(this)} list='cityName'></input>
+            <input id='country' type='text' onChange={this.changeHandler.bind(this)} list='cityName'></input>
+            <datalist id='cityName'>
+              {this.state.cityNamesArr.map(item => {
+                return <option>{item.name}</option>
+              })}
+            </datalist>
           </div>
-          <div className='photo'>Hello!</div>
+
+          <div className='photo'>
+            <input type='file'></input>
+          </div>
         </div>
       </section>
     )

@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  border: solid red 1px;
 }
 header .container {
   display: flex;
@@ -16,28 +17,39 @@ header .container h1 {
 }
 section #generalInfo {
   display: flex;
+  align-items: center;
 }
-section #generalInfo > div {
+section #generalInfo > div:not(.photo) {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-section #generalInfo > div label {
+section #generalInfo > div:not(.photo) label {
   display: flex;
   justify-content: space-between;
   width: 100px;
 }
-section #generalInfo > div input {
+section #generalInfo > div:not(.photo) input {
   width: 0;
   display: block;
   padding: 0;
-  border-width: 0;
   transition-property: width;
   transition-duration: 2s;
   outline: none;
   border: none;
-}
-section #generalInfo > div input:focus,
-section #generalInfo > div input.active {
-  width: 100%;
   border-bottom: 2px solid green;
+}
+section #generalInfo > div:not(.photo) input:focus,
+section #generalInfo > div:not(.photo) input.active {
+  width: 100%;
+}
+section #generalInfo .photo {
+  width: 20vmin;
+  height: 25vmin;
+  background-image: url('images/emptyAvatar.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+section #generalInfo .photo input {
+  display: none;
 }
