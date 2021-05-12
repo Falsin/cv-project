@@ -6,7 +6,8 @@ class TemplateCV extends React.Component {
 
     this.state = {
       activeElemArr: [],
-      cityNamesArr: []
+      cityNamesArr: [],
+      enteredVal: '',
     }
   }
 
@@ -27,24 +28,30 @@ class TemplateCV extends React.Component {
   }
 
   changeHandler(e) {
-    if (e.target.value.length >= 0 && ![...e.target.classList].includes('active')) {
-      e.target.classList.add('active')
-      this.setState({
-        activeElemArr: [...this.state.activeElemArr, e.target]
-      })
-    } else {
+    if (e.target.value.length >= 0) {
+      if (![...e.target.classList].includes('active')) {
+        e.target.classList.add('active')
+        this.setState({
+          activeElemArr: [...this.state.activeElemArr, e.target]
+        })
+      }
+      if (e.target.id === 'country') {
+        this.setState({
+          enteredVal: e.target.value
+        })
+      }
+    } else if (!e.target.value.length) {
       e.target.classList.remove('active')
     }
   }
 
   render() {
-    console.log(this.state.cityNamesArr)
     return (
       <section>
         <div id='generalInfo'>
           <div>
             <label htmlFor='name'>Name</label>
-            <input id='name' onChange={this.changeHandler.bind(this)} className='classEX DCCWF'></input>
+            <input id='name' onChange={this.changeHandler.bind(this)}></input>
 
             <label htmlFor='email'>Email</label>
             <input id='email' type='email' onChange={this.changeHandler.bind(this)}></input>
@@ -56,7 +63,10 @@ class TemplateCV extends React.Component {
             <input id='country' type='text' onChange={this.changeHandler.bind(this)} list='cityName'></input>
             <datalist id='cityName'>
               {this.state.cityNamesArr.map(item => {
-                return <option>{item.name}</option>
+                if (this.state.enteredVal.length >= 2 && item.name.includes(this.state.enteredVal)) {
+                  return <option>{item.name}</option>
+                }
+                return <option></option>
               })}
             </datalist>
           </div>
