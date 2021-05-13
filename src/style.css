@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  border: solid red 1px;
 }
 header .container {
   display: flex;
@@ -41,6 +40,12 @@ section #generalInfo > div:not(.photo) input {
 section #generalInfo > div:not(.photo) input:focus,
 section #generalInfo > div:not(.photo) input.active {
   width: 100%;
+}
+section #generalInfo > div:not(.photo) div:last-of-type {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-template-columns: 1fr 2fr;
 }
 section #generalInfo .photo {
   width: 20vmin;
