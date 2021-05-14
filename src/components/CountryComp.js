@@ -17,12 +17,6 @@ class CountryComp extends React.Component {
     })
   }
 
-  componentDidMount(prevProps, prevState) {
-    if (prevState !== this.state) {
-      this.getCountryList()
-    }
-  }
-
   createListElements() {
     let collection = [];
     const enteredVal = this.parentScope.state.enteredVal.value;
@@ -48,6 +42,12 @@ class CountryComp extends React.Component {
         id: uniqid(),
       }
     })
+  }
+
+  componentDidMount(prevProps, prevState) {
+    if (prevState !== this.state) {
+      this.getCountryList()
+    }
   }
   
   render() {

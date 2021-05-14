@@ -1,6 +1,7 @@
 import React from 'react';
 import uniqid from 'uniqid';
 import CountryComp from './CountryComp'
+import PhotoComp from './PhotoComp'
 
 class TemplateCV extends React.Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class TemplateCV extends React.Component {
         id: uniqid()
       },
     }
+
+    this.returnParentScope = this.returnParentScope.bind(this);
   }
 
   changeHandler(e) {
@@ -40,20 +43,18 @@ class TemplateCV extends React.Component {
         <div id='generalInfo'>
           <div>
             <label htmlFor='name'>Name</label>
-            <input id='name' onChange={this.changeHandler.bind(this)}></input>
+            <input id='name' onChange={this.changeHandler.bind(this)} />
 
             <label htmlFor='email'>Email</label>
-            <input id='email' type='email' onChange={this.changeHandler.bind(this)}></input>
+            <input id='email' type='email' onChange={this.changeHandler.bind(this)} />
 
             <label htmlFor='phone' type='tel'>Phone</label>
-            <input id='phone' onChange={this.changeHandler.bind(this)}></input>
+            <input id='phone' onChange={this.changeHandler.bind(this)} />
 
-            <CountryComp parentScope={this.returnParentScope.bind(this)}/>
+            <CountryComp parentScope={this.returnParentScope}/>
           </div>
 
-          <div className='photo'>
-            <input type='file'></input>
-          </div>
+          <PhotoComp parentScope={this.returnParentScope}/>
         </div>
       </section>
     )

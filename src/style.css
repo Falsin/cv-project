@@ -55,6 +55,11 @@ section #generalInfo .photo {
   background-position: center center;
   background-repeat: no-repeat;
 }
-section #generalInfo .photo input {
+section #generalInfo .photo label {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section #generalInfo .photo label input {
   display: none;
 }
