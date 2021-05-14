@@ -40,21 +40,28 @@ class TemplateCV extends React.Component {
   render() {
     return (
       <section>
-        <div id='generalInfo'>
-          <div>
-            <label htmlFor='name'>Name</label>
-            <input id='name' onChange={this.changeHandler.bind(this)} />
+        <div className='container'>
+          <div id='generalInfo'>
+            <div className='editInfo'>
+              <div>
+                <label htmlFor='name'>Name</label>
+                <input id='name' onChange={this.changeHandler.bind(this)} />
 
-            <label htmlFor='email'>Email</label>
-            <input id='email' type='email' onChange={this.changeHandler.bind(this)} />
+                <label htmlFor='email'>Email</label>
+                <input id='email' type='email' onChange={this.changeHandler.bind(this)} />
 
-            <label htmlFor='phone' type='tel'>Phone</label>
-            <input id='phone' onChange={this.changeHandler.bind(this)} />
+                <label htmlFor='phone' type='tel'>Phone</label>
+                <input id='phone' onChange={this.changeHandler.bind(this)} />
 
-            <CountryComp parentScope={this.returnParentScope}/>
+                <CountryComp parentScope={this.returnParentScope}/>
+              </div>
+
+              <PhotoComp parentScope={this.returnParentScope}/>
+            </div>
+            <div className='addInfo'>
+              <button>Add</button>
+            </div>
           </div>
-
-          <PhotoComp parentScope={this.returnParentScope}/>
         </div>
       </section>
     )

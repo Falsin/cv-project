@@ -4,8 +4,14 @@
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  //border: solid red 1px;
+  border: solid red 1px;
+}
+
+#root {
+  .size(100%, 100%)
 }
 
 header .container {
@@ -25,58 +31,77 @@ header .container {
 
 section {
 
-  & #generalInfo {
-    display: flex;
-    align-items: center;
-  }
+  & .container {
+    margin: 2vmin;
 
-  & #generalInfo > div:not(.photo) {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-
-    & label {
+    & #generalInfo {
       display: flex;
-      justify-content: space-between;
-      width: 100px;
-    }
+      flex-direction: column;
+      align-items: center;
 
-    & input {
-      width: 0;
-      display: block;
-      padding: 0;
-      transition-property: width;
-      transition-duration: 2s;
-      outline: none;
-      border: none;
-      border-bottom: 2px solid green;
-    }
+      & .editInfo {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+  
+        & > div:not(.photo) {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+      
+          & label {
+            display: flex;
+            justify-content: space-between;
+            width: 100px;
+          }
+      
+          & input {
+            width: 0;
+            display: block;
+            padding: 0;
+            transition-property: width;
+            transition-duration: 2s;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid green;
+          }
+      
+          & input:focus,
+          & input.active {
+            width: 100%;
+          }
+      
+          & div:last-of-type {
+            display: grid;
+            grid-column-start: 1;
+            grid-column-end: -1;
+            grid-template-columns: 1fr 2fr;
+          }
+        }
+  
+        & .photo{
+          .size(20vmin, 25vmin);
+          background-image: url('./images/emptyAvatar.jpg');
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+      
+          & label {
+            display: block;
+            .size(100%, 100%);
+      
+            & input {
+              display: none;
+            }
+          }
+        }
+      }
 
-    & input:focus,
-    & input.active {
-      width: 100%;
-    }
+      & .addInfo {
 
-    & div:last-of-type {
-      display: grid;
-      grid-column-start: 1;
-      grid-column-end: -1;
-      grid-template-columns: 1fr 2fr;
-    }
-  }
-
-  & #generalInfo .photo{
-    .size(20vmin, 25vmin);
-    background-image: url('./images/emptyAvatar.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    & label {
-      display: block;
-      .size(100%, 100%);
-
-      input {
-        display: none;
+        & button {
+          padding: 0.5vmin 2vmin;
+        }
       }
     }
   }
