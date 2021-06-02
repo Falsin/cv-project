@@ -1,8 +1,31 @@
 import React from 'react';
 import uniqid from 'uniqid';
-import CountryComp from './generalInfo/CountryComp'
+import CountryComp from './previewCV/generalInfo/CountryComp'
+import PhotoComp from './previewCV/generalInfo/PhotoComp'
 
 class TemplateCV extends React.Component {
+  returnParentScope() {
+    return this;
+  }
+
+/*   componentWillUpdate() {
+    console.log(this.state)
+  } */
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.state)
+  }
+
+  render() {
+    return(
+      <GeneralInfo parentScope={this.returnParentScope.bind(this)}/>
+    )
+  }
+}
+
+export default TemplateCV;
+
+class GeneralInfo extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,9 +37,12 @@ class TemplateCV extends React.Component {
         id: uniqid()
       },
     }
+    
+    this.parentScope = this.props.parentScope();
   }
 
   changeHandler(e) {
+    console.log(this.state.enteredVal.value)
     if (e.target.value.length > 0 && ![...e.target.classList].includes('active')) {
       e.target.classList.add('active')
       this.setState({
@@ -28,14 +54,28 @@ class TemplateCV extends React.Component {
         activeElemArr: this.state.activeElemArr.filter(elem => elem !== e.target),
       })
     }
+
+    this.parentScope.setState({
+      activeElemArr: this.state.activeElemArr,
+      enteredVal: {
+        value: this.state.enteredVal.value,
+        id: this.state.enteredVal.id
+      }
+    })
+
+    //console.log(this.state.enteredVal.value)
   }
 
   returnParentScope() {
     return this;
   }
 
+/*   componentDidUpdate(prevProps, prevState) {
+    console.log(this.state)
+  } */
+
   render() {
-    return (
+    return(
       <section>
         <div id='generalInfo'>
           <div>
@@ -51,48 +91,9 @@ class TemplateCV extends React.Component {
             <CountryComp parentScope={this.returnParentScope.bind(this)}/>
           </div>
 
-          <div className='photo'>
-            <label><input type='file' onChange={this.returnParentScope.bind(this)}></input></label>
-          </div>
+          <PhotoComp parentScope={this.returnParentScope.bind(this)} />
         </div>
       </section>
     )
   }
 }
-
-class PhotoComp extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.parentScope = this.props.parentScope()
-  }
-
-  onFileSelected(e) {
-    const selectedFile = e.target.files[0];
-
-    if (selectedFile !== undefined) {
-      const reader = new FileReader();
-      const elemTag = document.querySelector('.photo');
-
-      reader.onload = (e) => {
-        elemTag.style.backgroundImage = `url(${e.target.result})`;
-      }
-
-      reader.readAsDataURL(selectedFile);
-
-      this.parentScope.setState({
-        avatar: e.target.result,
-      })
-    }
-  }
-
-  render() {
-    return (
-      <div className='photo'>
-          <label><input type='file' onChange={this.onFileSelected.bind(this)}></input></label>
-      </div>
-    )
-  }
-}
-
-export default TemplateCV;

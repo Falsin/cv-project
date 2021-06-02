@@ -24,7 +24,7 @@ class CountryComp extends React.Component {
 
     for (const {name} of this.parentScope.state.countryNamesArr) {
       const lowerCaseName = name.toLowerCase()
-      if(enteredVal.length >= 2 && lowerCaseName.includes(lowerCaseVal)) {
+      if(enteredVal.length > 2 && lowerCaseName.includes(lowerCaseVal)) {
         collection.push({
           id: uniqid(),
           name: name,
@@ -35,13 +35,17 @@ class CountryComp extends React.Component {
   }
 
   enteredValHandler(e) {
-    this.parentScope.changeHandler(e);
-    this.parentScope.setState({
-      enteredVal: {
-        value: e.target.value,
-        id: uniqid(),
-      }
-    })
+    Promise.resolve(this.parentScope)
+      .then(response => {
+        response.setState({
+          enteredVal: {
+            value: e.target.value,
+            id: uniqid(),
+          }
+        })
+        return response;
+      })
+      .then(response => response.changeHandler(e))
   }
 
   componentDidMount() {

@@ -20,30 +20,25 @@ header .container img {
 header .container h1 {
   margin-left: 1vmin;
 }
-section .container {
-  margin: 2vmin;
-}
-section .container #generalInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-section .container #generalInfo .editInfo {
+section #generalInfo {
   display: flex;
   align-items: center;
-  width: 100%;
+}
+section #generalInfo > div {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
-section .container #generalInfo .editInfo > div:not(.photo) {
+section #generalInfo > div:not(.photo) {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-section .container #generalInfo .editInfo > div:not(.photo) label {
+section #generalInfo > div:not(.photo) label {
   display: flex;
   justify-content: space-between;
   width: 100px;
 }
-section .container #generalInfo .editInfo > div:not(.photo) input {
+section #generalInfo > div:not(.photo) input {
   width: 0;
   display: block;
   padding: 0;
@@ -53,17 +48,17 @@ section .container #generalInfo .editInfo > div:not(.photo) input {
   border: none;
   border-bottom: 2px solid green;
 }
-section .container #generalInfo .editInfo > div:not(.photo) input:focus,
-section .container #generalInfo .editInfo > div:not(.photo) input.active {
+section #generalInfo > div:not(.photo) input:focus,
+section #generalInfo > div:not(.photo) input.active {
   width: 100%;
 }
-section .container #generalInfo .editInfo > div:not(.photo) div:last-of-type {
+section #generalInfo > div:not(.photo) div:last-of-type {
   display: grid;
   grid-column-start: 1;
   grid-column-end: -1;
   grid-template-columns: 1fr 2fr;
 }
-section .container #generalInfo .editInfo .photo {
+section #generalInfo .photo {
   width: 20vmin;
   height: 25vmin;
   background-image: url('images/emptyAvatar.jpg');
@@ -71,14 +66,14 @@ section .container #generalInfo .editInfo .photo {
   background-position: center center;
   background-repeat: no-repeat;
 }
-section .container #generalInfo .editInfo .photo label {
+section #generalInfo .photo label {
   display: block;
   width: 100%;
   height: 100%;
 }
-section .container #generalInfo .editInfo .photo label input {
+section #generalInfo .photo label input {
   display: none;
 }
-section .container #generalInfo .addInfo button {
+section .addInfo button {
   padding: 0.5vmin 2vmin;
 }
