@@ -1,13 +1,5 @@
 import React from 'react';
-import constructor from './images/сonstructor.jpg';
-
-function App() {
-  return (
-    <div className='app'>
-      <Header />
-    </div>
-  );
-}
+import constructor from '../images/сonstructor.jpg';
 
 class Header extends React.Component {
   render() {
@@ -22,4 +14,4 @@ class Header extends React.Component {
   }
 }
 
-export default App;
+export default Header;

@@ -44,10 +44,8 @@ class CountryComp extends React.Component {
     })
   }
 
-  componentDidMount(prevProps, prevState) {
-    if (prevState !== this.state) {
-      this.getCountryList()
-    }
+  componentDidMount() {
+    this.getCountryList()
   }
   
   render() {

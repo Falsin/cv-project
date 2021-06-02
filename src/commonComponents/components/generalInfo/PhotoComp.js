@@ -16,13 +16,12 @@ class PhotoComp extends React.Component {
 
       reader.onload = (e) => {
         elemTag.style.backgroundImage = `url(${e.target.result})`;
+        this.parentScope.setState({
+          avatar: e.target.result,
+        })
       }
 
       reader.readAsDataURL(selectedFile);
-
-      this.parentScope.setState({
-        avatar: e.target.result,
-      })
     }
   }
 

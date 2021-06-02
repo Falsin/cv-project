@@ -1,15 +1,14 @@
 import React from 'react';
-
 import ReactDOM from 'react-dom';
-import App from './App';
+import Header from './headerComponent/Header'
 import style from './style.css'
-import CommonParentComponent from './CommonParentComponent'
+import CommonParentComponent from './commonComponents/CommonParentComponent'
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Header />
     <CommonParentComponent />
   </React.StrictMode>,
   document.getElementById('root')
