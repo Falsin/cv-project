@@ -5,7 +5,7 @@ class TemplateCV extends React.Component {
   constructor(props) {
     super(props);
 
-    this.parentScope = this.props.parentScope();
+    this.parentScope = props.parentScope();
   }
 
   returnParentScope() {
@@ -20,7 +20,9 @@ class TemplateCV extends React.Component {
 
   render() {
     return(
-      <GeneralInfo parentScope={this.returnParentScope.bind(this)}/>
+      <section id='templateCV'>
+        <GeneralInfo parentScope={this.returnParentScope.bind(this)}/>
+      </section>
     )
   }
 }

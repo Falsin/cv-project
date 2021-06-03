@@ -9,14 +9,14 @@ class GeneralInfo extends React.Component {
 
     this.state = {
       activeElemArr: [],
-      countryNamesArr: [],
-      enteredVal: {
+      //countryNamesArr: [],
+      /* enteredVal: {
         value: '',
         id: uniqid()
-      },
+      }, */
     }
     
-    this.parentScope = this.props.parentScope();
+    this.parentScope = props.parentScope();
   }
 
   changeHandler(e) {
@@ -31,18 +31,21 @@ class GeneralInfo extends React.Component {
         activeElemArr: this.state.activeElemArr.filter(elem => elem !== e.target),
       })
     }
+  }
 
+  returnParentScope() {
+    return this;
+  }
+
+  clickHandler() {
     this.parentScope.setState({
       activeElemArr: this.state.activeElemArr,
       enteredVal: {
         value: this.state.enteredVal.value,
         id: this.state.enteredVal.id
-      }
+      },
+      avatar: this.state.avatar,
     })
-  }
-
-  returnParentScope() {
-    return this;
   }
   
   render() {
@@ -64,6 +67,8 @@ class GeneralInfo extends React.Component {
 
           <PhotoComp parentScope={this.returnParentScope.bind(this)} />
         </div>
+
+        <button onClick={() => this.clickHandler()}>Add information</button>
       </section>
     )
   }

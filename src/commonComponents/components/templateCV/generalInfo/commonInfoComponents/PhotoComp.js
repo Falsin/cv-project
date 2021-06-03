@@ -4,7 +4,7 @@ class PhotoComp extends React.Component {
   constructor(props) {
     super(props)
 
-    this.parentScope = this.props.parentScope()
+    this.parentScope = props.parentScope()
   }
 
   onFileSelected(e) {

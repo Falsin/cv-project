@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: solid red 1px;
 }
 #root {
   width: 100%;
@@ -20,25 +21,25 @@ header .container img {
 header .container h1 {
   margin-left: 1vmin;
 }
-section #generalInfo {
+#templateCV section #generalInfo {
   display: flex;
   align-items: center;
 }
-section #generalInfo > div {
+#templateCV section #generalInfo > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-section #generalInfo > div:not(.photo) {
+#templateCV section #generalInfo > div:not(.photo) {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-section #generalInfo > div:not(.photo) label {
+#templateCV section #generalInfo > div:not(.photo) label {
   display: flex;
   justify-content: space-between;
   width: 100px;
 }
-section #generalInfo > div:not(.photo) input {
+#templateCV section #generalInfo > div:not(.photo) input {
   width: 0;
   display: block;
   padding: 0;
@@ -48,17 +49,17 @@ section #generalInfo > div:not(.photo) input {
   border: none;
   border-bottom: 2px solid green;
 }
-section #generalInfo > div:not(.photo) input:focus,
-section #generalInfo > div:not(.photo) input.active {
+#templateCV section #generalInfo > div:not(.photo) input:focus,
+#templateCV section #generalInfo > div:not(.photo) input.active {
   width: 100%;
 }
-section #generalInfo > div:not(.photo) div:last-of-type {
+#templateCV section #generalInfo > div:not(.photo) div:last-of-type {
   display: grid;
   grid-column-start: 1;
   grid-column-end: -1;
   grid-template-columns: 1fr 2fr;
 }
-section #generalInfo .photo {
+#templateCV section #generalInfo .photo {
   width: 20vmin;
   height: 25vmin;
   background-image: url('images/emptyAvatar.jpg');
@@ -66,14 +67,34 @@ section #generalInfo .photo {
   background-position: center center;
   background-repeat: no-repeat;
 }
-section #generalInfo .photo label {
+#templateCV section #generalInfo .photo label {
   display: block;
   width: 100%;
   height: 100%;
 }
-section #generalInfo .photo label input {
+#templateCV section #generalInfo .photo label input {
   display: none;
 }
-section .addInfo button {
+#templateCV section .addInfo button {
   padding: 0.5vmin 2vmin;
+}
+#previewCV {
+  display: flex;
+}
+#previewCV #commonInformation {
+  width: 60vw;
+}
+#previewCV #personalInformation {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#previewCV #personalInformation #photoBlock {
+  width: 25vw;
+  height: 37.5vw;
+  background-image: url('images/emptyAvatar.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }

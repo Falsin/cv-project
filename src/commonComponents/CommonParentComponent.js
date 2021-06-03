@@ -13,17 +13,11 @@ class CommonParentComponent extends React.Component {
     return this;
   }
 
-/*   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state)
-    console.log(this)
-  } */
-
   render() {
-
     return (
       <div>
         <TemplateCV parentScope={this.returnCommonParentComponent} />
-        <PreviewCV />
+        <PreviewCV parentScope={this.returnCommonParentComponent}/>
       </div>
     )
   }

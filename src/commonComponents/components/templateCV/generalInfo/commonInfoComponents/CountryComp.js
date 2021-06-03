@@ -5,9 +5,17 @@ class CountryComp extends React.Component {
   constructor(props) {
     super(props);
     this.parentScope = props.parentScope();
+    this.countryNamesArr = [];
+
+    this.state = {
+      enteredVal: {
+        value: '',
+        id: uniqid()
+      },
+    }
   }
 
-  getCountryList() {
+  /* getCountryList() {
     return fetch(`https://restcountries.eu/rest/v2/all`, {mode: 'cors'})
     .then(response => response.json())
     .then(response => {
@@ -15,9 +23,20 @@ class CountryComp extends React.Component {
         countryNamesArr: response,
       })
     })
+  } */
+
+  getCountryList() {
+    return fetch(`https://restcountries.eu/rest/v2/all`, {mode: 'cors'})
+    .then(response => response.json())
+    .then(response => {
+      /* this.parentScope.setState({
+        countryNamesArr: response,
+      }) */
+      this.countryNamesArr = response;
+    })
   }
 
-  createListElements() {
+  /* createListElements() {
     let collection = [];
     const enteredVal = this.parentScope.state.enteredVal.value;
     const lowerCaseVal = enteredVal.toLowerCase();
@@ -32,10 +51,27 @@ class CountryComp extends React.Component {
       }
     }
     return collection;
+  } */
+
+  createListElements() {
+    let collection = [];
+    const enteredVal = this.state.enteredVal.value;
+    const lowerCaseVal = enteredVal.toLowerCase();
+
+    for (const {name} of this.countryNamesArr) {
+      const lowerCaseName = name.toLowerCase()
+      if(enteredVal.length > 2 && lowerCaseName.includes(lowerCaseVal)) {
+        collection.push({
+          id: uniqid(),
+          name: name,
+        });
+      }
+    }
+    return collection;
   }
 
   enteredValHandler(e) {
-    Promise.resolve(this.parentScope)
+/*     Promise.resolve(this.parentScope)
       .then(response => {
         response.setState({
           enteredVal: {
@@ -45,7 +81,36 @@ class CountryComp extends React.Component {
         })
         return response;
       })
-      .then(response => response.changeHandler(e))
+      .then(response => response.changeHandler(e)) */
+
+/*       this.setState({
+        enteredVal: {
+          value: e.target.value,
+          id: uniqid()
+        },
+      })
+
+      Promise.resolve(this.parentScope)
+      .then(response => {
+        response.setState(this.state)
+        return response;
+      })
+      .then(response => response.changeHandler(e)) */
+
+      Promise.resolve(this)
+        .then(response => {
+          response.setState({
+            enteredVal: {
+              value: e.target.value,
+              id: uniqid()
+            }
+          })
+          return this.parentScope
+        })
+        .then(response => {
+          response.setState(this.state)
+        })
+
   }
 
   componentDidMount() {
