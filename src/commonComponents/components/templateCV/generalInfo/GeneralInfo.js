@@ -1,29 +1,7 @@
 import React from 'react';
 import uniqid from 'uniqid';
-import CountryComp from './previewCV/generalInfo/CountryComp'
-import PhotoComp from './previewCV/generalInfo/PhotoComp'
-
-class TemplateCV extends React.Component {
-  returnParentScope() {
-    return this;
-  }
-
-/*   componentWillUpdate() {
-    console.log(this.state)
-  } */
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log(this.state)
-  }
-
-  render() {
-    return(
-      <GeneralInfo parentScope={this.returnParentScope.bind(this)}/>
-    )
-  }
-}
-
-export default TemplateCV;
+import CountryComp from './commonInfoComponents/CountryComp'
+import PhotoComp from './commonInfoComponents/PhotoComp'
 
 class GeneralInfo extends React.Component {
   constructor(props) {
@@ -42,7 +20,6 @@ class GeneralInfo extends React.Component {
   }
 
   changeHandler(e) {
-    console.log(this.state.enteredVal.value)
     if (e.target.value.length > 0 && ![...e.target.classList].includes('active')) {
       e.target.classList.add('active')
       this.setState({
@@ -62,18 +39,12 @@ class GeneralInfo extends React.Component {
         id: this.state.enteredVal.id
       }
     })
-
-    //console.log(this.state.enteredVal.value)
   }
 
   returnParentScope() {
     return this;
   }
-
-/*   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state)
-  } */
-
+  
   render() {
     return(
       <section>
@@ -97,3 +68,5 @@ class GeneralInfo extends React.Component {
     )
   }
 }
+
+export default GeneralInfo;

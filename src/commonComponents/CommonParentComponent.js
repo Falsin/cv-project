@@ -1,5 +1,5 @@
 import React from 'react';
-import TemplateCV from './components/TemplateCV'
+import TemplateCV from './components/templateCV/TemplateCV'
 import PreviewCV from './components/previewCV/PreviewCV'
 
 class CommonParentComponent extends React.Component {
@@ -13,15 +13,13 @@ class CommonParentComponent extends React.Component {
     return this;
   }
 
-/*   componentWillUpdate() {
+/*   componentDidUpdate(prevProps, prevState) {
     console.log(this.state)
+    console.log(this)
   } */
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(this.state)
-  }
-
   render() {
+
     return (
       <div>
         <TemplateCV parentScope={this.returnCommonParentComponent} />
