@@ -4,7 +4,7 @@ class PhotoComp extends React.Component {
   constructor(props) {
     super(props)
 
-    this.parentScope = props.parentScope()
+    this.parentScope = props.parentScope();
   }
 
   onFileSelected(e) {
@@ -17,7 +17,9 @@ class PhotoComp extends React.Component {
       reader.onload = (e) => {
         elemTag.style.backgroundImage = `url(${e.target.result})`;
         this.parentScope.setState({
-          avatar: e.target.result,
+          generalInfo: {
+            avatar: this.url
+          }
         })
       }
 

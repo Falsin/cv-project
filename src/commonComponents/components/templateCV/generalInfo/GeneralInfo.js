@@ -1,5 +1,4 @@
 import React from 'react';
-import uniqid from 'uniqid';
 import CountryComp from './commonInfoComponents/CountryComp'
 import PhotoComp from './commonInfoComponents/PhotoComp'
 
@@ -9,11 +8,7 @@ class GeneralInfo extends React.Component {
 
     this.state = {
       activeElemArr: [],
-      //countryNamesArr: [],
-      /* enteredVal: {
-        value: '',
-        id: uniqid()
-      }, */
+      generalInfo: {},
     }
     
     this.parentScope = props.parentScope();
@@ -28,9 +23,11 @@ class GeneralInfo extends React.Component {
     } else if (!e.target.value.length) {
       e.target.classList.remove('active');
       this.setState({
-        activeElemArr: this.state.activeElemArr.filter(elem => elem !== e.target),
+        activeElemArr: this.state.activeElemArr.filter(elem => elem !== e.target)
       })
     }
+
+    this.addPropertiesInState(e)
   }
 
   returnParentScope() {
@@ -39,13 +36,20 @@ class GeneralInfo extends React.Component {
 
   clickHandler() {
     this.parentScope.setState({
-      activeElemArr: this.state.activeElemArr,
-      enteredVal: {
-        value: this.state.enteredVal.value,
-        id: this.state.enteredVal.id
-      },
-      avatar: this.state.avatar,
+      generalInfo: this.state.generalInfo,
     })
+  }
+
+  addPropertiesInState(e) {
+    let cloneObj = {...this.state.generalInfo};
+
+    if (!e.target.value.length) {
+      delete cloneObj[e.target.labels[0].textContent]
+    } else {
+      cloneObj[e.target.labels[0].textContent] = e.target.value
+    }
+
+    this.setState({generalInfo: cloneObj})
   }
   
   render() {

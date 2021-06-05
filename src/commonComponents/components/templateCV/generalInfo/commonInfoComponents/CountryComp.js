@@ -15,43 +15,11 @@ class CountryComp extends React.Component {
     }
   }
 
-  /* getCountryList() {
-    return fetch(`https://restcountries.eu/rest/v2/all`, {mode: 'cors'})
-    .then(response => response.json())
-    .then(response => {
-      this.parentScope.setState({
-        countryNamesArr: response,
-      })
-    })
-  } */
-
   getCountryList() {
     return fetch(`https://restcountries.eu/rest/v2/all`, {mode: 'cors'})
     .then(response => response.json())
-    .then(response => {
-      /* this.parentScope.setState({
-        countryNamesArr: response,
-      }) */
-      this.countryNamesArr = response;
-    })
+    .then(response => this.countryNamesArr = response)
   }
-
-  /* createListElements() {
-    let collection = [];
-    const enteredVal = this.parentScope.state.enteredVal.value;
-    const lowerCaseVal = enteredVal.toLowerCase();
-
-    for (const {name} of this.parentScope.state.countryNamesArr) {
-      const lowerCaseName = name.toLowerCase()
-      if(enteredVal.length > 2 && lowerCaseName.includes(lowerCaseVal)) {
-        collection.push({
-          id: uniqid(),
-          name: name,
-        });
-      }
-    }
-    return collection;
-  } */
 
   createListElements() {
     let collection = [];
@@ -60,7 +28,7 @@ class CountryComp extends React.Component {
 
     for (const {name} of this.countryNamesArr) {
       const lowerCaseName = name.toLowerCase()
-      if(enteredVal.length > 2 && lowerCaseName.includes(lowerCaseVal)) {
+      if(enteredVal.length > 2 && lowerCaseName.includes(lowerCaseVal) && enteredVal !== name) {
         collection.push({
           id: uniqid(),
           name: name,
@@ -71,46 +39,13 @@ class CountryComp extends React.Component {
   }
 
   enteredValHandler(e) {
-/*     Promise.resolve(this.parentScope)
-      .then(response => {
-        response.setState({
-          enteredVal: {
-            value: e.target.value,
-            id: uniqid(),
-          }
-        })
-        return response;
-      })
-      .then(response => response.changeHandler(e)) */
-
-/*       this.setState({
-        enteredVal: {
-          value: e.target.value,
-          id: uniqid()
-        },
-      })
-
-      Promise.resolve(this.parentScope)
-      .then(response => {
-        response.setState(this.state)
-        return response;
-      })
-      .then(response => response.changeHandler(e)) */
-
-      Promise.resolve(this)
-        .then(response => {
-          response.setState({
-            enteredVal: {
-              value: e.target.value,
-              id: uniqid()
-            }
-          })
-          return this.parentScope
-        })
-        .then(response => {
-          response.setState(this.state)
-        })
-
+    this.parentScope.changeHandler(e);
+    this.setState({
+      enteredVal: {
+        value: e.target.value,
+        id: uniqid()
+      }
+    })
   }
 
   componentDidMount() {
@@ -124,7 +59,7 @@ class CountryComp extends React.Component {
             <input id='country' type='text' onChange={this.enteredValHandler.bind(this)} list='cityName'></input>
             <datalist id='cityName'>
                {this.createListElements().map(elem => {
-                return <option key={elem.id}>{elem.name}</option>
+                return <option key={elem.id} onClick={() => alert('Hello')}>{elem.name}</option>
               })} 
             </datalist>
       </div>
