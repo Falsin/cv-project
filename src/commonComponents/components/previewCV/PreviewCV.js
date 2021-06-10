@@ -16,6 +16,22 @@ class PreviewCV extends React.Component {
         </div>
         <div id='personalInformation'>
           <div id='photoBlock'></div>
+
+          <form>
+            <h2>Personal information</h2>
+
+            <label>Name</label>
+            <input id='currentName' readOnly></input>
+
+            <label>Email</label>
+            <input id='currentEmail' readOnly></input>
+
+            <label>Phone</label>
+            <input id='currentPhone' readOnly></input>
+
+            <label>Country</label>
+            <input id='currentCountry' readOnly></input>
+          </form>
         </div>
       </section>
     )

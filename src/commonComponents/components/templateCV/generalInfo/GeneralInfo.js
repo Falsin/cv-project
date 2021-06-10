@@ -34,7 +34,7 @@ class GeneralInfo extends React.Component {
     return this;
   }
 
-  clickHandler() {
+  clickHandler() { 
     this.parentScope.setState({
       generalInfo: this.state.generalInfo,
     })
@@ -55,24 +55,26 @@ class GeneralInfo extends React.Component {
   render() {
     return(
       <section>
-        <div id='generalInfo'>
-          <div>
-            <label htmlFor='name'>Name</label>
-            <input id='name' onChange={this.changeHandler.bind(this)}></input>
+        <form>
+          <div className='infoBlocks'>
+            <div>
+              <label htmlFor='name'>Name</label>
+              <input id='name' onChange={this.changeHandler.bind(this)}></input>
 
-            <label htmlFor='email'>Email</label>
-            <input id='email' type='email' onChange={this.changeHandler.bind(this)}></input>
+              <label htmlFor='email'>Email</label>
+              <input id='email' type='email' onChange={this.changeHandler.bind(this)}></input>
 
-            <label htmlFor='phone' type='tel'>Phone</label>
-            <input id='phone' onChange={this.changeHandler.bind(this)}></input>
+              <label htmlFor='phone' type='tel'>Phone</label>
+              <input id='phone' onChange={this.changeHandler.bind(this)}></input>
 
-            <CountryComp parentScope={this.returnParentScope.bind(this)}/>
+              <CountryComp parentScope={this.returnParentScope.bind(this)}/>
+            </div>
+
+            <PhotoComp parentScope={this.returnParentScope.bind(this)} />
           </div>
+          <input type='button' value='Add information' onClick={() => this.clickHandler()}></input>
+        </form>
 
-          <PhotoComp parentScope={this.returnParentScope.bind(this)} />
-        </div>
-
-        <button onClick={() => this.clickHandler()}>Add information</button>
       </section>
     )
   }

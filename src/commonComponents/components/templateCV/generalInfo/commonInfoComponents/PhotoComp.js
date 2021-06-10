@@ -16,11 +16,10 @@ class PhotoComp extends React.Component {
 
       reader.onload = (e) => {
         elemTag.style.backgroundImage = `url(${e.target.result})`;
-        this.parentScope.setState({
-          generalInfo: {
-            avatar: this.url
-          }
-        })
+        let cloneObj = {...this.parentScope.state.generalInfo};
+        cloneObj.avatar = e.target.result
+
+        this.parentScope.setState({generalInfo: cloneObj})
       }
 
       reader.readAsDataURL(selectedFile);
