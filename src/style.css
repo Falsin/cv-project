@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: solid red 1px;
 }
 #root {
   width: 100%;
@@ -29,20 +28,19 @@ header .container h1 {
 #templateCV section form .infoBlocks {
   display: flex;
 }
-#templateCV section form .infoBlocks > div {
+#templateCV section form .infoBlocks > div:not(.photo) {
+  display: flex;
+  flex-direction: column;
+}
+#templateCV section form .infoBlocks > div:not(.photo) > div {
+  display: flex;
+}
+#templateCV section form .infoBlocks > div:not(.photo) > div label {
+  flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
-#templateCV section form .infoBlocks > div:not(.photo) {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-#templateCV section form .infoBlocks > div:not(.photo) label {
-  display: flex;
-  justify-content: space-between;
-}
-#templateCV section form .infoBlocks > div:not(.photo) input {
+#templateCV section form .infoBlocks > div:not(.photo) > div input {
   background-image: linear-gradient(90deg, red, red);
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -55,15 +53,9 @@ header .container h1 {
   outline: none;
   border: none;
 }
-#templateCV section form .infoBlocks > div:not(.photo) input:focus,
-#templateCV section form .infoBlocks > div:not(.photo) input.active {
+#templateCV section form .infoBlocks > div:not(.photo) > div input:focus,
+#templateCV section form .infoBlocks > div:not(.photo) > div input.active {
   background-size: 100% 2px;
-}
-#templateCV section form .infoBlocks > div:not(.photo) div:last-of-type {
-  display: grid;
-  grid-column-start: 1;
-  grid-column-end: -1;
-  grid-template-columns: 1fr 3fr;
 }
 #templateCV section form .photo {
   width: 20vmin;
@@ -84,6 +76,85 @@ header .container h1 {
 #templateCV section .addInfo button {
   padding: 0.5vmin 2vmin;
 }
+/* #templateCV {
+  & section {
+    & form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      & .infoBlocks {
+        display: flex;
+
+        & > div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+  
+        & > div:not(.photo) {
+          display: grid;
+          grid-template-columns: 1fr 3fr;
+        
+          & label {
+            display: flex;
+            justify-content: space-between;
+          }
+        
+          & input {
+            background-image: linear-gradient(90deg, red, red);
+            background-position: left bottom;
+            background-repeat: no-repeat;
+            background-origin: border-box;
+            background-size: 0 2px;
+            display: block;
+            padding: 5px;
+            transition-property: background-size;
+            transition-duration: 1.5s;
+            outline: none;
+            border: none;
+          }
+
+          & input:focus,
+          & input.active {
+            background-size: 100% 2px;
+          }
+        
+          & div:last-of-type {
+            display: grid;
+            grid-column-start: 1;
+            grid-column-end: -1;
+            grid-template-columns: 1fr 3fr;
+          }
+        }
+      }
+  
+      & .photo{
+        .size(20vmin, 25vmin);
+        background-image: url(@emptyAvatar);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      
+        & label {
+          display: block;
+          .size(100%, 100%);
+      
+          & input {
+            display: none;
+          }
+        }
+      }
+    }
+
+    & .addInfo {
+
+      & button {
+        padding: 0.5vmin 2vmin;
+      }
+    }
+  }
+} */
 #previewCV {
   display: flex;
 }

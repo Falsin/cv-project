@@ -5,6 +5,7 @@ class PhotoComp extends React.Component {
     super(props)
 
     this.parentScope = props.parentScope();
+    this.url = undefined;
   }
 
   onFileSelected(e) {
@@ -14,17 +15,27 @@ class PhotoComp extends React.Component {
       const reader = new FileReader();
       const elemTag = document.querySelector('.photo');
 
-      reader.onload = (e) => {
-        elemTag.style.backgroundImage = `url(${e.target.result})`;
-        let cloneObj = {...this.parentScope.state.generalInfo};
-        cloneObj.avatar = e.target.result
+      reader.onload = (e) => {  
+        this.url = e.target.result;
+        elemTag.style.backgroundImage = `url(${this.url})`;
 
-        this.parentScope.setState({generalInfo: cloneObj})
+        this.addPropertyInState()
       }
 
       reader.readAsDataURL(selectedFile);
     }
   }
+
+  componentDidMount() {
+    this.addPropertyInState()
+  }
+
+  addPropertyInState() {
+    let cloneObj = {...this.parentScope.state.generalInfo};
+    cloneObj.avatar = this.url;
+    this.parentScope.setState({generalInfo: cloneObj})
+  }
+
 
   render() {
     return (

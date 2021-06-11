@@ -59,7 +59,7 @@ class CountryComp extends React.Component {
             <input id='country' type='text' onChange={this.enteredValHandler.bind(this)} list='cityName'></input>
             <datalist id='cityName'>
                {this.createListElements().map(elem => {
-                return <option key={elem.id} onClick={() => alert('Hello')}>{elem.name}</option>
+                return <option key={elem.id}>{elem.name}</option>
               })} 
             </datalist>
       </div>

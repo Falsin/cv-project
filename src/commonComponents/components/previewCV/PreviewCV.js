@@ -21,16 +21,16 @@ class PreviewCV extends React.Component {
             <h2>Personal information</h2>
 
             <label>Name</label>
-            <input id='currentName' readOnly></input>
+            <input id='currentName' readOnly data-unique-key='Name' onLoad={() => console.log('hello!')}></input>
 
             <label>Email</label>
-            <input id='currentEmail' readOnly></input>
+            <input id='currentEmail' readOnly data-unique-key='Email'></input>
 
             <label>Phone</label>
-            <input id='currentPhone' readOnly></input>
+            <input id='currentPhone' readOnly data-unique-key='Phone'></input>
 
             <label>Country</label>
-            <input id='currentCountry' readOnly></input>
+            <input id='currentCountry' readOnly data-unique-key='Country'></input>
           </form>
         </div>
       </section>

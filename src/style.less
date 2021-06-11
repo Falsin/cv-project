@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: solid red 1px;
+  //border: solid red 1px;
 }
 
 #root {
@@ -34,6 +34,78 @@ header {
 }
 
 #templateCV {
+  & section {
+    & form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      & .infoBlocks {
+        display: flex;
+
+        & > div:not(.photo) {
+          display: flex;
+          flex-direction: column;
+
+          & > div {
+            display: flex;
+
+            & label {
+              flex-grow: 1;
+              display: flex;
+              align-items: center;
+            }
+
+            & input {
+              background-image: linear-gradient(90deg, red, red);
+              background-position: left bottom;
+              background-repeat: no-repeat;
+              background-origin: border-box;
+              background-size: 0 2px;
+              display: block;
+              padding: 5px;
+              transition-property: background-size;
+              transition-duration: 1.5s;
+              outline: none;
+              border: none;
+            }
+
+            & input:focus,
+            & input.active {
+              background-size: 100% 2px;
+            }
+          }
+        }
+      }
+  
+      & .photo{
+        .size(20vmin, 25vmin);
+        background-image: url(@emptyAvatar);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      
+        & label {
+          display: block;
+          .size(100%, 100%);
+      
+          & input {
+            display: none;
+          }
+        }
+      }
+    }
+
+    & .addInfo {
+
+      & button {
+        padding: 0.5vmin 2vmin;
+      }
+    }
+  }
+}
+
+/* #templateCV {
   & section {
     & form {
       display: flex;
@@ -111,7 +183,7 @@ header {
       }
     }
   }
-}
+} */
 
 #previewCV {
   display: flex;
