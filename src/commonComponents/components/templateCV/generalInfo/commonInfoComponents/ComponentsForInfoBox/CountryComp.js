@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 class CountryComp extends React.Component {
   constructor(props) {
     super(props);
-    this.parentScope = props.parentScope();
+    this.parentScope = props.parentScope;
     this.countryNamesArr = [];
 
     this.state = {
@@ -49,14 +49,14 @@ class CountryComp extends React.Component {
   }
 
   componentDidMount() {
-    this.getCountryList()
+    this.getCountryList();
   }
   
   render() {
     return (
       <div>
-        <label htmlFor='country'>Country</label>
-            <input id='country' type='text' onChange={this.enteredValHandler.bind(this)} list='cityName'></input>
+        <label htmlFor={this.props.nameElem}>{this.props.nameElem}</label>
+            <input id={this.props.nameElem} type='text' onChange={this.enteredValHandler.bind(this)} list='cityName'></input>
             <datalist id='cityName'>
                {this.createListElements().map(elem => {
                 return <option key={elem.id}>{elem.name}</option>
