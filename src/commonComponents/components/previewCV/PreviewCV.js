@@ -8,7 +8,6 @@ class PreviewCV extends React.Component {
   }
 
   render() {
-    console.log(this.parentScope.state)
     return (
       <section id='previewCV'>
         <div id='commonInformation'>
@@ -17,21 +16,9 @@ class PreviewCV extends React.Component {
         <div id='personalInformation'>
           <div id='photoBlock'></div>
 
-          <form>
-            <h2>Personal information</h2>
-
-            <label>Name</label>
-            <input id='currentName' readOnly data-unique-key='Name' onLoad={() => console.log('hello!')}></input>
-
-            <label>Email</label>
-            <input id='currentEmail' readOnly data-unique-key='Email'></input>
-
-            <label>Phone</label>
-            <input id='currentPhone' readOnly data-unique-key='Phone'></input>
-
-            <label>Country</label>
-            <input id='currentCountry' readOnly data-unique-key='Country'></input>
-          </form>
+          {this.parentScope.state && 
+          <OutputPersonalInfo obj={this.parentScope.state.generalInfo.personalInfo} />}
+          
         </div>
       </section>
     )
@@ -39,3 +26,23 @@ class PreviewCV extends React.Component {
 }
 
 export default PreviewCV
+
+class OutputPersonalInfo extends React.Component {
+  render() {
+    console.log('the component')
+    return (
+      <form>
+        <h2>Personal information</h2>
+
+        {Object.entries(this.props.obj).map((elem, id) => {
+          return (
+            <div key={id}>
+              <label>{elem[0]}</label>
+              <input value={elem[1]} readOnly></input>
+            </div>
+          )
+        })}
+      </form>
+    )
+  }
+}

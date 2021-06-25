@@ -1,5 +1,4 @@
 import React from 'react';
-//import CountryComp from './commonInfoComponents/CountryComp'
 import InfoBox from './commonInfoComponents/InfoBox';
 import PhotoComp from './commonInfoComponents/PhotoComp'
 
@@ -53,6 +52,12 @@ class GeneralInfo extends React.Component {
     cloneObj.personalInfo[e.target.id] = e.target.value;
 
     this.setState({generalInfo: cloneObj})
+  }
+
+  componentDidMount() {
+    this.parentScope.setState({
+      generalInfo: this.state.generalInfo,
+    })
   }
   
   render() {
