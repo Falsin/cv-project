@@ -16,6 +16,7 @@ class GeneralInfo extends React.Component {
     }
     
     this.parentScope = props.parentScope();
+    this.commonParentScope = this.parentScope.commonParentScope;
 
     this.changeHandler = this.parentScope.changeHandler.bind(this);
     this.clickHandler = this.parentScope.clickHandler.bind(this);
@@ -29,6 +30,13 @@ class GeneralInfo extends React.Component {
   componentDidMount() {
     this.parentScope.setState(this.state)
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      console.log(this.state)
+      this.parentScope.setState(this.state)
+    }
+  }
   
   render() {
     return(
@@ -40,7 +48,7 @@ class GeneralInfo extends React.Component {
             <PhotoComp parentScope={this.returnParentScope.bind(this)} />
           </div>
           <input type='button' value='Add information' onClick={() => {
-            this.clickHandler(Object.keys(this.state)[0])}
+            this.clickHandler(Object.keys(this.state)[0], this.commonParentScope)}
           }></input>
         </form>
 

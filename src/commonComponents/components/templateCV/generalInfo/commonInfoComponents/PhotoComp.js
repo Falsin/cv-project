@@ -35,7 +35,6 @@ class PhotoComp extends React.Component {
     let protoObj = Object.create(null, {
       Avatar: {
         value: 'Hello', 
-        enumerable: false,
       }
     })
 

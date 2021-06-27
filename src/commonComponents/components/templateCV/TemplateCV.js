@@ -6,7 +6,7 @@ class TemplateCV extends React.Component {
   constructor(props) {
     super(props);
 
-    this.parentScope = props.parentScope();
+    this.commonParentScope = props.parentScope();
   }
 
   returnParentScope() {
@@ -14,8 +14,8 @@ class TemplateCV extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state) {
-      this.parentScope.setState(this.state)
+    if (prevState === null) {
+      this.commonParentScope.setState(this.state)
     }
   }
 
@@ -29,15 +29,19 @@ class TemplateCV extends React.Component {
     this.addPropertiesInState(e, propertyName)
   }
 
-  clickHandler(propertyName) { 
-    this.parentScope.setState({
-      [propertyName]: Object.assign(this.state[propertyName])
-    })
+   clickHandler(propertyName, scope) { 
+    scope.setState(
+      Object.assign({}, this.parentScope.state, {[propertyName]: this.state[propertyName]})
+    )
+  }
+
+  componentDidMount() {
+    console.log(this.state)
+    console.log(this.state)
+    this.commonParentScope.setState(this.state)
   }
 
   addPropertiesInState(e, propertyName) {
-    console.log(propertyName)
-    console.log(this.state)
     let cloneObj = Object.assign(this.state[propertyName]);
     cloneObj[e.target.id] = e.target.value;
 

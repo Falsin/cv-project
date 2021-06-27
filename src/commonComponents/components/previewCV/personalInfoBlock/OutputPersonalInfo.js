@@ -3,6 +3,8 @@ import React from 'react';
 class OutputPersonalInfo extends React.Component {
   render() {
 
+    console.log(this.props)
+
     return (
       <form>
         <h2>Personal information</h2>
