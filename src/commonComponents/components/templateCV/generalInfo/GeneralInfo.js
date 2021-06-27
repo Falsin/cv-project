@@ -7,57 +7,27 @@ class GeneralInfo extends React.Component {
     super(props);
 
     this.state = {
-      activeElemArr: [],
       generalInfo: {
-        personalInfo: {
-          Name: '',
-          Email: '',
-          Phone: '',
-          Country: '',
-        }
-      },
+        Name: '',
+        Email: '',
+        Phone: '',
+        Country: '',
+      }
     }
     
     this.parentScope = props.parentScope();
-  }
 
-  changeHandler(e) {
-    if (e.target.value.length > 0 && ![...e.target.classList].includes('active')) {
-      e.target.classList.add('active');
-      this.setState({
-        activeElemArr: [...this.state.activeElemArr, e.target]
-      })
-    } else if (!e.target.value.length) {
-      e.target.classList.remove('active');
-      this.setState({
-        activeElemArr: this.state.activeElemArr.filter(elem => elem !== e.target)
-      })
-    }
-
-    this.addPropertiesInState(e)
+    this.changeHandler = this.parentScope.changeHandler.bind(this);
+    this.clickHandler = this.parentScope.clickHandler.bind(this);
+    this.addPropertiesInState = this.parentScope.addPropertiesInState.bind(this);
   }
 
   returnParentScope() {
     return this;
   }
 
-  clickHandler() { 
-    this.parentScope.setState({
-      generalInfo: this.state.generalInfo,
-    })
-  }
-
-  addPropertiesInState(e) {
-    let cloneObj = {...this.state.generalInfo};
-    cloneObj.personalInfo[e.target.id] = e.target.value;
-
-    this.setState({generalInfo: cloneObj})
-  }
-
   componentDidMount() {
-    this.parentScope.setState({
-      generalInfo: this.state.generalInfo,
-    })
+    this.parentScope.setState(this.state)
   }
   
   render() {
@@ -69,7 +39,9 @@ class GeneralInfo extends React.Component {
 
             <PhotoComp parentScope={this.returnParentScope.bind(this)} />
           </div>
-          <input type='button' value='Add information' onClick={() => this.clickHandler()}></input>
+          <input type='button' value='Add information' onClick={() => {
+            this.clickHandler(Object.keys(this.state)[0])}
+          }></input>
         </form>
 
       </section>

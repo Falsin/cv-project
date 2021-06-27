@@ -31,11 +31,18 @@ class PhotoComp extends React.Component {
   }
 
   addPropertyInState() {
-    let cloneObj = {...this.parentScope.state.generalInfo};
-    cloneObj.avatar = this.url;
-    this.parentScope.setState({generalInfo: cloneObj})
-  }
 
+    let protoObj = Object.create(null, {
+      Avatar: {
+        value: 'Hello', 
+        enumerable: false,
+      }
+    })
+
+    this.parentScope.setState({
+      generalInfo: Object.assign(Object.create(protoObj), this.parentScope.state.generalInfo)
+    });
+  }
 
   render() {
     return (

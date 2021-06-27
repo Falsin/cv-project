@@ -7,28 +7,18 @@ class InfoBox extends React.Component {
     super(props);
 
     this.parentScope = props.parentScope();
-  }
-
-  throughObjProp() {
-    let obj = this.parentScope.state.generalInfo.personalInfo;
-    let listItems = [];
-
-    for (const key in obj) {
-      listItems.push(key);
-    }
-
-    return listItems;
+    this.personalInfo = this.parentScope.state.generalInfo;
   }
 
   render() {
     return (
       <div>
-        {this.throughObjProp().map((elem, id) => {
+        {Object.keys(this.personalInfo).map((elem, id) => {
           if (elem !== 'Country') {
             return <ContactInfo key={id} nameElem={elem} parentScope={this.parentScope}/>
           }
           return <CountryComp key={id} nameElem={elem} parentScope={this.parentScope}/>
-        })}
+        })}     
       </div>
     )
   }

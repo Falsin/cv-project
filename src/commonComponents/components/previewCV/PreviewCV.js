@@ -1,4 +1,5 @@
 import React from 'react';
+import OutputPersonalInfo from './personalInfoBlock/OutputPersonalInfo';
 
 class PreviewCV extends React.Component {
   constructor(props) {
@@ -8,6 +9,11 @@ class PreviewCV extends React.Component {
   }
 
   render() {
+
+    if (this.parentScope.state) {
+      console.log(this.parentScope.state)
+    }
+
     return (
       <section id='previewCV'>
         <div id='commonInformation'>
@@ -17,8 +23,8 @@ class PreviewCV extends React.Component {
           <div id='photoBlock'></div>
 
           {this.parentScope.state && 
-          <OutputPersonalInfo obj={this.parentScope.state.generalInfo.personalInfo} />}
-          
+          <OutputPersonalInfo obj={this.parentScope.state.generalInfo} />}
+
         </div>
       </section>
     )
@@ -26,23 +32,3 @@ class PreviewCV extends React.Component {
 }
 
 export default PreviewCV
-
-class OutputPersonalInfo extends React.Component {
-  render() {
-    console.log('the component')
-    return (
-      <form>
-        <h2>Personal information</h2>
-
-        {Object.entries(this.props.obj).map((elem, id) => {
-          return (
-            <div key={id}>
-              <label>{elem[0]}</label>
-              <input value={elem[1]} readOnly></input>
-            </div>
-          )
-        })}
-      </form>
-    )
-  }
-}
