@@ -20,6 +20,11 @@ header .container img {
 header .container h1 {
   margin-left: 1vmin;
 }
+#templateCV section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #templateCV section form {
   display: flex;
   align-items: center;
@@ -73,8 +78,15 @@ header .container h1 {
 #templateCV section form .photo label input {
   display: none;
 }
-#templateCV section .addInfo button {
-  padding: 0.5vmin 2vmin;
+#templateCV section > ul {
+  list-style-type: none;
+}
+#templateCV section > ul li {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+#templateCV section > ul li input {
+  flex-grow: 1;
 }
 #previewCV {
   display: flex;

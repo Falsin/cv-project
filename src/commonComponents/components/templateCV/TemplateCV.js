@@ -1,6 +1,6 @@
 import React from 'react';
-import GeneralInfo from './generalInfo/GeneralInfo';
-import EducationalExperience from './EducationalExperience';
+import GeneralInfo from './compForTemplateCV/GeneralInfo';
+import EducationalExperience from './compForTemplateCV/EducationalExperience';
 
 class TemplateCV extends React.Component {
   constructor(props) {

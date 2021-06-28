@@ -35,22 +35,24 @@ class EducationalExperience extends React.Component {
 
   render() {
     return (
-      <div>
-        {Object.entries(this.state.educationalExperience).map((elem, id) => {
-          return (
-            <div key={id}>
-              <label htmlFor={elem[0]}>{elem[0]}</label>
-              <input type={elem[1].type} id={elem[0]} onChange={(e) => {
-                this.changeHandler(e, Object.keys(this.state)[0])
-              }}></input>
-            </div>
-          )
-        })}
+      <section>
+        <ul>
+          {Object.entries(this.state.educationalExperience).map((elem, id) => {
+            return (
+              <li key={id}>
+                <label htmlFor={elem[0]}>{elem[0]}</label>
+                <input type={elem[1].type} id={elem[0]} onChange={(e) => {
+                  this.changeHandler(e, Object.keys(this.state)[0])
+                }}></input>
+              </li>
+            )
+          })}
+        </ul>
         
         <input type='button' value='Add information' onClick={() => {
           this.clickHandler(Object.keys(this.state)[0], this.commonParentScope)
         }}></input>
-      </div>
+      </section>
     )
   }
 }
