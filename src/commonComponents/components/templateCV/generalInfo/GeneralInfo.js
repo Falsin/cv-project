@@ -33,7 +33,6 @@ class GeneralInfo extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) {
-      console.log(this.state)
       this.parentScope.setState(this.state)
     }
   }

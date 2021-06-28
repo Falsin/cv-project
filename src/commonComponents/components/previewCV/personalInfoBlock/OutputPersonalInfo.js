@@ -2,21 +2,20 @@ import React from 'react';
 
 class OutputPersonalInfo extends React.Component {
   render() {
-
-    console.log(this.props)
-
     return (
       <form>
         <h2>Personal information</h2>
 
-        {Object.entries(this.props.obj).map((elem, id) => {
-          return (
-            <div key={id}>
-              <label>{elem[0]}</label>
-              <input value={elem[1]} readOnly></input>
-            </div>
-          )
-        })}
+        <ul>
+          {Object.entries(this.props.obj).map((elem, id) => {
+            return (
+              <li key={id}>
+                <label>{elem[0]}</label>
+                <input value={elem[1]} readOnly></input>
+              </li>
+            )
+          })}
+        </ul>
       </form>
     )
   }

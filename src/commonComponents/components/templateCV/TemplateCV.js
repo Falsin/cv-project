@@ -36,18 +36,12 @@ class TemplateCV extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state)
-    console.log(this.state)
     this.commonParentScope.setState(this.state)
   }
 
   addPropertiesInState(e, propertyName) {
     let cloneObj = Object.assign(this.state[propertyName]);
     cloneObj[e.target.id] = e.target.value;
-
-    this.setState({
-      [propertyName]: cloneObj,
-    })
   }
 
   render() {

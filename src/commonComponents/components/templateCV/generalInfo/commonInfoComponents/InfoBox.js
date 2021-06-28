@@ -12,14 +12,14 @@ class InfoBox extends React.Component {
 
   render() {
     return (
-      <div>
+      <ul>
         {Object.keys(this.personalInfo).map((elem, id) => {
           if (elem !== 'Country') {
             return <ContactInfo key={id} nameElem={elem} parentScope={this.parentScope}/>
           }
           return <CountryComp key={id} nameElem={elem} parentScope={this.parentScope}/>
         })}     
-      </div>
+      </ul>
     )
   }
 }

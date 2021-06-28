@@ -9,10 +9,10 @@ class PreviewCV extends React.Component {
   }
 
   render() {
-
+/* 
     if (this.parentScope.state) {
       console.log(this.parentScope.state)
-    }
+    } */
 
     return (
       <section id='previewCV'>

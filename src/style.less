@@ -43,11 +43,11 @@ header {
       & .infoBlocks {
         display: flex;
 
-        & > div:not(.photo) {
+        & > ul {
           display: flex;
           flex-direction: column;
 
-          & > div {
+          & > li {
             display: flex;
 
             & label {
@@ -105,86 +105,6 @@ header {
   }
 }
 
-/* #templateCV {
-  & section {
-    & form {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-
-      & .infoBlocks {
-        display: flex;
-
-        & > div {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-  
-        & > div:not(.photo) {
-          display: grid;
-          grid-template-columns: 1fr 3fr;
-        
-          & label {
-            display: flex;
-            justify-content: space-between;
-          }
-        
-          & input {
-            background-image: linear-gradient(90deg, red, red);
-            background-position: left bottom;
-            background-repeat: no-repeat;
-            background-origin: border-box;
-            background-size: 0 2px;
-            display: block;
-            padding: 5px;
-            transition-property: background-size;
-            transition-duration: 1.5s;
-            outline: none;
-            border: none;
-          }
-
-          & input:focus,
-          & input.active {
-            background-size: 100% 2px;
-          }
-        
-          & div:last-of-type {
-            display: grid;
-            grid-column-start: 1;
-            grid-column-end: -1;
-            grid-template-columns: 1fr 3fr;
-          }
-        }
-      }
-  
-      & .photo{
-        .size(20vmin, 25vmin);
-        background-image: url(@emptyAvatar);
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-      
-        & label {
-          display: block;
-          .size(100%, 100%);
-      
-          & input {
-            display: none;
-          }
-        }
-      }
-    }
-
-    & .addInfo {
-
-      & button {
-        padding: 0.5vmin 2vmin;
-      }
-    }
-  }
-} */
-
 #previewCV {
   display: flex;
 
@@ -208,10 +128,22 @@ header {
       background-repeat: no-repeat;
     }
 
-    & input {
-      outline: none;
-      border: none;
-      border-bottom: solid black 1px;
+    & ul {
+      list-style-type: none;
+
+      & li {
+        display: flex;
+        
+        & label {
+          flex-grow: 1;
+        }
+
+        & input {
+          outline: none;
+          border: none;
+          border-bottom: solid black 1px;
+        }
+      }
     }
   }
 }

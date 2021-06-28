@@ -39,7 +39,7 @@ class CountryComp extends React.Component {
   }
 
   enteredValHandler(e) {
-    this.parentScope.changeHandler(e);
+    this.parentScope.changeHandler(e, Object.keys(this.parentScope.state)[0]);
     this.setState({
       enteredVal: {
         value: e.target.value,
@@ -54,7 +54,7 @@ class CountryComp extends React.Component {
   
   render() {
     return (
-      <div>
+      <li>
         <label htmlFor={this.props.nameElem}>{this.props.nameElem}</label>
             <input id={this.props.nameElem} type='text' onChange={this.enteredValHandler.bind(this)} list='cityName'></input>
             <datalist id='cityName'>
@@ -62,7 +62,7 @@ class CountryComp extends React.Component {
                 return <option key={elem.id}>{elem.name}</option>
               })} 
             </datalist>
-      </div>
+      </li>
     )
   }
 }

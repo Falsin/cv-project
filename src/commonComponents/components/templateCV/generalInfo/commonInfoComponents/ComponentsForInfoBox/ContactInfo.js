@@ -9,12 +9,12 @@ class ContactInfo extends React.Component {
 
   render() {
     return (
-      <div key={this.props.id}>
+      <li key={this.props.id}>
         <label htmlFor={this.props.nameElem}>{this.props.nameElem}</label>
         <input id={this.props.nameElem} onChange={(e) => {
           this.parentScope.changeHandler(e, Object.keys(this.parentScope.state)[0]);
         }} />
-      </div>
+      </li>
     )
   }
 }
