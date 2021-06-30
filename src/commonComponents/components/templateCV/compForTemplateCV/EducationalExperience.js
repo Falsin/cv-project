@@ -1,4 +1,7 @@
 import React from 'react'
+import CloneObj from '../../../additionalComponents/CloneObj';
+import ChangeHandler from '../../../additionalComponents/ChangeHandler';
+import ClickHandler from '../../../additionalComponents/ClickHandler';
 
 class EducationalExperience extends React.Component {
   constructor(props) {
@@ -23,14 +26,10 @@ class EducationalExperience extends React.Component {
 
     this.parentScope = props.parentScope();
     this.commonParentScope = this.parentScope.commonParentScope;
-
-    this.changeHandler = this.parentScope.changeHandler.bind(this);
-    this.clickHandler = this.parentScope.clickHandler.bind(this);
-    this.addPropertiesInState = this.parentScope.addPropertiesInState.bind(this);
   }
 
   componentDidMount() {
-    this.parentScope.setState(this.state)
+    this.parentScope.setState(CloneObj({}, this.state));
   }
 
   render() {
@@ -42,7 +41,7 @@ class EducationalExperience extends React.Component {
               <li key={id}>
                 <label htmlFor={elem[0]}>{elem[0]}</label>
                 <input type={elem[1].type} id={elem[0]} onChange={(e) => {
-                  this.changeHandler(e, Object.keys(this.state)[0])
+                  ChangeHandler.call(this.parentScope, e, Object.keys(this.state)[0])
                 }}></input>
               </li>
             )
@@ -50,7 +49,7 @@ class EducationalExperience extends React.Component {
         </ul>
         
         <input type='button' value='Add information' onClick={() => {
-          this.clickHandler(Object.keys(this.state)[0], this.commonParentScope)
+          ClickHandler.call(this.parentScope, Object.keys(this.state)[0], this.commonParentScope)
         }}></input>
       </section>
     )

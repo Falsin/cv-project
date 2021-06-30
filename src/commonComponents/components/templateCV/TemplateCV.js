@@ -1,6 +1,7 @@
 import React from 'react';
 import GeneralInfo from './compForTemplateCV/GeneralInfo';
 import EducationalExperience from './compForTemplateCV/EducationalExperience';
+import CloneObj from '../../additionalComponents/CloneObj';
 
 class TemplateCV extends React.Component {
   constructor(props) {
@@ -15,33 +16,12 @@ class TemplateCV extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState === null) {
-      this.commonParentScope.setState(this.state)
+      this.commonParentScope.setState(CloneObj({}, this.state));
     }
-  }
-
-  changeHandler(e, propertyName) {
-    if (e.target.value.length > 0 && ![...e.target.classList].includes('active')) {
-      e.target.classList.add('active');
-    } else if (!e.target.value.length) {
-      e.target.classList.remove('active');
-    }
-
-    this.addPropertiesInState(e, propertyName)
-  }
-
-   clickHandler(propertyName, scope) { 
-    scope.setState(
-      Object.assign({}, this.parentScope.state, {[propertyName]: this.state[propertyName]})
-    )
   }
 
   componentDidMount() {
-    this.commonParentScope.setState(this.state)
-  }
-
-  addPropertiesInState(e, propertyName) {
-    let cloneObj = Object.assign(this.state[propertyName]);
-    cloneObj[e.target.id] = e.target.value;
+    this.commonParentScope.setState(CloneObj(null, this.state));
   }
 
   render() {

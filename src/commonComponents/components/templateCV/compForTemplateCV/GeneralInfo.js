@@ -1,6 +1,8 @@
 import React from 'react';
 import InfoBox from './commonInfoComponents/InfoBox';
 import PhotoComp from './commonInfoComponents/PhotoComp'
+import CloneObj from '../../../additionalComponents/CloneObj';
+import ClickHandler  from '../../../additionalComponents/ClickHandler'
 
 class GeneralInfo extends React.Component {
   constructor(props) {
@@ -17,10 +19,6 @@ class GeneralInfo extends React.Component {
     
     this.parentScope = props.parentScope();
     this.commonParentScope = this.parentScope.commonParentScope;
-
-    this.changeHandler = this.parentScope.changeHandler.bind(this);
-    this.clickHandler = this.parentScope.clickHandler.bind(this);
-    this.addPropertiesInState = this.parentScope.addPropertiesInState.bind(this);
   }
 
   returnParentScope() {
@@ -28,12 +26,12 @@ class GeneralInfo extends React.Component {
   }
 
   componentDidMount() {
-    this.parentScope.setState(this.state)
+    this.parentScope.setState(CloneObj({}, this.state))
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) {
-      this.parentScope.setState(this.state)
+      this.parentScope.setState(CloneObj({}, this.state));
     }
   }
   
@@ -47,8 +45,8 @@ class GeneralInfo extends React.Component {
             <PhotoComp parentScope={this.returnParentScope.bind(this)} />
           </div>
           <input type='button' value='Add information' onClick={() => {
-            this.clickHandler(Object.keys(this.state)[0], this.commonParentScope)}
-          }></input>
+            ClickHandler.call(this, Object.keys(this.state)[0], this.commonParentScope)
+          }}></input>
         </form>
 
       </section>

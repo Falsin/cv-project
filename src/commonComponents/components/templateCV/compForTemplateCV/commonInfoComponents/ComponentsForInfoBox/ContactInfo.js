@@ -1,4 +1,5 @@
 import React from 'react'
+import ChangeHandler from '../../../../../additionalComponents/ChangeHandler';
 
 class ContactInfo extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ContactInfo extends React.Component {
       <li key={this.props.id}>
         <label htmlFor={this.props.nameElem}>{this.props.nameElem}</label>
         <input id={this.props.nameElem} onChange={(e) => {
-          this.parentScope.changeHandler(e, Object.keys(this.parentScope.state)[0]);
+          ChangeHandler.call(this.parentScope, e, Object.keys(this.parentScope.state)[0])
         }} />
       </li>
     )

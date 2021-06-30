@@ -1,5 +1,6 @@
 import React from 'react';
 import uniqid from 'uniqid';
+import ChangeHandler from '../../../../../additionalComponents/ChangeHandler';
 
 class CountryComp extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class CountryComp extends React.Component {
   }
 
   enteredValHandler(e) {
-    this.parentScope.changeHandler(e, Object.keys(this.parentScope.state)[0]);
+    ChangeHandler.call(this.parentScope, e, Object.keys(this.parentScope.state)[0])
     this.setState({
       enteredVal: {
         value: e.target.value,

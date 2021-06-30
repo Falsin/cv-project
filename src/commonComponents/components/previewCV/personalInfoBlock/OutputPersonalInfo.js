@@ -1,21 +1,21 @@
 import React from 'react';
+import CreateList from './CreateListComp';
 
 class OutputPersonalInfo extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.returnParentScope = props.returnParentScope();
+  }
+
   render() {
+    //console.log(this.returnParentScope.state)
     return (
       <form>
         <h2>Personal information</h2>
 
-        <ul>
-          {Object.entries(this.props.obj).map((elem, id) => {
-            return (
-              <li key={id}>
-                <label>{elem[0]}</label>
-                <input value={elem[1]} readOnly></input>
-              </li>
-            )
-          })}
-        </ul>
+        {this.returnParentScope.state && 
+        <CreateList obj={this.returnParentScope.state.generalInfo}/>}
       </form>
     )
   }
