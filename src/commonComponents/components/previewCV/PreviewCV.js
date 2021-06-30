@@ -1,6 +1,7 @@
 import React from 'react';
 import OutputPersonalInfo from './personalInfoBlock/OutputPersonalInfo';
 import CloneObj from '../../additionalComponents/CloneObj';
+import OutputEducationalExperience from './personalInfoBlock/OutputEducationalExperience';
 
 class PreviewCV extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class PreviewCV extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(prevState === this.state) {
-      this.setState(CloneObj({}, this.CommonParentScope.state))
+      this.setState(CloneObj(this.CommonParentScope.state))
     }
   }
 
@@ -24,7 +25,7 @@ class PreviewCV extends React.Component {
     return (
       <section id='previewCV'>
         <div id='commonInformation'>
-          Hello!
+          <OutputEducationalExperience />
         </div>
         <div id='personalInformation'>
           <div id='photoBlock'></div>
@@ -35,9 +36,5 @@ class PreviewCV extends React.Component {
     )
   }
 }
-
-/*class OutputEducationalExperience extends React.Component {
-
-} */
 
 export default PreviewCV

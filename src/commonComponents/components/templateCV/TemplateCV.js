@@ -16,12 +16,8 @@ class TemplateCV extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState === null) {
-      this.commonParentScope.setState(CloneObj({}, this.state));
+      this.commonParentScope.setState(CloneObj(this.state));
     }
-  }
-
-  componentDidMount() {
-    this.commonParentScope.setState(CloneObj(null, this.state));
   }
 
   render() {

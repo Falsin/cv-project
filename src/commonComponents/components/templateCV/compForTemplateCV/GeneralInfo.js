@@ -26,12 +26,12 @@ class GeneralInfo extends React.Component {
   }
 
   componentDidMount() {
-    this.parentScope.setState(CloneObj({}, this.state))
+    this.parentScope.setState(CloneObj(this.state))
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) {
-      this.parentScope.setState(CloneObj({}, this.state));
+      this.parentScope.setState(CloneObj(this.state));
     }
   }
   

@@ -9,7 +9,6 @@ class OutputPersonalInfo extends React.Component {
   }
 
   render() {
-    //console.log(this.returnParentScope.state)
     return (
       <form>
         <h2>Personal information</h2>

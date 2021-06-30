@@ -2,6 +2,7 @@ import React from 'react'
 import CloneObj from '../../../additionalComponents/CloneObj';
 import ChangeHandler from '../../../additionalComponents/ChangeHandler';
 import ClickHandler from '../../../additionalComponents/ClickHandler';
+import cloneObj from '../../../additionalComponents/CloneObj';
 
 class EducationalExperience extends React.Component {
   constructor(props) {
@@ -9,18 +10,9 @@ class EducationalExperience extends React.Component {
 
     this.state = {
       educationalExperience: {
-        'School name': {
-          value: '',
-          type: 'text'
-        },
-        'Title of study': {
-          value: '',
-          type: 'text'
-        },
-        'Date of study': {
-          value: '',
-          type: 'date'
-        },
+        'School name': '',
+        'Title of study': '',
+        'Date of study': '',
       }
     }
 
@@ -29,7 +21,13 @@ class EducationalExperience extends React.Component {
   }
 
   componentDidMount() {
-    this.parentScope.setState(CloneObj({}, this.state));
+    this.parentScope.setState(CloneObj(this.state));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      this.parentScope.setState(cloneObj(this.state))
+    }
   }
 
   render() {
@@ -41,7 +39,7 @@ class EducationalExperience extends React.Component {
               <li key={id}>
                 <label htmlFor={elem[0]}>{elem[0]}</label>
                 <input type={elem[1].type} id={elem[0]} onChange={(e) => {
-                  ChangeHandler.call(this.parentScope, e, Object.keys(this.state)[0])
+                  ChangeHandler.call(this, e, Object.keys(this.state)[0]);
                 }}></input>
               </li>
             )
@@ -49,7 +47,7 @@ class EducationalExperience extends React.Component {
         </ul>
         
         <input type='button' value='Add information' onClick={() => {
-          ClickHandler.call(this.parentScope, Object.keys(this.state)[0], this.commonParentScope)
+          ClickHandler.call(this, Object.keys(this.state)[0], this.commonParentScope);
         }}></input>
       </section>
     )

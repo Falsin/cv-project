@@ -6,8 +6,7 @@ function changeHandler(e, propertyName) {
   } else if (!e.target.value.length) {
     e.target.classList.remove('active');
   }
-
-  console.log(this)
+  
   addPropertiesInState.call(this, e, propertyName)
 }
 
