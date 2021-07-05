@@ -12,25 +12,20 @@ class PreviewCV extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(prevState === this.state) {
-      this.setState(CloneObj(this.CommonParentScope.state))
+      this.setState(CloneObj(this.CommonParentScope.state));
     }
   }
 
-  returnParentScope() {
-    return this;
-  }
-
   render() {
-    console.log(this.state)
     return (
       <section id='previewCV'>
         <div id='commonInformation'>
-          <OutputEducationalExperience />
+          {this.state && <OutputEducationalExperience parentState={this.state}/>}
         </div>
+
         <div id='personalInformation'>
           <div id='photoBlock'></div>
-          {this.CommonParentScope.state && 
-          <OutputPersonalInfo returnParentScope={this.returnParentScope.bind(this)} />}
+          {this.state && <OutputPersonalInfo parentState={this.state} />}
         </div>
       </section>
     )
