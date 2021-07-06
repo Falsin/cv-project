@@ -9,7 +9,7 @@ class CreateList extends React.Component {
           return (
             <li key={id}>
               <label>{elem[0]}</label>
-              <input value={elem[1]} readOnly></input>
+              <input value={elem[1].value} readOnly type={elem[1].type}></input>
             </li>
           )
         })}

@@ -9,11 +9,26 @@ class EducationalExperience extends React.Component {
     super(props);
 
     this.state = {
-      educationalExperience: {
+/*       educationalExperience: {
         'School name': '',
         'Title of study': '',
         'Date of study': '',
+      } */
+      educationalExperience: {
+        'School name': {
+          value: '',
+          type: 'text',
+        },
+        'Title of study': {
+          value: '',
+          type: 'text',
+        },
+        'Date of study': {
+          value: '',
+          type: 'date',
+        },
       }
+
     }
 
     this.parentScope = props.parentScope();

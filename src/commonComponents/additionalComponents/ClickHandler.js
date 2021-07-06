@@ -1,7 +1,9 @@
+import CloneObj from "./CloneObj";
+
 function clickHandler(propertyName, scope) {
-  scope.setState(
-    Object.assign({}, this.parentScope.state, {[propertyName]: this.state[propertyName]})
-  )
+  let prevScopeState = CloneObj(scope.state);
+  prevScopeState[propertyName] = this.state[propertyName];
+  scope.setState(prevScopeState);
 }
 
 export default clickHandler;

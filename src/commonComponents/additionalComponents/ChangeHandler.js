@@ -1,13 +1,13 @@
 import addPropertiesInState from "./AddPropertiesInState";
 
-function changeHandler(e, propertyName) {
+function changeHandler(e, propertyName, validVal) {
   if (e.target.value.length > 0 && ![...e.target.classList].includes('active')) {
     e.target.classList.add('active');
   } else if (!e.target.value.length) {
     e.target.classList.remove('active');
   }
   
-  addPropertiesInState.call(this, e, propertyName)
+  addPropertiesInState.call(this, e, propertyName, validVal)
 }
 
 export default changeHandler;

@@ -8,7 +8,6 @@ function cloneObj(sourceObj) {
       newObj[key] = cloneObj(sourceObj[key]);
     }
   }
-
   return newObj;
 }
 

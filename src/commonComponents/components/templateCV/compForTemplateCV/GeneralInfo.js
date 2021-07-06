@@ -10,11 +10,24 @@ class GeneralInfo extends React.Component {
 
     this.state = {
       generalInfo: {
-        Name: '',
-        Email: '',
-        Phone: '',
-        Country: '',
+        Name: {
+          value: '',
+          type: 'text'
+        },
+        Email: {
+          value: '',
+          type: 'text'
+        },
+        Phone: {
+          value: '',
+          type: 'text'
+        },
+        Country: {
+          value: '',
+          type: 'text'
+        },
       }
+
     }
     
     this.parentScope = props.parentScope();
