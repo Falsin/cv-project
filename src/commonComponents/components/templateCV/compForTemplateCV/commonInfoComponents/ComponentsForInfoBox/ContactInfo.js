@@ -10,13 +10,14 @@ class ContactInfo extends React.Component {
 
   render() {
     let nameElem = this.props.nameElem;
+    let parentState = this.parentScope.state;
 
     return (
       <li key={this.props.id}>
         <label htmlFor={nameElem}>{nameElem}</label>
-        <input id={nameElem} type={this.parentScope.state.generalInfo[nameElem].type}
+        <input id={nameElem} type={parentState.generalInfo[nameElem].type}
           onChange={(e) => {
-          ChangeHandler.call(this.parentScope, e, Object.keys(this.props.parentScope.state)[0], 'hello')
+          ChangeHandler.call(this.parentScope, e, Object.keys(parentState)[0])
         }} />
       </li>
     )

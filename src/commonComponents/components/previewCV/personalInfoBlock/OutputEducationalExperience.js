@@ -1,5 +1,5 @@
 import React from 'react'
-import CreateList from './CreateListComp';
+import CreateList from '../../../additionalComponents/CreateListComp';
 import CloneObj from '../../../additionalComponents/CloneObj';
 
 class OutputEducationalExperience extends React.Component {
@@ -15,8 +15,10 @@ class OutputEducationalExperience extends React.Component {
 
   render() {
     return (
-      
-      <div>{this.state && <CreateList obj={this.state.educationalExperience}/>}</div>
+      <div id='educationalExperience'>
+        <h2>Educational Experience</h2>
+        {this.state && <CreateList obj={this.state.educationalExperience}/>}
+      </div>
     )
   }
 } 

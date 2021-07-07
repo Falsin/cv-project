@@ -1,6 +1,6 @@
 import React from 'react';
 import CloneObj from '../../../additionalComponents/CloneObj';
-import CreateList from './CreateListComp';
+import CreateList from '../../../additionalComponents/CreateListComp';
 
 class OutputPersonalInfo extends React.Component {
   componentDidUpdate(prevProps) {

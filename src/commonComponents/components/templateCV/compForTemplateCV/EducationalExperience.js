@@ -9,11 +9,6 @@ class EducationalExperience extends React.Component {
     super(props);
 
     this.state = {
-/*       educationalExperience: {
-        'School name': '',
-        'Title of study': '',
-        'Date of study': '',
-      } */
       educationalExperience: {
         'School name': {
           value: '',
