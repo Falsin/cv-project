@@ -43,6 +43,7 @@ class EducationalExperience extends React.Component {
   render() {
     return (
       <section>
+        <h2>Educational experience</h2>
         <ul>
           {Object.entries(this.state.educationalExperience).map((elem, id) => {
             return (

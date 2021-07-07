@@ -33,19 +33,19 @@ header .container h1 {
 #templateCV section form .infoBlocks {
   display: flex;
 }
-#templateCV section form .infoBlocks > ul {
+#templateCV section form .infoBlocks ul {
   display: flex;
   flex-direction: column;
 }
-#templateCV section form .infoBlocks > ul > li {
+#templateCV section form .infoBlocks ul > li {
   display: flex;
 }
-#templateCV section form .infoBlocks > ul > li label {
+#templateCV section form .infoBlocks ul > li label {
   flex-grow: 1;
   display: flex;
   align-items: center;
 }
-#templateCV section form .infoBlocks > ul > li input {
+#templateCV section form .infoBlocks ul > li input {
   background-image: linear-gradient(90deg, red, red);
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -58,8 +58,8 @@ header .container h1 {
   outline: none;
   border: none;
 }
-#templateCV section form .infoBlocks > ul > li input:focus,
-#templateCV section form .infoBlocks > ul > li input.active {
+#templateCV section form .infoBlocks ul > li input:focus,
+#templateCV section form .infoBlocks ul > li input.active {
   background-size: 100% 2px;
 }
 #templateCV section form .photo {

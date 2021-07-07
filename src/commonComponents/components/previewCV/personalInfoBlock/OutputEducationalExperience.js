@@ -16,7 +16,7 @@ class OutputEducationalExperience extends React.Component {
   render() {
     return (
       <div id='educationalExperience'>
-        <h2>Educational Experience</h2>
+        <h2>Educational experience</h2>
         {this.state && <CreateList obj={this.state.educationalExperience}/>}
       </div>
     )

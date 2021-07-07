@@ -12,7 +12,9 @@ class InfoBox extends React.Component {
 
   render() {
     return (
-      <ul>
+      <div>
+        <h2>Personal information</h2>
+        <ul>
         {Object.entries(this.personalInfo).map((elem, id) => {
           if (elem[0] !== 'Country') {
             return <ContactInfo key={id} nameElem={elem[0]} parentScope={this.parentScope}/>
@@ -20,6 +22,7 @@ class InfoBox extends React.Component {
           return <CountryComp key={id} nameElem={elem[0]} parentScope={this.parentScope}/>
         })}     
       </ul>
+      </div>
     )
   }
 }

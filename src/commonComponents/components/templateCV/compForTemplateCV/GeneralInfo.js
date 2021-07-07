@@ -27,7 +27,6 @@ class GeneralInfo extends React.Component {
           type: 'text'
         },
       }
-
     }
     
     this.parentScope = props.parentScope();

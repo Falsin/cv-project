@@ -1,6 +1,8 @@
 import React from 'react';
 import GeneralInfo from './compForTemplateCV/GeneralInfo';
 import EducationalExperience from './compForTemplateCV/EducationalExperience';
+import PracticalExperience from './compForTemplateCV/PracticalExperience';
+
 import CloneObj from '../../additionalComponents/CloneObj';
 
 class TemplateCV extends React.Component {
@@ -25,6 +27,7 @@ class TemplateCV extends React.Component {
       <section id='templateCV'>
         <GeneralInfo parentScope={this.returnParentScope.bind(this)}/>
         <EducationalExperience parentScope={this.returnParentScope.bind(this)}/>
+        <PracticalExperience parentScope={this.returnParentScope.bind(this)} />
       </section>
     )
   }
