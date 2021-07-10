@@ -112,6 +112,18 @@ header .container h1 {
   display: flex;
   align-items: center;
 }
+#previewCV #educationalExperience ul .EducExpBlock {
+  display: flex;
+  flex-direction: column;
+}
+#previewCV #educationalExperience ul .EducExpBlock li {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+#previewCV #educationalExperience ul .EducExpBlock li label {
+  display: flex;
+  align-items: center;
+}
 #previewCV #personalInformation {
   width: 40vw;
   display: flex;

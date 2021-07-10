@@ -1,8 +1,9 @@
 import React from 'react';
-import TemplateCV from './components/templateCV/TemplateCV'
-import PreviewCV from './components/previewCV/PreviewCV'
+import TemplateCV from './components/templateCV/TemplateCV';
+import PreviewCV from './components/previewCV/PreviewCV';
 
 class CommonParentComponent extends React.Component {
+
   constructor(props) {
     super(props);
 
