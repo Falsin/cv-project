@@ -88,6 +88,17 @@ header .container h1 {
 #templateCV section > ul li input {
   flex-grow: 1;
 }
+#templateCV section.EducExpBlock ul.template > li {
+  display: flex;
+  flex-direction: column;
+}
+#templateCV section.EducExpBlock ul.template > li li {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+#templateCV section.EducExpBlock ul.template > li li input {
+  flex-grow: 1;
+}
 #previewCV {
   margin-top: 4vmax;
   display: flex;

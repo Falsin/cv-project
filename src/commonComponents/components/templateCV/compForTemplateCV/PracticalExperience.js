@@ -39,9 +39,9 @@ class PracticalExperience extends React.Component {
             return (
               <li key={id}>
                 <label>{elem[0]}</label>
-                <input type={elem[1].type} onChange={() => {
+                <input type={elem[1].type} /* onChange={() => {
                   ChangeHandler.call()
-                }}></input>
+                }} */></input>
               </li>
             )
           })}

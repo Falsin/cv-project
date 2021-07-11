@@ -1,11 +1,11 @@
 import React from 'react';
-import CreateList from '../../../../additionalComponents/CreateListComp';
+import CreateListCompForPreview from '../../../../additionalComponents/CreateListCompForPreview';
 
 
 class TemplateEducExp extends React.Component {
   render() {
     return (
-      <CreateList obj={this.props.obj} />
+      <CreateListCompForPreview obj={this.props.obj} />
     )
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import CloneObj from '../../../additionalComponents/CloneObj';
-import CreateList from '../../../additionalComponents/CreateListComp';
+import CreateListCompForPreview from '../../../additionalComponents/CreateListCompForPreview';
 
 class OutputPersonalInfo extends React.Component {
   componentDidUpdate(prevProps) {
@@ -18,7 +18,7 @@ class OutputPersonalInfo extends React.Component {
       <form>
         <h2>Personal information</h2>
 
-        {this.state && <CreateList obj={this.state.generalInfo}/>}
+        {this.state && <CreateListCompForPreview obj={this.state.generalInfo}/>}
       </form>
     )
   }

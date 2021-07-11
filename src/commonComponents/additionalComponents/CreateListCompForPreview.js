@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-class CreateList extends React.Component {
+class CreateListCompForPreview extends React.Component {
 
   render() {
     return (
@@ -18,4 +18,4 @@ class CreateList extends React.Component {
   }
 }
 
-export default CreateList;
+export default CreateListCompForPreview;

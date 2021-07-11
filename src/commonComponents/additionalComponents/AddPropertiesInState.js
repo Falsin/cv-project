@@ -1,6 +1,11 @@
 import cloneObj from "./CloneObj";
 
- function addPropertiesInState(e, keyName) {
+function addPropertiesInState(e, subObj) {
+  subObj.value = e.target.value;
+  return this;
+}
+
+/* function addPropertiesInState(e, keyName) {
   let cloneObject = cloneObj(this.state)
   changeObj(cloneObject[keyName], e);
 
@@ -20,6 +25,8 @@ function changeObj(obj, e) {
       changeObj(obj[key], e)
     }
   }
-}
+} */
+
+
 
 export default addPropertiesInState;

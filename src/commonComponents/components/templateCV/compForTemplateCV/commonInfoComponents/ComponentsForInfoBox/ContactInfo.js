@@ -1,5 +1,6 @@
 import React from 'react'
 import ChangeHandler from '../../../../../additionalComponents/ChangeHandler';
+import cloneObj from '../../../../../additionalComponents/CloneObj';
 
 class ContactInfo extends React.Component {
   constructor(props) {
@@ -11,13 +12,14 @@ class ContactInfo extends React.Component {
   render() {
     let nameElem = this.props.nameElem;
     let parentState = this.parentScope.state;
+    let duplicateState = cloneObj(parentState);
 
     return (
       <li key={this.props.id}>
         <label htmlFor={nameElem}>{nameElem}</label>
-        <input id={nameElem} type={parentState.generalInfo[nameElem].type}
-          onChange={(e) => {
-          ChangeHandler.call(this.parentScope, e, Object.keys(parentState)[0])
+        <input type={parentState.generalInfo[nameElem].type}
+          onBlur={(e) => {
+            this.parentScope.setState(ChangeHandler.call(duplicateState, e, duplicateState.generalInfo[nameElem]));
         }} />
       </li>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateList from '../../../../additionalComponents/CreateListComp';
+import CreateListCompForPreview from '../../../../additionalComponents/CreateListCompForPreview';
 
 class CollectionEducExp extends React.Component {
   render() {
@@ -8,7 +8,7 @@ class CollectionEducExp extends React.Component {
         {this.props.array.map((elem, id) => {
           return (
             <li key={id} className='EducExpBlock'>
-              <CreateList obj={elem.info}/>
+              <CreateListCompForPreview obj={elem.info}/>
             </li>
           )
         })}

@@ -113,6 +113,22 @@ header {
       }
     }
   }
+
+  & section.EducExpBlock {
+    & ul.template > li {
+      display: flex;
+      flex-direction: column;
+
+      & li {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+
+        & input {
+          flex-grow: 1;
+        }
+      }
+    }
+  }
 }
 
 #previewCV {
