@@ -1,9 +1,5 @@
 import React from 'react'
-import CloneObj from '../../../additionalComponents/CloneObj';
-import ChangeHandler from '../../../additionalComponents/ChangeHandler';
-import ClickHandler from '../../../additionalComponents/ClickHandler';
 import cloneObj from '../../../additionalComponents/CloneObj';
-import uniqid from 'uniqid';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 
 class EducationalExperience extends React.Component {
@@ -12,69 +8,66 @@ class EducationalExperience extends React.Component {
 
     this.state = {
       educationalExperience: {
-        id: uniqid(),
-        info: {
-          'School name': {
-            value: '',
-            type: 'text',
-          },
-          'Title of study': {
-            value: '',
-            type: 'text',
-          },
-          'Date of study': {
-            value: '',
-            type: 'date',
-          },
-        }
+        'School name': {
+          value: '',
+          type: 'text',
+        },
+        'Title of study': {
+          value: '',
+          type: 'text',
+        },
+        'Date of study': {
+          value: '',
+          type: 'date',
+        },
       },
       educationalExperienceCollection: [],
     }
 
     this.parentScope = props.parentScope();
     this.commonParentScope = this.parentScope.commonParentScope;
-    this.defaultState = CloneObj(this.state.educationalExperience);
+    this.defaultState = cloneObj(this.state.educationalExperience);
   }
 
   componentDidMount() {
-    this.parentScope.setState({educExp: CloneObj(this.state)});
+    this.parentScope.setState({educExp: cloneObj(this.state)});
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) {
-      this.parentScope.setState({educExp: CloneObj(this.state)});
+      this.parentScope.setState({educExp: cloneObj(this.state)});
     }
   }
 
   sendInfo(duplicateState) {
-    duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience)
+    duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience);
 
     new Promise((res, rej) => {
-      this.parentScope.setState({educExp: cloneObj(duplicateState)})
+      this.parentScope.setState(cloneObj(duplicateState))
       res(this)
     })
     .then(response => {
-      let prevScopeState = CloneObj(response.commonParentScope.state);
+      let prevScopeState = cloneObj(response.commonParentScope.state);
       prevScopeState.educExp = duplicateState;
       response.commonParentScope.setState(prevScopeState)
     })
+
   }
 
   addInfo() {
-    let array = Object.values(this.state.educationalExperience.info);
+    let array = Object.values(this.state.educationalExperience);
     let check = array.every(elem => {
       return elem.value !== '';
     })
 
     if (check) {
-      let newObj = CloneObj(this.state.educationalExperience);
-      newObj.id = uniqid();
+      let newObj = cloneObj(this.state.educationalExperience);
       let newArray = this.state.educationalExperienceCollection.slice(0);
       newArray.push(newObj)
 
       this.setState({
         educationalExperienceCollection: newArray,
-        educationalExperience: CloneObj(this.defaultState),
+        educationalExperience: cloneObj(this.defaultState),
       })
     }    
   }
@@ -86,22 +79,17 @@ class EducationalExperience extends React.Component {
       <section className='EducExpBlock'>
         <h2>Educational experience</h2>
 
-        <CreateListCompForTemplate obj={duplicateState} scope={this}/>
-
-        <ul>
-          {Object.entries(duplicateState.educationalExperience.info).map((elem, id) => {
+        <ul className='specialStyleKit'>
+          {duplicateState.educationalExperienceCollection.map((item, id) => {
             return (
-              <li key={uniqid()}>
-                <label htmlFor={elem[0]}>{elem[0]}</label>
-                <input type={elem[1].type} data-name={elem[0]}
-                  onBlur={(e) => {
-                    this.setState(ChangeHandler.call(duplicateState, e, elem[1]));
-                  }} 
-                defaultValue={elem[1].value}></input>
+              <li key={id}>
+                <CreateListCompForTemplate obj={item} scope={this}/>
               </li>
             )
           })}
         </ul>
+
+        <CreateListCompForTemplate obj={duplicateState.educationalExperience} scope={this}/>
         
         <input type='button' value='Add information' 
           onClick={() => {

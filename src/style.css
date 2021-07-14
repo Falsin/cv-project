@@ -88,15 +88,15 @@ header .container h1 {
 #templateCV section > ul li input {
   flex-grow: 1;
 }
-#templateCV section.EducExpBlock ul.template > li {
+#templateCV section.EducExpBlock ul.specialStyleKit > li {
   display: flex;
   flex-direction: column;
 }
-#templateCV section.EducExpBlock ul.template > li li {
+#templateCV section.EducExpBlock ul.specialStyleKit > li li {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-#templateCV section.EducExpBlock ul.template > li li input {
+#templateCV section.EducExpBlock ul.specialStyleKit > li li input {
   flex-grow: 1;
 }
 #previewCV {

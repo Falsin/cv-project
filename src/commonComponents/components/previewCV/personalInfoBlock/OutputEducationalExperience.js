@@ -24,7 +24,7 @@ class OutputEducationalExperience extends React.Component {
       templateEducExp = this.state.educationalExperience;
       renderComp = (collectionEducExp.length) 
                 ? <CollectionEducExp array={collectionEducExp}/> 
-                : <TemplateEducExp obj={templateEducExp.info}/>;
+                : <TemplateEducExp obj={templateEducExp}/>;       
     }
 
     return (

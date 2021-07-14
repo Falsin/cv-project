@@ -8,7 +8,7 @@ class CollectionEducExp extends React.Component {
         {this.props.array.map((elem, id) => {
           return (
             <li key={id} className='EducExpBlock'>
-              <CreateListCompForPreview obj={elem.info}/>
+              <CreateListCompForPreview obj={elem}/>
             </li>
           )
         })}
