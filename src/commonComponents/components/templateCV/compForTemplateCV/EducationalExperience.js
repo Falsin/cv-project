@@ -1,6 +1,7 @@
 import React from 'react'
 import cloneObj from '../../../additionalComponents/CloneObj';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
+import clickHandler from '../../../additionalComponents/ClickHandler';
 
 class EducationalExperience extends React.Component {
   constructor(props) {
@@ -20,7 +21,10 @@ class EducationalExperience extends React.Component {
           value: '',
           type: 'date',
         },
+
+        isValid: true,
       },
+
       educationalExperienceCollection: [],
     }
 
@@ -33,32 +37,37 @@ class EducationalExperience extends React.Component {
     this.parentScope.setState({educExp: cloneObj(this.state)});
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state) {
-      this.parentScope.setState({educExp: cloneObj(this.state)});
-    }
-  }
-
   sendInfo(duplicateState) {
-    duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience);
+    let array = Object.values(this.state.educationalExperience);
+    let check = array.every(elem => elem.value !== '');
 
-    new Promise((res, rej) => {
-      this.parentScope.setState(cloneObj(duplicateState))
-      res(this)
-    })
-    .then(response => {
-      let prevScopeState = cloneObj(response.commonParentScope.state);
-      prevScopeState.educExp = duplicateState;
-      response.commonParentScope.setState(prevScopeState)
+    let checkСondition = this.state.educationalExperienceCollection.find((elem) => {
+      return elem.isValid === false;
     })
 
+    if (check && !checkСondition) {
+      duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience);
+      new Promise(res => {
+        this.setState(duplicateState);
+        res(this);
+      })
+      .then(response => {
+        let subObj = {
+          educExp: response.state,
+        }
+
+        clickHandler(subObj, response.commonParentScope);
+        return response;
+      })
+      .then(response => {
+        response.setState({educationalExperience: cloneObj(response.defaultState)})
+      })
+    }
   }
 
   addInfo() {
     let array = Object.values(this.state.educationalExperience);
-    let check = array.every(elem => {
-      return elem.value !== '';
-    })
+    let check = array.every(elem => elem.value !== '')
 
     if (check) {
       let newObj = cloneObj(this.state.educationalExperience);
@@ -73,7 +82,7 @@ class EducationalExperience extends React.Component {
   }
 
   render() {
-    let duplicateState = cloneObj(this.state)
+    let duplicateState = cloneObj(this.state);
 
     return (
       <section className='EducExpBlock'>
@@ -83,13 +92,13 @@ class EducationalExperience extends React.Component {
           {duplicateState.educationalExperienceCollection.map((item, id) => {
             return (
               <li key={id}>
-                <CreateListCompForTemplate obj={item} scope={this}/>
+                <CreateListCompForTemplate subObj={item} obj={duplicateState} scope={this}/>
               </li>
             )
           })}
         </ul>
 
-        <CreateListCompForTemplate obj={duplicateState.educationalExperience} scope={this}/>
+        <CreateListCompForTemplate subObj={duplicateState.educationalExperience} obj={duplicateState} scope={this}/>
         
         <input type='button' value='Add information' 
           onClick={() => {

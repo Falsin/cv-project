@@ -87,6 +87,10 @@ header .container h1 {
 }
 #templateCV section > ul li input {
   flex-grow: 1;
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 #templateCV section.EducExpBlock ul.specialStyleKit > li {
   display: flex;
@@ -98,6 +102,19 @@ header .container h1 {
 }
 #templateCV section.EducExpBlock ul.specialStyleKit > li li input {
   flex-grow: 1;
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#templateCV section.EducExpBlock .error::before {
+  content: 'The field can\'t be empty.';
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  z-index: 1;
+  background: red;
 }
 #previewCV {
   margin-top: 4vmax;
