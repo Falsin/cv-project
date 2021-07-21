@@ -48,9 +48,6 @@ class GeneralInfo extends React.Component {
   }
   
   render() {
-    //let duplicateState = CloneObj(this.state);
-
-
     return(
       <section>
         <form>
@@ -60,8 +57,7 @@ class GeneralInfo extends React.Component {
             <PhotoComp parentScope={this.returnParentScope.bind(this)} />
           </div>
           <input type='button' value='Add information' onClick={() => {
-            /* ClickHandler.call(this, Object.keys(this.state)[0], this.commonParentScope) */
-            ClickHandler.call(this, this.commonParentScope)
+            ClickHandler(this.state, this.commonParentScope);
           }}></input>
         </form>
 

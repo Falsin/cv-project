@@ -65,48 +65,6 @@ class CreateListCompForTemplate extends React.Component {
           })
   }
 
-  /* blur(object) {
-    let {obj, e, elem, id, subObj} = object;
-    
-    changeHandler.call(obj, e, elem);
-
-    if (e.target.value) {  
-      console.log('keks')               
-      let index = this.state.idHtmlWithError.indexOf(id);
-      let interimArr = [...this.state.idHtmlWithError];
-
-      if (index !== -1) {
-        interimArr.splice(index, 1);
-      }
-
-      new Promise(res => {
-        this.setState({
-          idHtmlWithError: interimArr
-        })
-        res(this)
-      })
-      .then(response => {
-        if (response.state.idHtmlWithError.length === 0) {
-          subObj.isValid = true;
-          this.scope.setState(obj);
-        }
-      })
-
-    } else {
-      e.target.parentNode.classList.add('error');
-      new Promise(res => {
-        this.setState({
-          idHtmlWithError: [...this.state.idHtmlWithError, id],
-        })
-        res(this);
-      })
-      .then(response => {
-        subObj.isValid = false;
-        this.scope.setState(obj);
-      })
-    }
-  } */
-
   render() {
     let obj = this.props.obj;
     let subObj = this.props.subObj;
