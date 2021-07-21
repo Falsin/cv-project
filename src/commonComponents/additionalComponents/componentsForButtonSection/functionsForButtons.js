@@ -1,5 +1,5 @@
-import cloneObj from "./CloneObj";
-import clickHandler from "./ClickHandler";
+import cloneObj from "../CloneObj";
+import clickHandler from "../ClickHandler";
 
 function addInfo() {
   let array = Object.values(this.state.educationalExperience);

@@ -1,8 +1,8 @@
 import React from 'react'
 import cloneObj from '../../../additionalComponents/CloneObj';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
-import {addInfo, sendInfo} from '../../../additionalComponents/functionsForButtons';
-import ButtonsSection from '../../../additionalComponents/ButtonsSectionComp';
+import {addInfo, sendInfo} from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
+import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 
 class EducationalExperience extends React.Component {
   constructor(props) {
@@ -58,8 +58,14 @@ class EducationalExperience extends React.Component {
         <CreateListCompForTemplate subObj={duplicateState.educationalExperience} obj={duplicateState} scope={this}/>
 
         <ButtonsSection btns={[
-          {value: 'Add information', func: sendInfo.bind(this, duplicateState)},
-          {value: 'Plus', func: addInfo.bind(this)}
+          {
+            value: 'Add information', 
+            func: sendInfo.bind(this, duplicateState)
+          },
+          {
+            value: 'Plus', 
+            func: addInfo.bind(this)
+          }
         ]}/>
       </section>
     )

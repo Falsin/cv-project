@@ -2,7 +2,8 @@ import React from 'react';
 import InfoBox from './commonInfoComponents/InfoBox';
 import PhotoComp from './commonInfoComponents/PhotoComp'
 import CloneObj from '../../../additionalComponents/CloneObj';
-import ClickHandler  from '../../../additionalComponents/ClickHandler'
+import clickHandler  from '../../../additionalComponents/ClickHandler';
+import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 
 class GeneralInfo extends React.Component {
   constructor(props) {
@@ -56,9 +57,13 @@ class GeneralInfo extends React.Component {
 
             <PhotoComp parentScope={this.returnParentScope.bind(this)} />
           </div>
-          <input type='button' value='Add information' onClick={() => {
-            ClickHandler(this.state, this.commonParentScope);
-          }}></input>
+
+          <ButtonsSection btns={[
+            {
+              value: 'Add information', 
+              func: clickHandler.bind(null, this.state, this.commonParentScope)
+            }
+          ]} />
         </form>
 
       </section>
