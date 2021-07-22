@@ -1,6 +1,5 @@
 import React from 'react';
-import CreateListCompForPreview from '../../../../additionalComponents/CreateListCompForPreview';
-
+import CreateListCompForPreview from '../../../../../additionalComponents/CreateListCompForPreview';
 
 class TemplateEducExp extends React.Component {
   render() {

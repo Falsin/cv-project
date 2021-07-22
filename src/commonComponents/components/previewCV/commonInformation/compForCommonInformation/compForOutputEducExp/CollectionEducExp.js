@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateListCompForPreview from '../../../../additionalComponents/CreateListCompForPreview';
+import CreateListCompForPreview from '../../../../../additionalComponents/CreateListCompForPreview';
 
 class CollectionEducExp extends React.Component {
   render() {

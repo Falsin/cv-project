@@ -1,7 +1,7 @@
 import React from 'react';
 import CloneObj from '../../../additionalComponents/CloneObj';
 import CreateListCompForPreview from '../../../additionalComponents/CreateListCompForPreview';
-import emptyAvatar from '../../../../images/emptyAvatar.jpg'
+import PhotoBlock from './compForOutputPersonalInfo/PhotoBlockComp';
 
 class OutputPersonalInfo extends React.Component {
   componentDidUpdate(prevProps) {
@@ -26,28 +26,6 @@ class OutputPersonalInfo extends React.Component {
           {this.state && <CreateListCompForPreview obj={this.state.generalInfo}/>}
         </form>
       </div>
-    )
-  }
-}
-
-class PhotoBlock extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      url: emptyAvatar
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props && this.props.obj !== undefined) {
-      this.setState({url: this.props.obj});
-    }
-  }
-
-  render() {
-    return (
-      <div id='photoBlock' style={{backgroundImage: `url(${this.state.url})`}}></div>
     )
   }
 }
