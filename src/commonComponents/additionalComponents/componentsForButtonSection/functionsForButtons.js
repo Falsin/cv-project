@@ -27,6 +27,25 @@ function sendInfo(duplicateState) {
 
   if (check && !checkСondition) {
     duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience);
+    
+    let subObj = {
+      educExp: duplicateState,
+    }
+    
+    clickHandler(subObj, this.commonParentScope);
+  }
+}
+
+/* function sendInfo(duplicateState) {
+  let array = Object.values(this.state.educationalExperience);
+  let check = array.every(elem => elem.value !== '');
+
+  let checkСondition = this.state.educationalExperienceCollection.find((elem) => {
+    return elem.isValid === false;
+  })
+
+  if (check && !checkСondition) {
+    duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience);
     new Promise(res => {
       this.setState(duplicateState);
       res(this);
@@ -43,6 +62,6 @@ function sendInfo(duplicateState) {
       response.setState({educationalExperience: cloneObj(response.defaultState)})
     })
   }
-}
+} */
 
 export {addInfo, sendInfo};

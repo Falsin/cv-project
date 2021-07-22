@@ -1,7 +1,7 @@
 import React from 'react';
 import OutputPersonalInfo from './personalInfoBlock/OutputPersonalInfo';
 import CloneObj from '../../additionalComponents/CloneObj';
-import OutputEducationalExperience from './personalInfoBlock/OutputEducationalExperience';
+import CommonInformation from './commonInformation/CommonInformationComp';
 
 class PreviewCV extends React.Component {
   constructor(props) {
@@ -19,14 +19,9 @@ class PreviewCV extends React.Component {
   render() {
     return (
       <section id='previewCV'>
-        <div id='commonInformation'>
-          {this.state && <OutputEducationalExperience parentState={this.state}/>}
-        </div>
+        {this.state && <CommonInformation obj={this.state}/>}
 
-        <div id='personalInformation'>
-          <div id='photoBlock'></div>
-          {this.state && <OutputPersonalInfo parentState={this.state} />}
-        </div>
+        {this.state && <OutputPersonalInfo parentState={this.state} />}
       </section>
     )
   }

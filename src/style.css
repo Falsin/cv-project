@@ -161,7 +161,6 @@ header .container h1 {
 #previewCV #personalInformation #photoBlock {
   width: 25vw;
   height: 37.5vw;
-  background-image: url('images/emptyAvatar.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

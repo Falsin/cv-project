@@ -16,7 +16,7 @@ class InfoBox extends React.Component {
         <h2>Personal information</h2>
         <ul>
         {Object.entries(this.personalInfo).map((elem, id) => {
-          if (elem[0] !== 'Country') {
+          if (elem[0] !== 'Country' && typeof elem[1] === 'object') {
             return <ContactInfo key={id} nameElem={elem[0]} parentScope={this.parentScope}/>
           }
           return <CountryComp key={id} nameElem={elem[0]} parentScope={this.parentScope}/>

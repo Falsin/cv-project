@@ -1,7 +1,7 @@
 import React from 'react'
-import CloneObj from '../../../additionalComponents/CloneObj';
-import TemplateEducExp from './compForOutputEducExp/TemplateEducExp';
-import CollectionEducExp from './compForOutputEducExp/CollectionEducExp';
+import CloneObj from '../../../../additionalComponents/CloneObj';
+import TemplateEducExp from '../../personalInfoBlock/compForOutputEducExp/TemplateEducExp';
+import CollectionEducExp from '../../personalInfoBlock/compForOutputEducExp/CollectionEducExp';
 
 class OutputEducationalExperience extends React.Component {
   componentDidUpdate(prevProps, prevState) {

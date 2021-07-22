@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import cloneObj from '../../../../additionalComponents/CloneObj';
 
 class PhotoComp extends React.Component {
   constructor(props) {
@@ -31,16 +32,10 @@ class PhotoComp extends React.Component {
   }
 
   addPropertyInState() {
+    let duplicateObj = cloneObj(this.parentScope.state);
+    duplicateObj.generalInfo.Avatar = this.url;
 
-    let protoObj = Object.create(null, {
-      Avatar: {
-        value: 'Hello', 
-      }
-    })
-
-    this.parentScope.setState({
-      generalInfo: Object.assign(Object.create(protoObj), this.parentScope.state.generalInfo)
-    });
+    this.parentScope.setState(duplicateObj);
   }
 
   render() {
