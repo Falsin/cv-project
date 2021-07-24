@@ -1,67 +1,54 @@
 import cloneObj from "../CloneObj";
 import clickHandler from "../ClickHandler";
 
-function addInfo() {
-  let array = Object.values(this.state.educationalExperience);
-  let check = array.every(elem => elem.value !== '')
+function addInfo(duplicateState) {
+  let arrayOfKeysAndValues = Object.entries(duplicateState);
 
-  if (check) {
-    let newObj = cloneObj(this.state.educationalExperience);
-    let newArray = this.state.educationalExperienceCollection.slice(0);
-    newArray.push(newObj)
+  let objectWithProps = arrayOfKeysAndValues[0][1];
+  let arrayWithObjects = arrayOfKeysAndValues[1][1];
 
-    this.setState({
-      educationalExperienceCollection: newArray,
-      educationalExperience: cloneObj(this.defaultState),
-    })
-  }    
-}
-
-function sendInfo(duplicateState) {
-  let array = Object.values(this.state.educationalExperience);
+  let array = Object.values(objectWithProps);
   let check = array.every(elem => elem.value !== '');
 
-  let checkСondition = this.state.educationalExperienceCollection.find((elem) => {
+  if (check) {
+    arrayWithObjects.push(objectWithProps);
+
+    let name1 = arrayOfKeysAndValues[0][0];
+    let name2 = arrayOfKeysAndValues[1][0];
+
+    new Promise(res => {
+      this.setState({
+        [name1]: cloneObj(this.defaultState),
+        [name2]: arrayWithObjects
+      })
+      res(this);
+    })
+    //.then(response => console.log(response.state))
+  } 
+}
+
+function sendInfo(duplicateState, propName) {
+  let arrayOfKeysAndValues = Object.entries(duplicateState);
+
+  let objectWithProps = arrayOfKeysAndValues[0][1];
+  let arrayWithObjects = arrayOfKeysAndValues[1][1];
+
+  let array = Object.values(objectWithProps);
+  let check = array.every(elem => elem.value !== '');
+
+  let checkСondition = arrayWithObjects.find((elem) => {
     return elem.isValid === false;
   })
 
   if (check && !checkСondition) {
-    duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience);
-    
+    arrayWithObjects.push(objectWithProps);
+
     let subObj = {
-      educExp: duplicateState,
+      [propName]: duplicateState,
     }
     
     clickHandler(subObj, this.commonParentScope);
   }
 }
-
-/* function sendInfo(duplicateState) {
-  let array = Object.values(this.state.educationalExperience);
-  let check = array.every(elem => elem.value !== '');
-
-  let checkСondition = this.state.educationalExperienceCollection.find((elem) => {
-    return elem.isValid === false;
-  })
-
-  if (check && !checkСondition) {
-    duplicateState.educationalExperienceCollection.push(duplicateState.educationalExperience);
-    new Promise(res => {
-      this.setState(duplicateState);
-      res(this);
-    })
-    .then(response => {
-      let subObj = {
-        educExp: response.state,
-      }
-
-      clickHandler(subObj, response.commonParentScope);
-      return response;
-    })
-    .then(response => {
-      response.setState({educationalExperience: cloneObj(response.defaultState)})
-    })
-  }
-} */
 
 export {addInfo, sendInfo};

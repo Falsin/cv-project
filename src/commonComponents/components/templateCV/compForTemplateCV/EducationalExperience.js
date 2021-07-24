@@ -3,6 +3,7 @@ import cloneObj from '../../../additionalComponents/CloneObj';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 import {addInfo, sendInfo} from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
+import { Input } from '../../../additionalComponents/InputsComponents';
 
 class EducationalExperience extends React.Component {
   constructor(props) {
@@ -12,15 +13,21 @@ class EducationalExperience extends React.Component {
       educationalExperience: {
         'School name': {
           value: '',
-          type: 'text',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
         'Title of study': {
           value: '',
-          type: 'text',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
         'Date of study': {
           value: '',
-          type: 'date',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <Input type='date' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
 
         isValid: true,
@@ -60,11 +67,11 @@ class EducationalExperience extends React.Component {
         <ButtonsSection btns={[
           {
             value: 'Add information', 
-            func: sendInfo.bind(this, duplicateState)
+            func: sendInfo.bind(this, duplicateState, 'educExp')
           },
           {
             value: 'Plus', 
-            func: addInfo.bind(this)
+            func: addInfo.bind(this, duplicateState)
           }
         ]}/>
       </section>

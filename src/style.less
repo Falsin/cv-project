@@ -107,13 +107,28 @@ header {
         display: grid;
         grid-template-columns: 1fr 2fr;
 
+          & label {
+            display: block;
+            white-space: pre-wrap;
+            max-width: 110px; 
+          }
+
           & input {
-          flex-grow: 1;
-          grid-column-start: 2;
-          grid-column-end: -1;
-          grid-row-start: 1;
-          grid-row-end: 2;
-        } 
+            flex-grow: 1;
+            grid-column-start: 2;
+            grid-column-end: -1;
+            grid-row-start: 1;
+            grid-row-end: 2;
+          }
+
+          & textarea {
+            flex-grow: 1;
+            grid-column-start: 2;
+            grid-column-end: -1;
+            grid-row-start: 1;
+            grid-row-end: 2;
+          }
+
       }
     }
   }
@@ -137,7 +152,7 @@ header {
       }
     }
 
-    .error {
+    /* .error {
       &::before {
         content: 'The field can\'t be empty.';
         grid-column-start: 2;
@@ -147,8 +162,21 @@ header {
         z-index: 1;
         background: red;
       }
+    } */
+  }
+
+  .error {
+    &::before {
+      content: 'The field can\'t be empty.';
+      grid-column-start: 2;
+      grid-column-end: -1;
+      grid-row-start: 1;
+      grid-row-end: 2;
+      z-index: 1;
+      background: red;
     }
   }
+
 }
 
 #previewCV {

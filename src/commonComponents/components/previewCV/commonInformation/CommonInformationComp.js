@@ -16,7 +16,16 @@ class CommonInformation extends React.Component {
     return (
       <div id='commonInformation'>
         {this.state && <OutputEducationalExperience parentState={this.state}/>}
+        {this.state && <OutputPracticalExperience parentState={this.state}/>}
       </div>
+    )
+  }
+}
+
+class OutputPracticalExperience extends React.Component {
+  render() {
+    return (
+      <div>Hello</div>
     )
   }
 }

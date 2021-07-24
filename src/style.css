@@ -85,12 +85,37 @@ header .container h1 {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+#templateCV section > ul li label {
+  display: block;
+  white-space: pre-wrap;
+  max-width: 110px;
+}
 #templateCV section > ul li input {
   flex-grow: 1;
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
+}
+#templateCV section > ul li textarea {
+  flex-grow: 1;
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#templateCV section.EducExpBlock {
+  /* .error {
+      &::before {
+        content: 'The field can\'t be empty.';
+        grid-column-start: 2;
+        grid-column-end: -1;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        z-index: 1;
+        background: red;
+      }
+    } */
 }
 #templateCV section.EducExpBlock ul.specialStyleKit > li {
   display: flex;
@@ -107,7 +132,7 @@ header .container h1 {
   grid-row-start: 1;
   grid-row-end: 2;
 }
-#templateCV section.EducExpBlock .error::before {
+#templateCV .error::before {
   content: 'The field can\'t be empty.';
   grid-column-start: 2;
   grid-column-end: -1;

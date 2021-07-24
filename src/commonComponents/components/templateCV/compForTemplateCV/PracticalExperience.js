@@ -1,5 +1,9 @@
 import React from 'react';
-import ChangeHandler from '../../../additionalComponents/ChangeHandler';
+import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
+import cloneObj from '../../../additionalComponents/CloneObj';
+import { TextArea, Input } from '../../../additionalComponents/InputsComponents';
+import { addInfo, sendInfo } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
+import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 
 class PracticalExperience extends React.Component {
   constructor(props) {
@@ -9,44 +13,80 @@ class PracticalExperience extends React.Component {
       practicalExperience: {
         'Company name': {
           value: '',
-          type: 'text',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
         'Position title': {
           value: '',
-          type: 'text',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
-        'Main task of your job': {
+        'Main tasks of your jobs': {
           value: '',
-          type: 'text',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <TextArea name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
         'From': {
           value: '',
-          type: 'date',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <Input type='date' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
         'To': {
           value: '',
-          type: 'date',
+          returnInputElem(parentScope, name, id, subObj, secondScope) {
+            return <Input type='date' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          }
         },
-      }
+
+        isValid: true,
+      },
+
+      practicalExperienceCollection: []
     }
+
+    this.parentScope = props.parentScope();
+    this.commonParentScope = this.parentScope.commonParentScope;
+    this.defaultState = cloneObj(this.state.practicalExperience);
+  }
+
+  componentDidMount() {
+    this.parentScope.setState({practicExp: cloneObj(this.state)});
   }
 
   render() {
+    let duplicateState = cloneObj(this.state);
+
     return (
-      <div>
-        <ul>
-          {Object.entries(this.state.practicalExperience).map((elem, id) => {
-            return (
-              <li key={id}>
-                <label>{elem[0]}</label>
-                <input type={elem[1].type} /* onChange={() => {
-                  ChangeHandler.call()
-                }} */></input>
-              </li>
-            )
-          })}
+      <section>
+        <h2>Practical experience</h2>
+
+        <ul className='specialStyleKit'>
+          {duplicateState.practicalExperienceCollection.map((item, id) => {
+              return (
+                <li key={id}>
+                  <CreateListCompForTemplate subObj={item} obj={duplicateState} scope={this}/>
+                </li>
+              )
+            })}
         </ul>
-      </div>
+
+        <CreateListCompForTemplate subObj={duplicateState.practicalExperience} obj={duplicateState} scope={this}/>
+
+        <ButtonsSection btns={[
+            {
+              value: 'Add information', 
+              func: sendInfo.bind(this, duplicateState, 'practicExp')
+            },
+            {
+              value: 'Plus', 
+              func: addInfo.bind(this, duplicateState)
+            }
+          ]} />
+      </section>
     )
   }
 }
