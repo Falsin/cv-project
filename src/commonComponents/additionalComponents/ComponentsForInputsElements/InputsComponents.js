@@ -9,9 +9,10 @@ class Input extends React.Component {
   }
 
   render() {
-    return (
-      <input type={this.props.type} onBlur={callFuncFromParentComp.bind(this)} 
-      defaultValue={this.props.obj[1].value}></input>
+    return ((this.parentScope.readonly) 
+      ? <input type={this.props.type} value={this.props.obj[1].value} readOnly />
+      : <input type={this.props.type} onBlur={callFuncFromParentComp.bind(this)} 
+          defaultValue={this.props.obj[1].value} />
     )
   }
 }
@@ -24,10 +25,10 @@ class TextArea extends React.Component {
   }
 
   render() {
-    return (
-      <textarea onBlur={callFuncFromParentComp.bind(this)} 
-      defaultValue={this.props.obj[1].value}> 
-      </textarea>
+    return ((this.parentScope.readonly)
+      ? <textarea value={this.props.obj[1].value} readOnly />
+      : <textarea onBlur={callFuncFromParentComp.bind(this)} 
+         defaultValue={this.props.obj[1].value} /> 
     )
   }
 }
