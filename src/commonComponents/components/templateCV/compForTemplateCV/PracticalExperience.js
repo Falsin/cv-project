@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 import cloneObj from '../../../additionalComponents/CloneObj';
-import { TextArea, Input } from '../../../additionalComponents/InputsComponents';
+import { TextArea, Input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 import { addInfo, sendInfo } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 
@@ -13,32 +13,32 @@ class PracticalExperience extends React.Component {
       practicalExperience: {
         'Company name': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
           }
         },
         'Position title': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
           }
         },
         'Main tasks of your jobs': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <TextArea name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <TextArea obj={childObj} id={id} parentScope={this}/>
           }
         },
         'From': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <Input type='date' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <Input type='date' obj={childObj} id={id} parentScope={this}/>
           }
         },
         'To': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <Input type='date' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <Input type='date' obj={childObj} id={id} parentScope={this}/>
           }
         },
 

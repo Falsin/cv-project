@@ -1,9 +1,9 @@
 import React from 'react'
 import cloneObj from '../../../additionalComponents/CloneObj';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
-import {addInfo, sendInfo} from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
+import { addInfo, sendInfo } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
-import { Input } from '../../../additionalComponents/InputsComponents';
+import { Input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 
 class EducationalExperience extends React.Component {
   constructor(props) {
@@ -13,20 +13,20 @@ class EducationalExperience extends React.Component {
       educationalExperience: {
         'School name': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
           }
         },
         'Title of study': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <Input type='text' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
           }
         },
         'Date of study': {
           value: '',
-          returnInputElem(parentScope, name, id, subObj, secondScope) {
-            return <Input type='date' name={name} parentScope={parentScope} currentScope={this} id={id} subObj={subObj} secondScope={secondScope}/>
+          returnInputElem(childObj, id) {
+            return <Input type='date' obj={childObj} id={id} parentScope={this}/>
           }
         },
 

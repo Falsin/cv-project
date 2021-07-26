@@ -1,7 +1,7 @@
 import cloneObj from "../CloneObj";
 import clickHandler from "../ClickHandler";
 
-function addInfo(duplicateState) {
+function createObj(duplicateState) {
   let arrayOfKeysAndValues = Object.entries(duplicateState);
 
   let objectWithProps = arrayOfKeysAndValues[0][1];
@@ -9,6 +9,12 @@ function addInfo(duplicateState) {
 
   let array = Object.values(objectWithProps);
   let check = array.every(elem => elem.value !== '');
+
+  return {arrayOfKeysAndValues, objectWithProps, arrayWithObjects, check};
+}
+
+function addInfo(duplicateState) {
+  let {arrayOfKeysAndValues, objectWithProps, arrayWithObjects, check} = createObj(duplicateState);
 
   if (check) {
     arrayWithObjects.push(objectWithProps);
@@ -23,18 +29,11 @@ function addInfo(duplicateState) {
       })
       res(this);
     })
-    //.then(response => console.log(response.state))
   } 
 }
 
 function sendInfo(duplicateState, propName) {
-  let arrayOfKeysAndValues = Object.entries(duplicateState);
-
-  let objectWithProps = arrayOfKeysAndValues[0][1];
-  let arrayWithObjects = arrayOfKeysAndValues[1][1];
-
-  let array = Object.values(objectWithProps);
-  let check = array.every(elem => elem.value !== '');
+  let {objectWithProps, arrayWithObjects, check} = createObj(duplicateState);
 
   let checkСondition = arrayWithObjects.find((elem) => {
     return elem.isValid === false;

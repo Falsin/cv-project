@@ -104,19 +104,6 @@ header .container h1 {
   grid-row-start: 1;
   grid-row-end: 2;
 }
-#templateCV section.EducExpBlock {
-  /* .error {
-      &::before {
-        content: 'The field can\'t be empty.';
-        grid-column-start: 2;
-        grid-column-end: -1;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        z-index: 1;
-        background: red;
-      }
-    } */
-}
 #templateCV section.EducExpBlock ul.specialStyleKit > li {
   display: flex;
   flex-direction: column;
