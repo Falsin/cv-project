@@ -1,27 +1,21 @@
 import React from 'react';
-import ContactInfo from './ComponentsForInfoBox/ContactInfo';
-import CountryComp from './ComponentsForInfoBox/CountryComp';
+import CreateListCompForTemplate from '../../../../additionalComponents/CreateListCompForTemplate';
 
 class InfoBox extends React.Component {
   constructor(props) {
     super(props);
 
-    this.parentScope = props.parentScope();
+    this.parentScope = props.parentScope;
     this.personalInfo = this.parentScope.state.generalInfo;
   }
 
   render() {
+    let duplicateState = this.parentScope.state;
+    
     return (
       <div>
         <h2>Personal information</h2>
-        <ul>
-        {Object.entries(this.personalInfo).map((elem, id) => {
-          if (elem[0] !== 'Country' && typeof elem[1] === 'object') {
-            return <ContactInfo key={id} nameElem={elem[0]} parentScope={this.parentScope}/>
-          }
-          return <CountryComp key={id} nameElem={elem[0]} parentScope={this.parentScope}/>
-        })}     
-      </ul>
+        <CreateListCompForTemplate subObj={duplicateState.generalInfo} obj={duplicateState} scope={this.parentScope}/>
       </div>
     )
   }

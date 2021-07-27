@@ -5,7 +5,7 @@ class PhotoComp extends React.Component {
   constructor(props) {
     super(props)
 
-    this.parentScope = props.parentScope();
+    this.parentScope = props.parentScope;
     this.url = undefined;
   }
 

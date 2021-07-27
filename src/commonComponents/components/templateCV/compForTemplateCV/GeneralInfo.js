@@ -4,6 +4,8 @@ import PhotoComp from './commonInfoComponents/PhotoComp'
 import CloneObj from '../../../additionalComponents/CloneObj';
 import clickHandler  from '../../../additionalComponents/ClickHandler';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
+import { Input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
+import CountryComp from './commonInfoComponents/ComponentsForInfoBox/CountryComp';
 
 class GeneralInfo extends React.Component {
   constructor(props) {
@@ -13,29 +15,33 @@ class GeneralInfo extends React.Component {
       generalInfo: {
         Name: {
           value: '',
-          type: 'text'
+          returnInputElem(childObj, id) {
+            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          }
         },
         Email: {
           value: '',
-          type: 'text'
+          returnInputElem(childObj, id) {
+            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          }
         },
         Phone: {
           value: '',
-          type: 'text'
+          returnInputElem(childObj, id) {
+            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          }
         },
         Country: {
           value: '',
-          type: 'text'
+          returnInputElem(childObj, id) {
+            return <CountryComp type='text' obj={childObj} id={id} parentScope={this}/>
+          }
         },
       }
     }
     
     this.parentScope = props.parentScope();
     this.commonParentScope = this.parentScope.commonParentScope;
-  }
-
-  returnParentScope() {
-    return this;
   }
 
   componentDidMount() {
@@ -47,9 +53,9 @@ class GeneralInfo extends React.Component {
       <section>
         <form>
           <div className='infoBlocks'>
-            <InfoBox parentScope={this.returnParentScope.bind(this)}/>
+            <InfoBox parentScope={this}/>
 
-            <PhotoComp parentScope={this.returnParentScope.bind(this)} />
+            <PhotoComp parentScope={this} />
           </div>
 
           <ButtonsSection btns={[

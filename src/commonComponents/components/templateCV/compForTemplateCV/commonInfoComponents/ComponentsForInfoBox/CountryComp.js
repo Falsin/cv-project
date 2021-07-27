@@ -1,7 +1,6 @@
 import React from 'react';
 import uniqid from 'uniqid';
-import ChangeHandler from '../../../../../additionalComponents/ChangeHandler';
-import cloneObj from '../../../../../additionalComponents/CloneObj';
+import callFuncFromParentComp from '../../../../../additionalComponents/ComponentsForInputsElements/CallFuncFromParentComp';
 
 class CountryComp extends React.Component {
   constructor(props) {
@@ -54,28 +53,21 @@ class CountryComp extends React.Component {
   }
   
   render() {
-    let nameElem = this.props.nameElem;
-    let duplicateState = cloneObj(this.parentScope.state);
-
-
-    return (
-      <li>
-        <label htmlFor={this.props.nameElem}>{this.props.nameElem}</label>
-          <input data-name={this.props.nameElem} type='text' list='cityName'
+    return((this.parentScope.readonly)
+      ? <input type={this.props.type} value={this.props.obj[1].value} readOnly/>
+      : <div>
+          <input type={this.props.type} list='cityName'
             onChange={(e) => this.enteredValHandler(e)}
-
-            onBlur={(e) => {
-              this.parentScope.setState(ChangeHandler.call(duplicateState, e, duplicateState.generalInfo[nameElem]));
-            }}>
-          </input>
+            onBlur={callFuncFromParentComp.bind(this)}
+            defaultValue={this.props.obj[1].value} />
           <datalist id='cityName'>
               {this.createListElements().map(elem => {
               return <option key={elem.id}>{elem.name}</option>
             })} 
           </datalist>
-      </li>
+        </div>
     )
   }
 }
 
-export default CountryComp
+export default CountryComp;

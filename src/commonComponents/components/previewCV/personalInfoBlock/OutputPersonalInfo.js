@@ -1,6 +1,6 @@
 import React from 'react';
 import CloneObj from '../../../additionalComponents/CloneObj';
-import CreateListCompForPreview from '../../../additionalComponents/CreateListCompForPreview';
+import CreateListCompForPreview from '../../../additionalComponents/componentsForOuputPreviewInfo/CreateListCompForPreview';
 import PhotoBlock from './compForOutputPersonalInfo/PhotoBlockComp';
 
 class OutputPersonalInfo extends React.Component {
@@ -10,20 +10,15 @@ class OutputPersonalInfo extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.setState(CloneObj(this.props.parentState))
-  }
-
   render() {
     return (
       <div id='personalInformation'>
 
-        {this.state && <PhotoBlock obj={this.state.generalInfo.Avatar}/>}
+        <PhotoBlock obj={this.props.parentState.generalInfo.Avatar}/>
 
         <form>
           <h2>Personal information</h2>
-
-          {this.state && <CreateListCompForPreview obj={this.state.generalInfo}/>}
+          <CreateListCompForPreview obj={this.props.parentState.generalInfo}/>
         </form>
       </div>
     )
