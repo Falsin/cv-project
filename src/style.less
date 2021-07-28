@@ -52,12 +52,20 @@ header {
           flex-direction: column;
 
           & > li {
-            display: flex;
+            display: grid;
+            grid-template-columns: 0.8fr 2.2fr;
 
             & label {
-              flex-grow: 1;
               display: flex;
               align-items: center;
+            }
+
+            & input,
+            & div {
+              grid-column-start: 2;
+              grid-column-end: -1;
+              grid-row-start: 1;
+              grid-row-end: 2;
             }
 
             & input {
@@ -114,7 +122,6 @@ header {
           }
 
           & input {
-            flex-grow: 1;
             grid-column-start: 2;
             grid-column-end: -1;
             grid-row-start: 1;
@@ -122,7 +129,6 @@ header {
           }
 
           & textarea {
-            flex-grow: 1;
             grid-column-start: 2;
             grid-column-end: -1;
             grid-row-start: 1;
@@ -133,7 +139,7 @@ header {
     }
   }
 
-  & section.EducExpBlock {
+  & section.expBlock {
     & ul.specialStyleKit > li {
       display: flex;
       flex-direction: column;
@@ -143,7 +149,6 @@ header {
         grid-template-columns: 1fr 2fr;
 
         & input {
-          flex-grow: 1;
           grid-column-start: 2;
           grid-column-end: -1;
           grid-row-start: 1;

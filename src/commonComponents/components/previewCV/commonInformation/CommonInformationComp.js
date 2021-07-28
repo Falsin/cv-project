@@ -15,8 +15,8 @@ class CommonInformation extends React.Component {
   render() {
     return (
       <div id='commonInformation'>
-        {this.state && <OutputInfoComp obj={this.state.educExp} headline='Educational experience'/>}
-        {this.state && <OutputInfoComp obj={this.state.practicExp} headline='Practical experience'/>}
+        <OutputInfoComp obj={this.props.obj.educExp} headline='Educational experience'/>
+        <OutputInfoComp obj={this.props.obj.practicExp} headline='Educational experience'/>
       </div>
     )
   }

@@ -61,7 +61,7 @@ class PracticalExperience extends React.Component {
     let duplicateState = cloneObj(this.state);
 
     return (
-      <section>
+      <section className='expBlock'>
         <h2>Practical experience</h2>
 
         <ul className='specialStyleKit'>

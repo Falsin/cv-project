@@ -38,12 +38,19 @@ header .container h1 {
   flex-direction: column;
 }
 #templateCV section form .infoBlocks ul > li {
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.8fr 2.2fr;
 }
 #templateCV section form .infoBlocks ul > li label {
-  flex-grow: 1;
   display: flex;
   align-items: center;
+}
+#templateCV section form .infoBlocks ul > li input,
+#templateCV section form .infoBlocks ul > li div {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 #templateCV section form .infoBlocks ul > li input {
   background-image: linear-gradient(90deg, red, red);
@@ -91,29 +98,26 @@ header .container h1 {
   max-width: 110px;
 }
 #templateCV section > ul li input {
-  flex-grow: 1;
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 #templateCV section > ul li textarea {
-  flex-grow: 1;
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
 }
-#templateCV section.EducExpBlock ul.specialStyleKit > li {
+#templateCV section.expBlock ul.specialStyleKit > li {
   display: flex;
   flex-direction: column;
 }
-#templateCV section.EducExpBlock ul.specialStyleKit > li li {
+#templateCV section.expBlock ul.specialStyleKit > li li {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-#templateCV section.EducExpBlock ul.specialStyleKit > li li input {
-  flex-grow: 1;
+#templateCV section.expBlock ul.specialStyleKit > li li input {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;

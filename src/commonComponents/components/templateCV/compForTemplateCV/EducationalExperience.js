@@ -49,7 +49,7 @@ class EducationalExperience extends React.Component {
     let duplicateState = cloneObj(this.state);
 
     return (
-      <section className='EducExpBlock'>
+      <section className='expBlock'>
         <h2>Educational experience</h2>
 
         <ul className='specialStyleKit'>
