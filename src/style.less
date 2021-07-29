@@ -60,8 +60,7 @@ header {
               align-items: center;
             }
 
-            & input,
-            & div {
+            & div {//
               grid-column-start: 2;
               grid-column-end: -1;
               grid-row-start: 1;
@@ -115,26 +114,10 @@ header {
         display: grid;
         grid-template-columns: 1fr 2fr;
 
-          & label {
-            display: block;
-            white-space: pre-wrap;
-            max-width: 110px; 
-          }
-
-          & input {
-            grid-column-start: 2;
-            grid-column-end: -1;
-            grid-row-start: 1;
-            grid-row-end: 2;
-          }
-
-          & textarea {
-            grid-column-start: 2;
-            grid-column-end: -1;
-            grid-row-start: 1;
-            grid-row-end: 2;
-          }
-
+        & label {
+          display: block;
+          max-width: 110px; 
+        }
       }
     }
   }
@@ -147,13 +130,6 @@ header {
       & li {
         display: grid;
         grid-template-columns: 1fr 2fr;
-
-        & input {
-          grid-column-start: 2;
-          grid-column-end: -1;
-          grid-row-start: 1;
-          grid-row-end: 2;
-        }
       }
     }
   }
@@ -170,6 +146,19 @@ header {
     }
   }
 
+  input {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  textarea {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
 }
 
 #previewCV {

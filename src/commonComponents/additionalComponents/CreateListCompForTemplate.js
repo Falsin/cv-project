@@ -1,6 +1,7 @@
 import React from 'react';
 import changeHandler from './ChangeHandler';
 import uniqid from 'uniqid';
+import cloneObj from './CloneObj';
 
 class CreateListCompForTemplate extends React.Component {
   constructor(props) {
@@ -10,7 +11,20 @@ class CreateListCompForTemplate extends React.Component {
 
     this.state = {
       idHtmlWithError: [],
+      objWithKeys: {},
+      obj: this.returnObj(props.subObj)
     }
+  }
+
+  returnObj(props) {
+    let duplicateProps = cloneObj(props)
+    for (const key in duplicateProps) {
+      if (typeof duplicateProps[key] === 'object') {
+        duplicateProps[key] = uniqid();
+      }
+    }
+
+    return duplicateProps;
   }
 
   click(e, id) {
@@ -74,15 +88,14 @@ class CreateListCompForTemplate extends React.Component {
           let myOwnClassName = this.state.idHtmlWithError.includes(id) ? 'error' : '';
 
           if (typeof elem[1] === 'object') {
+
+            let uniqIndex = id + ':' + uniqid();
             return (
               <li key={uniqid()} className={myOwnClassName}
-                onClick={e => {
-                  this.click(e, id)
-                }}
-              >
-                <label>{elem[0]}</label>
+              onClick={e => this.click(e, id)}>
 
-                {elem[1].returnInputElem.call(this, elem, id)}
+                <label htmlFor={this.state.obj[elem[0]]}>{elem[0]}</label>
+                {elem[1].returnInputElem.call(this, elem, uniqIndex)}
               </li>
             )
           } 

@@ -53,12 +53,19 @@ class CountryComp extends React.Component {
   }
   
   render() {
+    let objKeys;
+    if (!this.parentScope.readonly) {
+      console.log(this.props.parentScope.state.obj[this.props.obj[0]]);
+      objKeys = this.props.parentScope.state.obj;
+    }
+
     return((this.parentScope.readonly)
       ? <input type={this.props.type} value={this.props.obj[1].value} readOnly/>
       : <div>
           <input type={this.props.type} list='cityName'
             onChange={(e) => this.enteredValHandler(e)}
             onBlur={callFuncFromParentComp.bind(this)}
+            id={objKeys[this.props.obj[0]]}
             defaultValue={this.props.obj[1].value} />
           <datalist id='cityName'>
               {this.createListElements().map(elem => {

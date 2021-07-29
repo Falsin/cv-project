@@ -45,7 +45,6 @@ header .container h1 {
   display: flex;
   align-items: center;
 }
-#templateCV section form .infoBlocks ul > li input,
 #templateCV section form .infoBlocks ul > li div {
   grid-column-start: 2;
   grid-column-end: -1;
@@ -94,20 +93,7 @@ header .container h1 {
 }
 #templateCV section > ul li label {
   display: block;
-  white-space: pre-wrap;
   max-width: 110px;
-}
-#templateCV section > ul li input {
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-#templateCV section > ul li textarea {
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row-start: 1;
-  grid-row-end: 2;
 }
 #templateCV section.expBlock ul.specialStyleKit > li {
   display: flex;
@@ -117,12 +103,6 @@ header .container h1 {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-#templateCV section.expBlock ul.specialStyleKit > li li input {
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
 #templateCV .error::before {
   content: 'The field can\'t be empty.';
   grid-column-start: 2;
@@ -131,6 +111,18 @@ header .container h1 {
   grid-row-end: 2;
   z-index: 1;
   background: red;
+}
+#templateCV input {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#templateCV textarea {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 #previewCV {
   margin-top: 4vmax;
