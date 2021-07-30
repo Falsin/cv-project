@@ -2,10 +2,11 @@ import React from 'react';
 import InfoBox from './commonInfoComponents/InfoBox';
 import PhotoComp from './commonInfoComponents/PhotoComp'
 import CloneObj from '../../../additionalComponents/CloneObj';
-import clickHandler  from '../../../additionalComponents/ClickHandler';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 import { Input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 import CountryComp from './commonInfoComponents/ComponentsForInfoBox/CountryComp';
+import { sendSingleInformation } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
+import cloneObj from '../../../additionalComponents/CloneObj';
 
 class GeneralInfo extends React.Component {
   constructor(props) {
@@ -15,26 +16,26 @@ class GeneralInfo extends React.Component {
       generalInfo: {
         Name: {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='text' obj={childObj} parentScope={this}/>
           }
         },
         Email: {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='text' obj={childObj} parentScope={this}/>
           }
         },
         Phone: {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='text' obj={childObj} parentScope={this}/>
           }
         },
         Country: {
           value: '',
-          returnInputElem(childObj, id) {
-            return <CountryComp type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <CountryComp type='text' obj={childObj} parentScope={this}/>
           }
         },
       }
@@ -49,6 +50,7 @@ class GeneralInfo extends React.Component {
   }
   
   render() {
+    let duplicateState = cloneObj(this.state)
     return(
       <section>
         <form>
@@ -61,7 +63,7 @@ class GeneralInfo extends React.Component {
           <ButtonsSection btns={[
             {
               value: 'Add information', 
-              func: clickHandler.bind(null, this.state, this.commonParentScope)
+              func: sendSingleInformation.bind(this, duplicateState, 'generalInfo')
             }
           ]} />
         </form>

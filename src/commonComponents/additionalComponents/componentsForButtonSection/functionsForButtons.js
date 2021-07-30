@@ -5,7 +5,7 @@ function createObj(duplicateState) {
   let arrayOfKeysAndValues = Object.entries(duplicateState);
 
   let objectWithProps = arrayOfKeysAndValues[0][1];
-  let arrayWithObjects = arrayOfKeysAndValues[1][1];
+  let arrayWithObjects = arrayOfKeysAndValues[1] ? arrayOfKeysAndValues[1][1] : null;
 
   let array = Object.values(objectWithProps);
   let check = array.every(elem => elem.value !== '');
@@ -22,12 +22,11 @@ function addInfo(duplicateState) {
     let name1 = arrayOfKeysAndValues[0][0];
     let name2 = arrayOfKeysAndValues[1][0];
 
-    new Promise(res => {
+    new Promise(() => {
       this.setState({
         [name1]: cloneObj(this.defaultState),
         [name2]: arrayWithObjects
       })
-      res(this);
     })
   } 
 }
@@ -50,4 +49,12 @@ function sendInfo(duplicateState, propName) {
   }
 }
 
-export {addInfo, sendInfo};
+function sendSingleInformation(duplicateState) {
+  let {check} = createObj(duplicateState);
+
+  if (check) {
+    clickHandler(duplicateState, this.commonParentScope);
+  }
+}
+
+export {addInfo, sendInfo, sendSingleInformation};

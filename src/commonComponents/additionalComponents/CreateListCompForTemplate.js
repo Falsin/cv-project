@@ -1,7 +1,6 @@
 import React from 'react';
 import changeHandler from './ChangeHandler';
 import uniqid from 'uniqid';
-import cloneObj from './CloneObj';
 
 class CreateListCompForTemplate extends React.Component {
   constructor(props) {
@@ -11,36 +10,40 @@ class CreateListCompForTemplate extends React.Component {
 
     this.state = {
       idHtmlWithError: [],
-      objWithKeys: {},
-      obj: this.returnObj(props.subObj)
+      objProps: this.returnObj(props)
     }
   }
 
   returnObj(props) {
-    let duplicateProps = cloneObj(props)
-    for (const key in duplicateProps) {
-      if (typeof duplicateProps[key] === 'object') {
-        duplicateProps[key] = uniqid();
+    for (const key in props.subObj) {
+      if (typeof props.subObj[key] === 'object') {
+        props.subObj[key].uniqIndex = uniqid();
       }
     }
-
-    return duplicateProps;
+    return props;
   }
 
   click(e, id) {
-    if (e.target.localName === 'li' && this.state.idHtmlWithError.includes(id)) {
-      e.target.classList.remove('error');
-      let input = e.target.lastChild;
-      input.focus();
+    if (this.state.idHtmlWithError.includes(id)) {
+      if (e.target.localName === 'li') {
+        e.target.classList.remove('error');
+        let input = e.target.lastChild;
+        input.focus();
+      } else if (e.target.localName === 'input') {
+        e.target.parentNode.classList.remove('error');
+      }
     }
   }
 
-  blur(object) {
-    let {obj, e, childObj, id, subObj} = object;
- 
+  blur(e, childScope) {
+    let obj = this.state.objProps.obj;
+    let subObj = this.state.objProps.subObj;
+    let childObj = subObj[childScope.objName];
+    let id = childObj.uniqIndex;
+
     changeHandler.call(obj, e, childObj);
 
-    if (e.target.value) {               
+    if (e.target.value) {         
       new Promise(res => {
         let index = this.state.idHtmlWithError.indexOf(id);
 
@@ -79,23 +82,31 @@ class CreateListCompForTemplate extends React.Component {
     })
   }
 
-  render() {
-    let subObj = this.props.subObj;
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      for (const key in this.props.subObj) {
+        if (typeof this.props.subObj[key] === 'object') {
+          this.props.subObj[key].uniqIndex = this.state.objProps.subObj[key].uniqIndex;
+        }
+      }
+      this.setState({
+        objProps: this.props,
+      })
+    }
+  }
 
+  render() {
     return (
       <ul>
-        {Object.entries(subObj).map((elem, id) => {
-          let myOwnClassName = this.state.idHtmlWithError.includes(id) ? 'error' : '';
-
-          if (typeof elem[1] === 'object') {
-
-            let uniqIndex = id + ':' + uniqid();
+        {Object.entries(this.state.objProps.subObj).map(item => {
+          if (typeof item[1] === 'object') {
+            let myOwnClassName = this.state.idHtmlWithError.includes(item[1].uniqIndex) ? 'error' : '';
             return (
               <li key={uniqid()} className={myOwnClassName}
-              onClick={e => this.click(e, id)}>
+                onClick={e => this.click(e, item[1].uniqIndex)}>
 
-                <label htmlFor={this.state.obj[elem[0]]}>{elem[0]}</label>
-                {elem[1].returnInputElem.call(this, elem, uniqIndex)}
+                <label htmlFor={item[1].uniqIndex}>{item[0]}</label>
+                {item[1].returnInputElem.call(this, item)}
               </li>
             )
           } 

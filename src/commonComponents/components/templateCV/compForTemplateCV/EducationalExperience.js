@@ -13,20 +13,20 @@ class EducationalExperience extends React.Component {
       educationalExperience: {
         'School name': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='text' obj={childObj} parentScope={this}/>
           }
         },
         'Title of study': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='text' obj={childObj} parentScope={this}/>
           }
         },
         'Date of study': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='date' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='date' obj={childObj} parentScope={this}/>
           }
         },
 

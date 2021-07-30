@@ -1,12 +1,12 @@
 import React from 'react';
 import uniqid from 'uniqid';
-import callFuncFromParentComp from '../../../../../additionalComponents/ComponentsForInputsElements/CallFuncFromParentComp';
 
 class CountryComp extends React.Component {
   constructor(props) {
     super(props);
     this.parentScope = props.parentScope;
     this.countryNamesArr = [];
+    this.objName = props.obj[0];
 
     this.state = {
       enteredVal: {
@@ -53,22 +53,16 @@ class CountryComp extends React.Component {
   }
   
   render() {
-    let objKeys;
-    if (!this.parentScope.readonly) {
-      console.log(this.props.parentScope.state.obj[this.props.obj[0]]);
-      objKeys = this.props.parentScope.state.obj;
-    }
-
     return((this.parentScope.readonly)
       ? <input type={this.props.type} value={this.props.obj[1].value} readOnly/>
       : <div>
           <input type={this.props.type} list='cityName'
             onChange={(e) => this.enteredValHandler(e)}
-            onBlur={callFuncFromParentComp.bind(this)}
-            id={objKeys[this.props.obj[0]]}
+            onBlur={(e) => this.parentScope.blur(e, this)}
+            id={this.props.obj[1].uniqIndex}
             defaultValue={this.props.obj[1].value} />
           <datalist id='cityName'>
-              {this.createListElements().map(elem => {
+            {this.createListElements().map(elem => {
               return <option key={elem.id}>{elem.name}</option>
             })} 
           </datalist>

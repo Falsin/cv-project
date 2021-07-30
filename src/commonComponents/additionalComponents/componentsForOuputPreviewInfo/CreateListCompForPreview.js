@@ -15,7 +15,7 @@ class CreateListCompForPreview extends React.Component {
             return (
               <li key={id}>
                 <label>{item[0]}</label>
-                {item[1].returnInputElem.call(this, item, id)}
+                {item[1].returnInputElem.call(this, item)}
               </li>
             )
           }

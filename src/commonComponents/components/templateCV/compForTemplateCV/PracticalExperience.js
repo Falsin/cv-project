@@ -13,32 +13,32 @@ class PracticalExperience extends React.Component {
       practicalExperience: {
         'Company name': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='text' obj={childObj} parentScope={this}/>
           }
         },
         'Position title': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='text' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='text' obj={childObj} parentScope={this}/>
           }
         },
         'Main tasks of your jobs': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <TextArea obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <TextArea obj={childObj} parentScope={this}/>
           }
         },
         'From': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='date' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='date' obj={childObj} parentScope={this}/>
           }
         },
         'To': {
           value: '',
-          returnInputElem(childObj, id) {
-            return <Input type='date' obj={childObj} id={id} parentScope={this}/>
+          returnInputElem(childObj) {
+            return <Input type='date' obj={childObj} parentScope={this}/>
           }
         },
 
