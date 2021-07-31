@@ -7,7 +7,14 @@ function createObj(duplicateState) {
   let objectWithProps = arrayOfKeysAndValues[0][1];
   let arrayWithObjects = arrayOfKeysAndValues[1] ? arrayOfKeysAndValues[1][1] : null;
 
-  let array = Object.values(objectWithProps);
+  let array = [];
+
+  for (const key in objectWithProps) {
+    if (typeof objectWithProps[key] === 'object') {
+      array.push(objectWithProps[key])
+    }
+  }
+
   let check = array.every(elem => elem.value !== '');
 
   return {arrayOfKeysAndValues, objectWithProps, arrayWithObjects, check};
@@ -50,6 +57,7 @@ function sendInfo(duplicateState, propName) {
 }
 
 function sendSingleInformation(duplicateState) {
+  //console.log(duplicateState)
   let {check} = createObj(duplicateState);
 
   if (check) {

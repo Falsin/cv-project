@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 import cloneObj from '../../../additionalComponents/CloneObj';
-import { TextArea, Input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
+import { textArea, input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 import { addInfo, sendInfo } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 
@@ -13,8 +13,106 @@ class PracticalExperience extends React.Component {
       practicalExperience: {
         'Company name': {
           value: '',
-          returnInputElem(childObj) {
-            return <Input type='text' obj={childObj} parentScope={this}/>
+          inputElem: input('text'),
+        },
+        'Position title': {
+          value: '',
+          inputElem: input('text'),
+        },
+        'Main tasks of your jobs': {
+          value: '',
+          inputElem: textArea('text'),
+        },
+        'From': {
+          value: '',
+          inputElem: input('date'),
+        },
+        'To': {
+          value: '',
+          inputElem: input('date'),
+        },
+      /* practicalExperience: {
+        'Company name': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='text' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              //console.log(htmlElem)
+              return htmlElem;
+            }
+          })()
+        },
+        'Position title': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='text' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
+          })()
+        },
+        'Main tasks of your jobs': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <TextArea type='text' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
+          })()
+        },
+        'From': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='date' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
+          })()
+        },
+        'To': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='date' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
+          })()
+        }, */
+
+        isValid: true,
+      },
+      /* practicalExperience: {
+        'Company name': {
+          value: '',
+          returnInputElem() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='text' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
           }
         },
         'Position title': {
@@ -43,7 +141,7 @@ class PracticalExperience extends React.Component {
         },
 
         isValid: true,
-      },
+      }, */
 
       practicalExperienceCollection: []
     }

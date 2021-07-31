@@ -1,12 +1,13 @@
 import React from 'react';
 import uniqid from 'uniqid';
+import cloneObj from '../../../../../additionalComponents/CloneObj';
 
 class CountryComp extends React.Component {
   constructor(props) {
     super(props);
-    this.parentScope = props.parentScope;
+    //this.parentScope = props.parentScope;
     this.countryNamesArr = [];
-    this.objName = props.obj[0];
+    //this.objName = props.obj[0];
 
     this.state = {
       enteredVal: {
@@ -51,9 +52,37 @@ class CountryComp extends React.Component {
   componentDidMount() {
     this.getCountryList();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps)
+    if (prevState === null) {
+      let duplicateState = cloneObj(this.parentScope.state);
+      duplicateState.objKeys.objName = this.props.obj[0];
+      this.props.parentScope.setState(duplicateState);
+    }
+  }
   
   render() {
-    return((this.parentScope.readonly)
+    if (this.parentScope) {
+      return ((this.parentScope.readonly) 
+        ? <input type={this.props.type} value={this.props.obj[1].value} readOnly />
+        : <input type={this.props.type} onBlur={(e) => {
+          this.parentScope.blur(e, this);
+          //this.parentScope.forceUpdate();
+          //this.changeClassName(e)
+          /* if (e.target.value.length > 0) {
+            console.log(e.target.value.length)
+            this.setState({className: 'validValue'})
+          } */
+        }}
+            defaultValue={this.props.obj[1].value} id={this.props.obj[1].uniqIndex}
+            className={this.state.className}
+            />
+      )
+    }
+    return null;
+
+    /* return((this.parentScope.readonly)
       ? <input type={this.props.type} value={this.props.obj[1].value} readOnly/>
       : <div>
           <input type={this.props.type} list='cityName'
@@ -67,7 +96,7 @@ class CountryComp extends React.Component {
             })} 
           </datalist>
         </div>
-    )
+    ) */
   }
 }
 

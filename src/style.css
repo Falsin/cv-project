@@ -20,6 +20,133 @@ header .container img {
 header .container h1 {
   margin-left: 1vmin;
 }
+/* #templateCV {
+  & section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      & .infoBlocks {
+        display: flex;
+
+        & ul {
+          display: flex;
+          flex-direction: column;
+
+          & > li {
+            display: grid;
+            grid-template-columns: 0.8fr 2.2fr;
+
+            & label {
+              display: flex;
+              align-items: center;
+            }
+
+            & div {//
+              grid-column-start: 2;
+              grid-column-end: -1;
+              grid-row-start: 1;
+              grid-row-end: 2;
+            }
+
+            & input {
+              background-image: linear-gradient(90deg, red, red);
+              background-position: left bottom;
+              background-repeat: no-repeat;
+              background-origin: border-box;
+              background-size: 0 2px;
+              display: block;
+              padding: 5px;
+              transition-property: background-size;
+              transition-duration: 1.5s;
+              outline: none;
+              border: none;
+            }
+
+            & input:focus,
+            & input.active {
+              background-size: 100% 2px;
+            }
+          }
+        }
+      }
+  
+      & .photo{
+        .size(20vmin, 25vmin);
+        background-image: url(@emptyAvatar);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      
+        & label {
+          display: block;
+          .size(100%, 100%);
+      
+          & input {
+            display: none;
+          }
+        }
+      }
+    }
+
+    & > ul {
+      list-style-type: none;
+
+      & li {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+
+        & label {
+          display: block;
+          max-width: 110px; 
+        }
+      }
+    }
+  }
+
+  & section.expBlock {
+    & ul.specialStyleKit > li {
+      display: flex;
+      flex-direction: column;
+
+      & li {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+  }
+
+  .error {
+    &::before {
+      content: 'The field can\'t be empty.';
+      grid-column-start: 2;
+      grid-column-end: -1;
+      grid-row-start: 1;
+      grid-row-end: 2;
+      z-index: 1;
+      background: red;
+    }
+  }
+
+  input {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  textarea {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+} */
 #templateCV section {
   display: flex;
   flex-direction: column;
@@ -50,23 +177,26 @@ header .container h1 {
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
+  position: relative;
 }
-#templateCV section form .infoBlocks ul > li input {
-  background-image: linear-gradient(90deg, red, red);
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  background-size: 0 2px;
+#templateCV section form .infoBlocks ul > li div #cityName {
+  position: absolute;
+  width: 100%;
+  background: #b6b6b6;
+}
+#templateCV section form .infoBlocks ul > li div #cityName li {
   display: block;
-  padding: 5px;
-  transition-property: background-size;
-  transition-duration: 1.5s;
-  outline: none;
-  border: none;
+  cursor: pointer;
+  padding: 1vmin;
+}
+#templateCV section form .infoBlocks ul > li div #cityName li:hover {
+  background: #818181;
 }
 #templateCV section form .infoBlocks ul > li input:focus,
 #templateCV section form .infoBlocks ul > li input.active {
-  background-size: 100% 2px;
+  animation-name: changeBackgroundPosition;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 #templateCV section form .photo {
   width: 20vmin;
@@ -103,6 +233,13 @@ header .container h1 {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+#templateCV .error {
+  /* input:not([type*=button]) {
+      animation-name: changeBackgroundPositionWhileError;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    } */
+}
 #templateCV .error::before {
   content: 'The field can\'t be empty.';
   grid-column-start: 2;
@@ -110,13 +247,48 @@ header .container h1 {
   grid-row-start: 1;
   grid-row-end: 2;
   z-index: 1;
-  background: red;
+  color: red;
 }
-#templateCV input {
+#templateCV .error input:not([type*=button]) {
+  animation-name: changeBackgroundPositionWhileError;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+#templateCV input:not([type*=button]) {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
+  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: 200% 2px, 200% 2px;
+  background-position: 200% 100%, 100% 100%;
+  /* transition-duration: 2s;
+    transition-property: background-position; */
+  /* background-size: 200% 2px, 200% 2px;
+    background-repeat: no-repeat, no-repeat; */
+  animation-name: changeBackgroundPositionTrue;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  /* background-image: linear-gradient(90deg, red calc(100% / 3), green calc(100% / 3) calc(100% / 3 + 100% / 3), black calc(100% / 3 + 100% / 3));
+    background-position: 100% 100%;
+    background-size: 300% 2px;
+    background-repeat: no-repeat; */
+  margin-bottom: 5px;
+  display: block;
+  padding: 5px;
+  outline: none;
+  border: none;
+}
+#templateCV input:not([type*=button]).afterError {
+  animation-name: changeBackgroundPositionAfterError !important;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+#templateCV input:not([type*=button]).validValue {
+  animation-name: changeBackgroundPositionValidValue !important;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 #templateCV textarea {
   grid-column-start: 2;
@@ -124,6 +296,120 @@ header .container h1 {
   grid-row-start: 1;
   grid-row-end: 2;
 }
+/* #cityName {
+  position: absolute !important;
+  background: white;
+
+  li {
+    display: block !important;
+  }
+} */
+/* @backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
+@backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
+@backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
+@backgroundPosition4: 200% 100%, 0% 100%;   // меняет красный на зелёный  */
+@keyframes changeBackgroundPosition {
+  to {
+    background-position: 200% 100%, 0% 100%;
+  }
+}
+@keyframes changeBackgroundPositionWhileError {
+  from {
+    background-position: 200% 100%, 0% 100%;
+  }
+  to {
+    background-position: 100% 100%, 0% 100%;
+  }
+}
+@keyframes changeBackgroundPositionAfterError {
+  from {
+    background-position: 100% 100%, 0% 100%;
+  }
+  to {
+    background-position: 200% 100%, 0% 100%;
+  }
+}
+@keyframes changeBackgroundPositionValidValue {
+  from {
+    background-position: 200% 100%, 0% 100%;
+  }
+  to {
+    background-position: 200% 100%, 100% 100%;
+  }
+}
+/* @background: red;
+@backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
+@backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
+@backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
+@backgroundPosition4: 200% 100%, 0% 100%;   // меняет красный на зелёный 
+
+// @backgroundPosition2: 200% 100%, 0% 100%;  === @backgroundPosition3: 200% 100%, 0% 100%; 
+
+@keyframes changeBackgroundPositionTrue {
+  from {
+    background-position: @backgroundPosition1;
+  }
+  to {
+    background-position: @backgroundPosition1;
+  }
+}
+
+@keyframes changeBackgroundPosition {
+  from {
+    background-position: @backgroundPosition1;  /// @backgroundPosition1 and @backgroundPosition3
+  }
+  to {
+    background-position: @backgroundPosition2;  // меняет чёрный на зелёный
+  }
+}
+
+@keyframes changeBackgroundPositionWhileError {
+  from {
+    background-position: @backgroundPosition2;
+  }
+  to {
+    background-position: @backgroundPosition3;   // меняет зелёный на красный
+  }
+} */
+/* @keyframes changeBackgroundPositionTrue {
+  to {
+    background-position: 200% 100%, 100% 100%;
+  }
+} */
+/* @keyframes changeBackgroundPositionTrue {
+  from {
+    background-position: 200% 100%, 0% 100%;
+  }
+
+  to {
+    background-position: 200% 100%, 100% 100%;
+  }
+} */
+/* @keyframes changeBackgroundPosition {
+  to {
+    background-position: 50% 100%;
+  }
+}
+
+@keyframes changeBackgroundPositionWhileError {
+  from {
+    background-position: 50% 100%;
+  }
+
+  to {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes changeBackgroundPositionAfterError {
+  from {
+    background-position: 0% 100%;
+  }
+
+  to {
+    background-position: 50% 100%;
+  }
+} */
 #previewCV {
   margin-top: 4vmax;
   display: flex;

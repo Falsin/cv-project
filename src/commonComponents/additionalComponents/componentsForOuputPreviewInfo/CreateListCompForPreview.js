@@ -1,4 +1,5 @@
 import React from 'react';
+import { InputComp } from '../ComponentsForInputsElements/InputsComponents';
 
 class CreateListCompForPreview extends React.Component {
   constructor(props) {
@@ -10,14 +11,10 @@ class CreateListCompForPreview extends React.Component {
   render() {
     return (
       <ul>
-        {Object.entries(this.props.obj).map((item, id) => {
+        {Object.entries(this.props.obj).map(item => {
+          //console.log(item[1].value)
           if (typeof item[1] === 'object') {
-            return (
-              <li key={id}>
-                <label>{item[0]}</label>
-                {item[1].returnInputElem.call(this, item)}
-              </li>
-            )
+            return <InputComp scope={this} array={item} elem={item[1].inputElem} />
           }
           return null;
         })}

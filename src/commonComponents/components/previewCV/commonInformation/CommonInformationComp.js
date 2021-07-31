@@ -13,6 +13,7 @@ class CommonInformation extends React.Component {
   }
 
   render() {
+    //console.log(this.props.obj)
     return (
       <div id='commonInformation'>
         <OutputInfoComp obj={this.props.obj.educExp} headline='Educational experience'/>

@@ -3,7 +3,7 @@ import cloneObj from '../../../additionalComponents/CloneObj';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 import { addInfo, sendInfo } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
-import { Input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
+import { input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 
 class EducationalExperience extends React.Component {
   constructor(props) {
@@ -11,6 +11,65 @@ class EducationalExperience extends React.Component {
 
     this.state = {
       educationalExperience: {
+        'School name': {
+          value: '',
+          inputElem: input('text'),
+        },
+        'Title of study': {
+          value: '',
+          inputElem: input('text'),
+        },
+        'Date of study': {
+          value: '',
+          inputElem: input('date'),
+        },
+
+        isValid: true,
+      },
+      /* educationalExperience: {
+        'School name': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='text' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
+          })()
+        },
+        'Title of study': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='text' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
+          })()
+        },
+        'Date of study': {
+          value: '',
+          returnInputElem: (function() {
+            let context;
+            let childObj;
+            let htmlElem = <Input type='date' obj={childObj} parentScope={context}/>
+            return function (arram) {
+              context = this;
+              childObj = arram;
+              return htmlElem;
+            }
+          })()
+        },
+
+        isValid: true,
+      }, */
+      /* educationalExperience: {
         'School name': {
           value: '',
           returnInputElem(childObj) {
@@ -31,7 +90,7 @@ class EducationalExperience extends React.Component {
         },
 
         isValid: true,
-      },
+      }, */
 
       educationalExperienceCollection: [],
     }

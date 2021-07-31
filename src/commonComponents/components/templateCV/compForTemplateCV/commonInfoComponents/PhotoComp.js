@@ -32,10 +32,16 @@ class PhotoComp extends React.Component {
   }
 
   addPropertyInState() {
-    let duplicateObj = cloneObj(this.parentScope.state);
+    /* let duplicateObj = cloneObj(this.parentScope.state);
     duplicateObj.generalInfo.Avatar = this.url;
 
-    this.parentScope.setState(duplicateObj);
+    this.parentScope.setState(duplicateObj); */
+    console.log(this.parentScope.state)
+    let clone = this.parentScope.state.generalInfo;
+    clone.Avatar = this.url;
+    this.parentScope.setState({
+      generalInfo: clone
+    });
   }
 
   render() {
