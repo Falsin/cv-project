@@ -9,12 +9,13 @@ class CreateListCompForPreview extends React.Component {
   }
 
   render() {
+    //console.log(this.props)
     return (
       <ul>
-        {Object.entries(this.props.obj).map(item => {
+        {Object.entries(this.props.obj).map((item, id) => {
           //console.log(item[1].value)
           if (typeof item[1] === 'object') {
-            return <InputComp scope={this} array={item} elem={item[1].inputElem} />
+            return <InputComp key={id} scope={this} array={item} elem={item[1].inputElem} />
           }
           return null;
         })}

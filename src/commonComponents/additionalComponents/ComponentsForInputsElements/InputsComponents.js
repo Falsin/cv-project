@@ -8,7 +8,7 @@ class InputComp extends React.Component {
 
     this.uniqIndex = uniqid();
     this.parentScope = props.scope;
-    this.objName = this.props.array[0];
+    this.objName = props.array[0];
 
     this.state = {
       isValidValue: true,
@@ -18,7 +18,6 @@ class InputComp extends React.Component {
   }
 
   afterBlur(e, props) {
-    //console.log(this.parentScope.scope.state);
     if (!e.target.value.length) {
       new Promise(res => {
         this.setState({
@@ -39,34 +38,66 @@ class InputComp extends React.Component {
           isFocus: false,
           defaultValue: e.target.value,
         });
-        //console.log(this.parentScope.scope.state);
         res(this.parentScope);
       })
       .then(response => {
-        let prevStateElem = response.state.countElemWithError;
-        response.setState({countElemWithError: ++prevStateElem});
-        //console.log(this.parentScope.scope.state);
-        return response;
+        response.props.subObj[this.objName].value = this.state.defaultValue;
+        response.scope.setState(response.props.obj);
+        return response
       })
       .then(response => {
-        //console.log(response.props.subObj[this.objName].value);
-
-        response.props.subObj[this.objName].value = this.state.defaultValue;
-        response.scope.setState(response.props.obj)
+        console.log(response.scope)
+        //console.log(this.state.defaultValue)
+        let prevStateElem = response.state.countElemWithError;
+        response.setState({countElemWithError: ++prevStateElem});
         return response;
       })
+
+
+
+/*       new Promise(res => {
+        this.setState({
+          isValidValue: true,
+          isFocus: false,
+          defaultValue: e.target.value,
+        });
+        res(this.parentScope);
+      })
+      .then(response => {///
+        //console.log(this.state.defaultValue)
+        let prevStateElem = response.state.countElemWithError;
+        response.setState({countElemWithError: ++prevStateElem});
+        return response;
+      })
+      .then(response => {///
+        response.props.subObj[this.objName].value = this.state.defaultValue;
+        response.scope.setState(response.props.obj);
+        return response
+      })
+      .then(response => {
+        console.log(response.scope);
+        console.log(response.scope.state);
+      }) */
+
+      // почему-то subObj не относится к obj
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+/*     if (prevProps !== this.props) {
+    //if (prevProps.array[1].value !== this.props.array[1].value) {
+      //console.log('hel')
+      new Promise(res => {
+        this.setState({defaultValue: this.props.array[1].value});
+        res(this)
+      })
+      //.then(response => console.log(response.state))
+    } */
+ 
     if (this.state.isFocus) {
       let input = document.getElementById(this.uniqIndex);
       input.focus();
     }
-
-    /* if (!this.parentScope.readonly) {
-      console.log(this.parentScope.scope.state);
-    } */
   }
 
   whileFocus(e) {
@@ -79,26 +110,15 @@ class InputComp extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-/*     if (!this.parentScope.readonly) {
-      console.log(this)
-      console.log(this.parentScope.scope.state);
-      //console.log(this.state)
-    } */
-    if (this.state === nextState) {
+    if (this.props === nextProps && this.state === nextState) {
       return false;
     } 
     return true;
   }
 
-  /* componentDidMount() {
-    if (!this.parentScope.readonly) {
-      console.log(this.parentScope.scope.state);
-    }
-  } */
-
   render() {
     return (
-      <li key={uniqid()} className={this.state.isValidValue ? '' : 'error'}>
+      <li className={this.state.isValidValue ? '' : 'error'}>
         <label htmlFor={this.uniqIndex}>{this.objName}</label>
         {this.props.elem.call(this, this)}
       </li>
@@ -113,17 +133,19 @@ function input(arram) {
     let templateScope = props.parentScope;
     let uniqIndex = props.uniqIndex;
 
-  return ((templateScope.readonly) 
-        ? <input type={type} value={this.props.array[1].value} readOnly />
-        : <input type={type} onBlur={(e) => {
-          //console.log(this)
+    if (templateScope.readonly) {
+      return <input type={type} value={this.props.array[1].value} readOnly />
+    } else {
+      return (
+        <input key={uniqid()} type={type} onBlur={(e) => {
           props.afterBlur(e);
         }}
         onFocus={(e) => {
           props.whileFocus(e);
         }}
-        id={uniqIndex} defaultValue={props.state.defaultValue} />
+        id={uniqIndex} defaultValue={this.props.array[1].value} />
       )
+    }
   }
 }
 
@@ -188,25 +210,31 @@ function countryComp(arram) {
     })
     .then(response => {
       let htmlNodeCollection = createListElements();
-      let input = document.getElementById(e.target.id);
-   
-      let list = document.createElement('ul');
-      list.id = 'cityName'
-      input.after(list);
 
       htmlNodeCollection.forEach(elem => {
+        let list = document.getElementById('cityName'); //
         let option = document.createElement('li');
         option.textContent = elem.name;
         option.key = elem.id;
         list.append(option);
 
         option.addEventListener('click', (e) => {
-          //console.log(e.target.textContent);
-          response.setState({
-            defaultValue: e.target.textContent,
+          new Promise(res => {
+            response.setState({
+              defaultValue: e.target.textContent,
+            })
+            res(response)
+          })
+          .then(() => {
+            let list = document.getElementById('cityName');
+            let options = list.querySelectorAll('li');
+
+            options.forEach(elem => elem.remove());
           })
         })
+
       })
+      return response;
     })
   }
 
@@ -220,12 +248,12 @@ function countryComp(arram) {
             <input type={type} 
             onBlur={(e) => {
               props.afterBlur(e);
-              //templateScope.blur(e, this)
             }} 
             onChange={(e) => {
               enteredValHandler.call(this, e);
             }}
-            defaultValue={props.state.defaultValue} id={uniqIndex} list='cityName'/>
+            value={this.state.defaultValue} id={uniqIndex} list='cityName'/>
+            <ul id='cityName'></ul>
           </div>
       )
   }

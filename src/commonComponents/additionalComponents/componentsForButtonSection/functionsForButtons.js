@@ -29,12 +29,14 @@ function addInfo(duplicateState) {
     let name1 = arrayOfKeysAndValues[0][0];
     let name2 = arrayOfKeysAndValues[1][0];
 
-    new Promise(() => {
+    new Promise((res) => {
       this.setState({
         [name1]: cloneObj(this.defaultState),
         [name2]: arrayWithObjects
       })
+      res(this)
     })
+    //.then(response => console.log(response.state))
   } 
 }
 
