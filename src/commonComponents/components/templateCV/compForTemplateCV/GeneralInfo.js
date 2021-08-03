@@ -28,6 +28,8 @@ class GeneralInfo extends React.Component {
           value: '',
           inputElem: countryComp('text'),
         },
+        
+        isValid: true,
       }
     }
     

@@ -1,6 +1,5 @@
 import React from 'react';
 import uniqid from 'uniqid'
-import cloneObj from '../CloneObj';
 
 class InputComp extends React.Component {
   constructor(props) {
@@ -17,7 +16,8 @@ class InputComp extends React.Component {
     }
   }
 
-  afterBlur(e, props) {
+  afterBlur(e) {
+    //console.log(this)
     if (!e.target.value.length) {
       new Promise(res => {
         this.setState({
@@ -27,10 +27,10 @@ class InputComp extends React.Component {
         });
         res(this.parentScope)
       })
-      .then(response => {
+      /* .then(response => {
         let prevStateElem = response.state.countElemWithError;
         response.setState({countElemWithError: --prevStateElem});
-      })
+      }) */
     } else {
       new Promise(res => {
         this.setState({
@@ -45,59 +45,47 @@ class InputComp extends React.Component {
         response.scope.setState(response.props.obj);
         return response
       })
-      .then(response => {
-        console.log(response.scope)
-        //console.log(this.state.defaultValue)
+      /* .then(response => {
         let prevStateElem = response.state.countElemWithError;
         response.setState({countElemWithError: ++prevStateElem});
-        return response;
-      })
-
-
-
-/*       new Promise(res => {
-        this.setState({
-          isValidValue: true,
-          isFocus: false,
-          defaultValue: e.target.value,
-        });
-        res(this.parentScope);
-      })
-      .then(response => {///
-        //console.log(this.state.defaultValue)
-        let prevStateElem = response.state.countElemWithError;
-        response.setState({countElemWithError: ++prevStateElem});
-        return response;
-      })
-      .then(response => {///
-        response.props.subObj[this.objName].value = this.state.defaultValue;
-        response.scope.setState(response.props.obj);
-        return response
-      })
-      .then(response => {
-        console.log(response.scope);
-        console.log(response.scope.state);
       }) */
-
-      // почему-то subObj не относится к obj
     }
   }
 
-  componentDidUpdate(prevProps) {
-/*     if (prevProps !== this.props) {
-    //if (prevProps.array[1].value !== this.props.array[1].value) {
-      //console.log('hel')
-      new Promise(res => {
-        this.setState({defaultValue: this.props.array[1].value});
-        res(this)
-      })
-      //.then(response => console.log(response.state))
-    } */
- 
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.isFocus) {
       let input = document.getElementById(this.uniqIndex);
       input.focus();
     }
+
+    /* if (!this.parentScope.readonly) {
+      console.log(this.parentScope)
+    } */
+
+    /* console.log('prevState')
+    console.log(prevState)
+    console.log('this.state')
+    console.log(this.state) */
+
+/*     if (!this.parentScope.readonly) {
+      if (prevState.isValidValue !== this.state.isValidValue && this.state.isValidValue) {
+        console.log(this.parentScope)
+        let prevStateElem = this.parentScope.state.countElemWithError;
+        this.parentScope.setState({countElemWithError: ++prevStateElem});
+      } else if (prevState.isValidValue !== this.state.isValidValue && !this.state.isValidValue) {
+        let prevStateElem = this.parentScope.state.countElemWithError;
+        this.parentScope.setState({countElemWithError: --prevStateElem});
+      }
+    } */
+
+
+/*     if (prevState.defaultValue !== this.state.defaultValue && !prevState.isValidValue && this.state.isValidValue) {
+      let prevStateElem = this.parentScope.state.countElemWithError;
+      this.parentScope.setState({countElemWithError: ++prevStateElem})
+    } else if (prevState.defaultValue !== this.state.defaultValue && prevState.isValidValue && !this.state.isValidValue) {
+      let prevStateElem = this.parentScope.state.countElemWithError;
+      this.parentScope.setState({countElemWithError: --prevStateElem})
+    } */
   }
 
   whileFocus(e) {
@@ -110,9 +98,25 @@ class InputComp extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+/*     console.log(this.props.array)
+    console.log(nextProps.array) */
+
     if (this.props === nextProps && this.state === nextState) {
       return false;
-    } 
+    }
+
+    /* if (this.props.array[1].value === nextProps.array[1].value && this.state === nextState) {
+      return false;
+    } */
+
+    /* if (this.props === nextProps && this.state === nextState) {
+      return false;
+    } else if (this.props.array[1].value === nextProps.array[1].value) {
+      return false;
+    } */
+    /* console.log(this.props);
+    console.log(nextProps); */
+    //console.log(this.props !== nextProps)
     return true;
   }
 
@@ -133,19 +137,14 @@ function input(arram) {
     let templateScope = props.parentScope;
     let uniqIndex = props.uniqIndex;
 
-    if (templateScope.readonly) {
-      return <input type={type} value={this.props.array[1].value} readOnly />
-    } else {
-      return (
-        <input key={uniqid()} type={type} onBlur={(e) => {
-          props.afterBlur(e);
-        }}
-        onFocus={(e) => {
-          props.whileFocus(e);
-        }}
-        id={uniqIndex} defaultValue={this.props.array[1].value} />
-      )
-    }
+    //console.log(this.state.defaultValue);
+    //console.log(this.props.array[1].value)
+
+    return((templateScope.readonly) 
+      ? <input type={type} value={this.props.array[1].value} readOnly />
+      : <input key={uniqid()} type={type} onBlur={(e) => props.afterBlur(e)}
+          onFocus={(e) => props.whileFocus(e)}
+          id={uniqIndex} defaultValue={this.state.defaultValue} />)
   }
 }
 
@@ -209,10 +208,10 @@ function countryComp(arram) {
       res(this)
     })
     .then(response => {
+      let list = removeAllChildElements('cityName', 'li');
       let htmlNodeCollection = createListElements();
 
       htmlNodeCollection.forEach(elem => {
-        let list = document.getElementById('cityName'); //
         let option = document.createElement('li');
         option.textContent = elem.name;
         option.key = elem.id;
@@ -226,33 +225,38 @@ function countryComp(arram) {
             res(response)
           })
           .then(() => {
-            let list = document.getElementById('cityName');
-            let options = list.querySelectorAll('li');
-
-            options.forEach(elem => elem.remove());
+            removeAllChildElements('cityName', 'li')
+            return (this.parentScope)
+          })
+          .then(response => {
+            response.props.subObj[this.objName].value = this.state.defaultValue;
+            response.props.scope.setState(response.props.obj);
           })
         })
 
       })
-      return response;
     })
   }
 
-  return function (props) {
-    let templateScope = props.parentScope;
-    let uniqIndex = props.uniqIndex;
+  function removeAllChildElements(parentId, childTag) {
+    let list = document.getElementById(parentId);
+    let options = list.querySelectorAll(childTag);
+    options.forEach(elem => elem.remove());
+    return list;
+  }
+
+  return function () {
+    let templateScope = this.parentScope;
+    let uniqIndex = this.uniqIndex;
 
     return ((templateScope.readonly) 
         ? <input type={type} value={this.props.array[1].value} readOnly />
         : <div>
             <input type={type} 
-            onBlur={(e) => {
-              props.afterBlur(e);
-            }} 
-            onChange={(e) => {
-              enteredValHandler.call(this, e);
-            }}
-            value={this.state.defaultValue} id={uniqIndex} list='cityName'/>
+              onBlur={(e) => this.afterBlur(e)} 
+              onChange={enteredValHandler.bind(this)}
+              value={this.state.defaultValue} id={uniqIndex} list='cityName'/>
+
             <ul id='cityName'></ul>
           </div>
       )

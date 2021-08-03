@@ -2,6 +2,7 @@ import React from 'react';
 import changeHandler from './ChangeHandler';
 import uniqid from 'uniqid';
 import { InputComp } from './ComponentsForInputsElements/InputsComponents';
+import cloneObj from './CloneObj';
 
 class CreateListCompForTemplate extends React.Component {
   constructor(props) {
@@ -25,7 +26,51 @@ class CreateListCompForTemplate extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.props.subObj)
+
+/*    let checkPrevProps = Object.values(this.props.subObj).every(elem => {
+    return typeof elem === 'object' && elem.value !== '';
+  }); */
+
+  let initianArray = Object.values(this.props.subObj);
+  let array = [];
+
+  for (const iterator of initianArray) {
+    if (typeof iterator === 'object') {
+      array.push(iterator)
+    }
+  }
+
+  let checkThisProps = array.every(elem => {
+    return elem.value !== '';
+  });
+
+   /* let checkThisProps = Object.values(this.props.subObj).every(elem => {
+     return typeof elem === 'object' && elem.value !== '';
+   }); */
+
+
+/*    console.log(prevProps)
+   console.log(this.props) */
+   //console.log(checkThisProps)
+
+   if (checkThisProps) {
+     this.props.subObj.isValid = true;
+   } else {
+    this.props.subObj.isValid = false;
+   }
+    /* if (checkThisProps && prevProps.scope === checkThisProps) {
+      this.props.subObj.isValid = true;
+      this.scope.setState(this.props.obj);
+    } else if (!checkThisProps && checkPrevProps === checkThisProps) {
+      this.props.subObj.isValid = false;
+      this.scope.setState(this.props.obj);
+    } */
+  }
+
   render() {
+    //console.log(this.state)
     return (
       <ul>
         {Object.entries(this.props.subObj).map(item => {
@@ -38,122 +83,5 @@ class CreateListCompForTemplate extends React.Component {
     )
   }
 }
-
-/* class CreateListCompForTemplate extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.scope = this.props.scope;
-
-    this.state = {
-      idHtmlWithError: [],
-      objProps: this.returnObj(props)
-    }
-  }
-
-  returnObj(props) {
-    for (const key in props.subObj) {
-      if (typeof props.subObj[key] === 'object') {
-        props.subObj[key].uniqIndex = uniqid();
-      }
-    }
-    return props;
-  }
-
-  click(e, id) {
-    if (this.state.idHtmlWithError.includes(id)) {
-      if (e.target.localName === 'li') {
-        e.target.classList.remove('error');
-        let input = e.target.lastChild;
-        input.classList.add('afterError')
-        input.focus();
-      } else if (e.target.localName === 'input') {
-        e.target.parentNode.classList.remove('error');
-        e.target.classList.add('afterError')
-      }
-    }
-  }
-
-  blur(e, childScope) {
-    let obj = this.state.objProps.obj;
-    let subObj = this.state.objProps.subObj;
-    let childObj = subObj[childScope.objName];
-    let id = childObj.uniqIndex;
-
-    changeHandler.call(obj, e, childObj);
-
-    if (e.target.value) {         
-      new Promise(res => {
-        let index = this.state.idHtmlWithError.indexOf(id);
-
-        if (index !== -1) {
-          this.reduceArray(index);
-        }
-        res(this)
-      })
-      .then(response => {
-        if (response.state.idHtmlWithError.length === 0) {
-          subObj.isValid = true;
-          response.scope.setState(obj);
-        }
-      })
-
-    } else {
-      e.target.parentNode.classList.add('error');
-      new Promise(res => {
-        this.setState({
-          idHtmlWithError: [...this.state.idHtmlWithError, id],
-        })
-        res(this);
-      })
-      .then(response => {
-        subObj.isValid = false;
-        response.scope.setState(obj);
-      })
-    }
-  }
-
-  reduceArray(index) {
-    let interimArr = [...this.state.idHtmlWithError];
-    interimArr.splice(index, 1);
-    this.setState({
-      idHtmlWithError: interimArr
-    })
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      for (const key in this.props.subObj) {
-        if (typeof this.props.subObj[key] === 'object') {
-          this.props.subObj[key].uniqIndex = this.state.objProps.subObj[key].uniqIndex;
-        }
-      }
-      this.setState({
-        objProps: this.props,
-      })
-    }
-  }
-
-  render() {
-    return (
-      <ul>
-        {Object.entries(this.state.objProps.subObj).map(item => {
-          if (typeof item[1] === 'object') {
-            let myOwnClassName = this.state.idHtmlWithError.includes(item[1].uniqIndex) ? 'error' : '';
-            return (
-              <li key={uniqid()} className={myOwnClassName}
-                onClick={e => this.click(e, item[1].uniqIndex)}>
-
-                <label htmlFor={item[1].uniqIndex}>{item[0]}</label>
-                {item[1].returnInputElem.call(this, item)}
-              </li>
-            )
-          } 
-          return null;
-        })}
-      </ul>
-    )
-  }
-} */
 
 export default CreateListCompForTemplate;
