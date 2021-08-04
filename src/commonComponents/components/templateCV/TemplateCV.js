@@ -9,7 +9,7 @@ class TemplateCV extends React.Component {
   constructor(props) {
     super(props);
 
-    this.commonParentScope = props.parentScope();
+    this.commonParentScope = props.parentScope;
   }
 
   returnParentScope() {

@@ -40,11 +40,6 @@ class GeneralInfo extends React.Component {
   componentDidMount() {
     this.parentScope.setState(this.state);
   }
-
-/*   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
-    console.log(this.state);
-  } */
   
   render() {
     return(

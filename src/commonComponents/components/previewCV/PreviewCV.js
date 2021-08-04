@@ -7,7 +7,7 @@ class PreviewCV extends React.Component {
   constructor(props) {
     super(props)
 
-    this.CommonParentScope = props.parentScope();
+    this.CommonParentScope = props.parentScope;
   }
 
   componentDidUpdate(prevProps, prevState) {

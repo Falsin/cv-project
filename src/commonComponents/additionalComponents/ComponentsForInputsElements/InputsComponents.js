@@ -13,79 +13,50 @@ class InputComp extends React.Component {
       isValidValue: true,
       isFocus: false,
       defaultValue: '',
+      backgroundPosition: '200% 100%, 100% 100%'
     }
   }
 
   afterBlur(e) {
-    //console.log(this)
     if (!e.target.value.length) {
-      new Promise(res => {
-        this.setState({
-          isValidValue: false,
-          isFocus: false,
-          defaultValue: '',
-        });
-        res(this.parentScope)
-      })
-      /* .then(response => {
-        let prevStateElem = response.state.countElemWithError;
-        response.setState({countElemWithError: --prevStateElem});
-      }) */
+      this.setState({
+        isValidValue: false,
+        isFocus: false,
+        defaultValue: '',
+      });
     } else {
-      new Promise(res => {
-        this.setState({
-          isValidValue: true,
-          isFocus: false,
-          defaultValue: e.target.value,
-        });
-        res(this.parentScope);
-      })
-      .then(response => {
-        response.props.subObj[this.objName].value = this.state.defaultValue;
-        response.scope.setState(response.props.obj);
-        return response
-      })
-      /* .then(response => {
-        let prevStateElem = response.state.countElemWithError;
-        response.setState({countElemWithError: ++prevStateElem});
-      }) */
+      this.setState({
+        isValidValue: true,
+        isFocus: false,
+        defaultValue: e.target.value,
+      });
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.isFocus) {
-      let input = document.getElementById(this.uniqIndex);
-      input.focus();
-    }
+  componentDidUpdate(prevProps, prevState) {  //отредактировать
+/*     let input = document.getElementById(this.uniqIndex);
+    console.log('hey')
+    this.observer(input); */
 
-    /* if (!this.parentScope.readonly) {
-      console.log(this.parentScope)
-    } */
+    let input = document.getElementById(this.uniqIndex);
+    let computedStyle = getComputedStyle(input);
+    console.log(computedStyle.backgroundPosition);
 
-    /* console.log('prevState')
-    console.log(prevState)
-    console.log('this.state')
-    console.log(this.state) */
-
-/*     if (!this.parentScope.readonly) {
-      if (prevState.isValidValue !== this.state.isValidValue && this.state.isValidValue) {
-        console.log(this.parentScope)
-        let prevStateElem = this.parentScope.state.countElemWithError;
-        this.parentScope.setState({countElemWithError: ++prevStateElem});
-      } else if (prevState.isValidValue !== this.state.isValidValue && !this.state.isValidValue) {
-        let prevStateElem = this.parentScope.state.countElemWithError;
-        this.parentScope.setState({countElemWithError: --prevStateElem});
+    if (!this.parentScope.readonly) {
+      if (this.state.isFocus) {
+        let input = document.getElementById(this.uniqIndex);
+        input.focus();
       }
-    } */
 
-
-/*     if (prevState.defaultValue !== this.state.defaultValue && !prevState.isValidValue && this.state.isValidValue) {
-      let prevStateElem = this.parentScope.state.countElemWithError;
-      this.parentScope.setState({countElemWithError: ++prevStateElem})
-    } else if (prevState.defaultValue !== this.state.defaultValue && prevState.isValidValue && !this.state.isValidValue) {
-      let prevStateElem = this.parentScope.state.countElemWithError;
-      this.parentScope.setState({countElemWithError: --prevStateElem})
-    } */
+      if (prevState !== this.state) {  // отредактировать условие
+        this.parentScope.props.subObj[this.objName].value = this.state.defaultValue;
+        this.parentScope.scope.setState(this.parentScope.props.obj);
+      } else if (prevProps.array[1].value !== this.props.array[1].value) {
+        this.setState({defaultValue: this.props.array[1].value})
+      }
+    } else {
+      this.setState({defaultValue: this.props.array[1].value});
+    }
   }
 
   whileFocus(e) {
@@ -98,33 +69,55 @@ class InputComp extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-/*     console.log(this.props.array)
-    console.log(nextProps.array) */
-
-    if (this.props === nextProps && this.state === nextState) {
-      return false;
+    if (!this.parentScope.readonly) {
+      return ((this.state !== nextState || 
+              this.props.array[1].value !== nextProps.array[1].value) 
+              ? true : false);
+    } else {
+      return ((this.state.defaultValue !== nextState.defaultValue || 
+              nextProps.array[1].value !== this.state.defaultValue)
+              ? true : false);
     }
-
-    /* if (this.props.array[1].value === nextProps.array[1].value && this.state === nextState) {
-      return false;
-    } */
-
-    /* if (this.props === nextProps && this.state === nextState) {
-      return false;
-    } else if (this.props.array[1].value === nextProps.array[1].value) {
-      return false;
-    } */
-    /* console.log(this.props);
-    console.log(nextProps); */
-    //console.log(this.props !== nextProps)
-    return true;
   }
 
+  /* componentDidMount() {
+    if (this.state.defaultValue !== this.props.array[1].value) {
+      this.setState({defaultValue: this.props.array[1].value})
+    }
+  }
+
+  observer(target) {
+    //let input = document.getElementById(this.uniqIndex);
+
+    const config = {
+      attributes: true,
+    };
+
+    const callback = function(mutationsList) {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'attributes') {
+          console.log(mutation)
+        }
+      }
+    };
+
+    const testObserver = new MutationObserver(callback);
+
+    testObserver.observe(target, config);
+  } */
+
   render() {
+
     return (
-      <li className={this.state.isValidValue ? '' : 'error'}>
+      <li key={uniqid()} className={this.state.isValidValue ? '' : 'error'}
+        onClick={e => {
+          //this.observer(e);
+          this.setState({isFocus: true})
+        }}>
+
         <label htmlFor={this.uniqIndex}>{this.objName}</label>
         {this.props.elem.call(this, this)}
+
       </li>
     )
   }
@@ -133,18 +126,15 @@ class InputComp extends React.Component {
 function input(arram) {
   let type = arram;
 
-  return function (props) {
-    let templateScope = props.parentScope;
-    let uniqIndex = props.uniqIndex;
-
-    //console.log(this.state.defaultValue);
-    //console.log(this.props.array[1].value)
+  return function () {
+    let templateScope = this.parentScope;
+    let uniqIndex = this.uniqIndex;
 
     return((templateScope.readonly) 
-      ? <input type={type} value={this.props.array[1].value} readOnly />
-      : <input key={uniqid()} type={type} onBlur={(e) => props.afterBlur(e)}
-          onFocus={(e) => props.whileFocus(e)}
-          id={uniqIndex} defaultValue={this.state.defaultValue} />)
+      ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
+      : <input key={uniqid()} type={type} onBlur={e => this.afterBlur(e)}
+          onFocus={e => this.whileFocus(e)} id={uniqIndex} 
+          defaultValue={this.state.defaultValue} />)
   }
 }
 
@@ -152,18 +142,14 @@ function textArea (arram) {
   let type = arram;
 
   return function (props) {
-    let templateScope = props.parentScope;
-    let uniqIndex = props.uniqIndex;
+    let templateScope = this.parentScope;
+    let uniqIndex = this.uniqIndex;
 
   return ((templateScope.readonly) 
-        ? <textarea type={type} value={this.props.array[1].value} readOnly />
-        : <textarea type={type} onBlur={(e) => {
-          props.afterBlur(e);
-        }}
-        onFocus={(e) => {
-          props.whileFocus(e);
-        }}
-        id={uniqIndex} defaultValue={props.state.defaultValue} />
+        ? <textarea key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
+        : <textarea key={uniqid()} type={type} onBlur={e => this.afterBlur(e)}
+            onFocus={e => this.whileFocus(e)} id={uniqIndex} 
+            defaultValue={props.state.defaultValue} />
       )
   }
 }
@@ -217,23 +203,15 @@ function countryComp(arram) {
         option.key = elem.id;
         list.append(option);
 
-        option.addEventListener('click', (e) => {
+        option.addEventListener('mousedown', e => {
           new Promise(res => {
             response.setState({
               defaultValue: e.target.textContent,
             })
             res(response)
           })
-          .then(() => {
-            removeAllChildElements('cityName', 'li')
-            return (this.parentScope)
-          })
-          .then(response => {
-            response.props.subObj[this.objName].value = this.state.defaultValue;
-            response.props.scope.setState(response.props.obj);
-          })
+          .then(() => removeAllChildElements('cityName', 'li'));
         })
-
       })
     })
   }
@@ -250,10 +228,10 @@ function countryComp(arram) {
     let uniqIndex = this.uniqIndex;
 
     return ((templateScope.readonly) 
-        ? <input type={type} value={this.props.array[1].value} readOnly />
+        ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
         : <div>
-            <input type={type} 
-              onBlur={(e) => this.afterBlur(e)} 
+            <input type={type} key={uniqid()}
+              onBlur={e => this.afterBlur(e)} 
               onChange={enteredValHandler.bind(this)}
               value={this.state.defaultValue} id={uniqIndex} list='cityName'/>
 
