@@ -14,19 +14,19 @@ class GeneralInfo extends React.Component {
       generalInfo: {
         Name: {
           value: '',
-          inputElem: input('text'),
+          inputElem: input.bind(this, 'text'),
         },
         Email: {
           value: '',
-          inputElem: input('text'),
+          inputElem: input.bind(this, 'text'),
         },
         Phone: {
           value: '',
-          inputElem: input('text'),
+          inputElem: input.bind(this, 'text'),
         },
         Country: {
           value: '',
-          inputElem: countryComp('text'),
+          inputElem: countryComp.bind(this, 'text'),
         },
         
         isValid: true,

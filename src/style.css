@@ -195,7 +195,7 @@ header .container h1 {
 #templateCV section form .infoBlocks ul > li input:focus,
 #templateCV section form .infoBlocks ul > li input.active {
   animation-name: changeBackgroundPosition;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 #templateCV section form .photo {
@@ -251,7 +251,7 @@ header .container h1 {
 }
 #templateCV .error input:not([type*=button]) {
   animation-name: changeBackgroundPositionWhileError;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 #templateCV input:not([type*=button]) {
@@ -262,18 +262,6 @@ header .container h1 {
   background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
   background-repeat: no-repeat, no-repeat;
   background-size: 200% 2px, 200% 2px;
-  background-position: 200% 100%, 100% 100%;
-  /* transition-duration: 2s;
-    transition-property: background-position; */
-  /* background-size: 200% 2px, 200% 2px;
-    background-repeat: no-repeat, no-repeat; */
-  animation-name: changeBackgroundPositionTrue;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  /* background-image: linear-gradient(90deg, red calc(100% / 3), green calc(100% / 3) calc(100% / 3 + 100% / 3), black calc(100% / 3 + 100% / 3));
-    background-position: 100% 100%;
-    background-size: 300% 2px;
-    background-repeat: no-repeat; */
   margin-bottom: 5px;
   display: block;
   padding: 5px;
@@ -282,12 +270,12 @@ header .container h1 {
 }
 #templateCV input:not([type*=button]).afterError {
   animation-name: changeBackgroundPositionAfterError !important;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 #templateCV input:not([type*=button]).validValue {
   animation-name: changeBackgroundPositionValidValue !important;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 #templateCV textarea {
@@ -296,14 +284,6 @@ header .container h1 {
   grid-row-start: 1;
   grid-row-end: 2;
 }
-/* #cityName {
-  position: absolute !important;
-  background: white;
-
-  li {
-    display: block !important;
-  }
-} */
 /* @backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
 @backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
 @backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
@@ -314,102 +294,29 @@ header .container h1 {
   }
 }
 @keyframes changeBackgroundPositionWhileError {
-  from {
+  /*   from {
     background-position: 200% 100%, 0% 100%;
-  }
+  } */
   to {
     background-position: 100% 100%, 0% 100%;
   }
 }
 @keyframes changeBackgroundPositionAfterError {
-  from {
+  /*   from {
     background-position: 100% 100%, 0% 100%;
-  }
+  } */
   to {
     background-position: 200% 100%, 0% 100%;
   }
 }
 @keyframes changeBackgroundPositionValidValue {
-  from {
-    background-position: 200% 100%, 0% 100%;
-  }
+  /*   from {
+    background-position: 200% 100%, 0% 100%;;
+  } */
   to {
     background-position: 200% 100%, 100% 100%;
   }
 }
-/* @background: red;
-@backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
-@backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
-@backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
-@backgroundPosition4: 200% 100%, 0% 100%;   // меняет красный на зелёный 
-
-// @backgroundPosition2: 200% 100%, 0% 100%;  === @backgroundPosition3: 200% 100%, 0% 100%; 
-
-@keyframes changeBackgroundPositionTrue {
-  from {
-    background-position: @backgroundPosition1;
-  }
-  to {
-    background-position: @backgroundPosition1;
-  }
-}
-
-@keyframes changeBackgroundPosition {
-  from {
-    background-position: @backgroundPosition1;  /// @backgroundPosition1 and @backgroundPosition3
-  }
-  to {
-    background-position: @backgroundPosition2;  // меняет чёрный на зелёный
-  }
-}
-
-@keyframes changeBackgroundPositionWhileError {
-  from {
-    background-position: @backgroundPosition2;
-  }
-  to {
-    background-position: @backgroundPosition3;   // меняет зелёный на красный
-  }
-} */
-/* @keyframes changeBackgroundPositionTrue {
-  to {
-    background-position: 200% 100%, 100% 100%;
-  }
-} */
-/* @keyframes changeBackgroundPositionTrue {
-  from {
-    background-position: 200% 100%, 0% 100%;
-  }
-
-  to {
-    background-position: 200% 100%, 100% 100%;
-  }
-} */
-/* @keyframes changeBackgroundPosition {
-  to {
-    background-position: 50% 100%;
-  }
-}
-
-@keyframes changeBackgroundPositionWhileError {
-  from {
-    background-position: 50% 100%;
-  }
-
-  to {
-    background-position: 0% 100%;
-  }
-}
-
-@keyframes changeBackgroundPositionAfterError {
-  from {
-    background-position: 0% 100%;
-  }
-
-  to {
-    background-position: 50% 100%;
-  }
-} */
 #previewCV {
   margin-top: 4vmax;
   display: flex;

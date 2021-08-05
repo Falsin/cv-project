@@ -215,7 +215,7 @@ header {
             & input:focus,
             & input.active {
               animation-name: changeBackgroundPosition;
-              animation-duration: 2s;
+              animation-duration: 1s;
               animation-fill-mode: forwards;
             }
           }
@@ -280,7 +280,7 @@ header {
 
     input:not([type*=button]) {
       animation-name: changeBackgroundPositionWhileError;
-      animation-duration: 2s;
+      animation-duration: 1s;
       animation-fill-mode: forwards;
     }
     
@@ -301,28 +301,6 @@ header {
                       linear-gradient(90deg, green 50%, black 50%);
     background-repeat: no-repeat, no-repeat;   
     background-size: 200% 2px, 200% 2px;
-    background-position: 200% 100%, 100% 100%;
-    //background-position: @backgroundPosition;
-    /* transition-duration: 2s;
-    transition-property: background-position; */
-
-    //background-position: @backgroundPosition3;
-
-    //background-position: @backgroundPosition;               
-    /* background-size: 200% 2px, 200% 2px;
-    background-repeat: no-repeat, no-repeat; */
-
-    animation-name: changeBackgroundPositionTrue;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-
-
-
-
-    /* background-image: linear-gradient(90deg, red calc(100% / 3), green calc(100% / 3) calc(100% / 3 + 100% / 3), black calc(100% / 3 + 100% / 3));
-    background-position: 100% 100%;
-    background-size: 300% 2px;
-    background-repeat: no-repeat; */
 
     margin-bottom: 5px;
     display: block;
@@ -333,13 +311,13 @@ header {
 
   input:not([type*=button]).afterError {
     animation-name: changeBackgroundPositionAfterError !important;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
   }
 
   input:not([type*=button]).validValue {
     animation-name: changeBackgroundPositionValidValue !important;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
   }
 
@@ -351,15 +329,6 @@ header {
   }
 }
 
-/* #cityName {
-  position: absolute !important;
-  background: white;
-
-  li {
-    display: block !important;
-  }
-} */
-
   /* @backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
 @backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
 @backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
@@ -370,25 +339,23 @@ header {
 
 @keyframes changeBackgroundPosition {
   to {
-    //background-position: 200% 100%, 0% 100%;
-    background-position: 200% 100%, 0% 100%; ;
-    //background-position: @backgroundPosition;
+    background-position: 200% 100%, 0% 100%;
   }
 }
 
 @keyframes changeBackgroundPositionWhileError {
-  from {
+/*   from {
     background-position: 200% 100%, 0% 100%;
-  }
+  } */
   to {
     background-position: 100% 100%, 0% 100%;
   }
 }
 
 @keyframes changeBackgroundPositionAfterError {
-  from {
+/*   from {
     background-position: 100% 100%, 0% 100%;
-  }
+  } */
 
   to {
     background-position: 200% 100%, 0% 100%;
@@ -396,91 +363,14 @@ header {
 }
 
 @keyframes changeBackgroundPositionValidValue {
-  from {
+/*   from {
     background-position: 200% 100%, 0% 100%;;
-  }
+  } */
 
   to {
     background-position: 200% 100%, 100% 100%;
   }
 }
-
-/* @background: red;
-@backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
-@backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
-@backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
-@backgroundPosition4: 200% 100%, 0% 100%;   // меняет красный на зелёный 
-
-// @backgroundPosition2: 200% 100%, 0% 100%;  === @backgroundPosition3: 200% 100%, 0% 100%; 
-
-@keyframes changeBackgroundPositionTrue {
-  from {
-    background-position: @backgroundPosition1;
-  }
-  to {
-    background-position: @backgroundPosition1;
-  }
-}
-
-@keyframes changeBackgroundPosition {
-  from {
-    background-position: @backgroundPosition1;  /// @backgroundPosition1 and @backgroundPosition3
-  }
-  to {
-    background-position: @backgroundPosition2;  // меняет чёрный на зелёный
-  }
-}
-
-@keyframes changeBackgroundPositionWhileError {
-  from {
-    background-position: @backgroundPosition2;
-  }
-  to {
-    background-position: @backgroundPosition3;   // меняет зелёный на красный
-  }
-} */
-
-/* @keyframes changeBackgroundPositionTrue {
-  to {
-    background-position: 200% 100%, 100% 100%;
-  }
-} */
-
-/* @keyframes changeBackgroundPositionTrue {
-  from {
-    background-position: 200% 100%, 0% 100%;
-  }
-
-  to {
-    background-position: 200% 100%, 100% 100%;
-  }
-} */
-
-/* @keyframes changeBackgroundPosition {
-  to {
-    background-position: 50% 100%;
-  }
-}
-
-@keyframes changeBackgroundPositionWhileError {
-  from {
-    background-position: 50% 100%;
-  }
-
-  to {
-    background-position: 0% 100%;
-  }
-}
-
-@keyframes changeBackgroundPositionAfterError {
-  from {
-    background-position: 0% 100%;
-  }
-
-  to {
-    background-position: 50% 100%;
-  }
-} */
 
 #previewCV {
   margin-top: 4vmax;

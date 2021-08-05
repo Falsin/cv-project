@@ -9,6 +9,13 @@ class CreateListCompForTemplate extends React.Component {
     super(props);
 
     this.scope = this.props.scope;
+    this.collectionInputElements = ((params) => {
+      return Object.values(props.subObj).map(elem => {
+        if (typeof elem === 'object') {
+          return elem.inputElem()
+        }
+      })
+    })()
 
     this.state = {
       idHtmlWithError: [],     // убрать
@@ -46,9 +53,10 @@ class CreateListCompForTemplate extends React.Component {
   render() {
     return (
       <ul>
-        {Object.entries(this.props.subObj).map(item => {
+        {Object.entries(this.props.subObj).map((item, id) => {
           if (typeof item[1] === 'object') {
-            return <InputComp scope={this} array={item} elem={item[1].inputElem} />
+            /* return <InputComp scope={this} array={item} elem={item[1].inputElem()} /> */
+            return <InputComp scope={this} array={item} elem={this.collectionInputElements[id]} />
           } 
           return null;
         })}

@@ -13,15 +13,15 @@ class EducationalExperience extends React.Component {
       educationalExperience: {
         'School name': {
           value: '',
-          inputElem: input('text'),
+          inputElem: input.bind(this, 'text'),
         },
         'Title of study': {
           value: '',
-          inputElem: input('text'),
+          inputElem: input.bind(this, 'text'),
         },
         'Date of study': {
           value: '',
-          inputElem: input('date'),
+          inputElem: input.bind(this, 'date'),
         },
 
         isValid: true,

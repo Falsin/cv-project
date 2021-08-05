@@ -27,7 +27,7 @@ class TemplateCV extends React.Component {
       <section id='templateCV'>
         <GeneralInfo parentScope={this.returnParentScope.bind(this)}/>
         <EducationalExperience parentScope={this.returnParentScope.bind(this)}/>
-        <PracticalExperience parentScope={this.returnParentScope.bind(this)} />
+        {/* <PracticalExperience parentScope={this.returnParentScope.bind(this)} /> */}
       </section>
     )
   }
