@@ -11,116 +11,105 @@ class InputComp extends React.Component {
 
     this.state = {
       isValidValue: true,
-      isFocus: false,
       defaultValue: props.array[1].value,
       backgroundPosition: '200% 100%, 100% 100%',
-      isMount: true,
     }
   }
 
-  afterBlur(e) {
+/*   afterBlur(e) {
+    this.setState({defaultValue: e.target.value});
     if (!e.target.value.length) {
       this.setState({
         isValidValue: false,
-        isFocus: false,
-        defaultValue: '',
       });
     } else {
       this.setState({
         isValidValue: true,
-        isFocus: false,
-        defaultValue: e.target.value,
       });
+    }
+  } */
+
+  afterBlurTest(element) {
+    console.log('afterblur')
+    this.setState({defaultValue: element.value});
+    this.discoverAnimation(element);
+
+    if (!element.value.length) {
+      console.dir(element)
+      element.parentNode.classList.add('error');
+      this.setState({isValidValue: false});
+    } else {
+      this.setState({isValidValue: true});
     }
   }
 
-  afterBlurTest(event) {
-    console.log('hello')
-    console.log(event)
-    if (!event.length) {
-      this.setState({
-        isValidValue: false,
-        isFocus: false,
-        defaultValue: '',
-      });
-    } else {
-      this.setState({
-        isValidValue: true,
-        isFocus: false,
-        defaultValue: event,
-      });
-    }
+  afterFocus(e) {
+    this.discoverAnimation(e);
+  }
+
+  discoverAnimation(e) {
+    const animations = e.getAnimations();
+    animations.forEach(elem => {
+      elem.onfinish = () => {
+        let computedStyle = getComputedStyle(e);
+        let currentStyle = computedStyle.backgroundPosition;
+        console.log(currentStyle)
+        e.style.backgroundPosition = currentStyle;
+        if (this.state.backgroundPosition !== currentStyle) {
+          this.setState({backgroundPosition: currentStyle})
+        }
+      }
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {  //отредактировать
     let input = document.getElementById(this.uniqIndex);
 
     if (!this.parentScope.readonly) {
-      if (this.state.isFocus) {
-        input.focus();
-      }
-
-      const animations = input.getAnimations();
-      animations.forEach(elem => {
+      /*const animations = input.getAnimations();
+       animations.forEach(elem => {
         elem.onfinish = () => {
           let computedStyle = getComputedStyle(input);
           let currentStyle = computedStyle.backgroundPosition;
+          console.log(currentStyle)
           if (this.state.backgroundPosition !== currentStyle) {
             this.setState({backgroundPosition: currentStyle})
           }
         }
-      })
-/* 
-      console.log(this.state);
-      console.log(this.props.array); */
+      }) */
 
-      if (prevState !== this.state) {  // отредактировать условие
+      /* if (prevState.defaultValue !== this.state.defaultValue) {
         this.parentScope.props.subObj[this.objName].value = this.state.defaultValue;
         this.parentScope.scope.setState(this.parentScope.props.obj);
       } else if (prevProps.array[1].value !== this.props.array[1].value) {
         this.setState({defaultValue: this.props.array[1].value})
-      }
-    } else {
+      } */
+    } /* else {
       this.setState({defaultValue: this.props.array[1].value});
-    }
-  }
+    } */
 
-  whileFocus() {
-    //console.log(this)
-    if (!this.state.isValidValue) {
-      this.setState({
-        isValidValue: true,
-        isFocus: true,
-      });
+    if (prevState.defaultValue !== this.state.defaultValue) {
+      //console.log('update2')
+      this.parentScope.props.subObj[this.objName].value = this.state.defaultValue;
+      this.parentScope.scope.setState(this.parentScope.props.obj);
+    } else if (prevProps.array[1].value !== this.props.array[1].value) {
+      this.setState({defaultValue: this.props.array[1].value})
     }
+
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-/*     if (this.objName === 'Country') {
-      console.log(this.state);
-      console.log(nextState)
-    } */
-    if (!this.parentScope.readonly) {
-      return ((this.state !== nextState || 
-              this.props.array[1].value !== nextProps.array[1].value) 
-              ? true : false);
-    } else {
-      return ((this.state.defaultValue !== nextState.defaultValue || 
-              nextProps.array[1].value !== this.state.defaultValue)
-              ? true : false);
+    if (this.state.defaultValue !== nextState.defaultValue ||
+      nextProps.array[1].value !== this.state.defaultValue) {
+      return true;
     }
-  }
-
-  componentDidMount() {
-    this.setState({isMount: false})
+    return false;
   }
 
   render() {
-    //console.log(this)
-    //console.log(this.state.defaultValue)
     return (
       <li key={uniqid()} className={this.state.isValidValue ? '' : 'error'}
-        onClick={e => this.setState({isFocus: true})}>
+        /* onClick={e => this.setState({isFocus: true})} */>
 
         <label htmlFor={this.uniqIndex}>{this.objName}</label>
         {this.props.elem.call(this, this)}
@@ -130,82 +119,21 @@ class InputComp extends React.Component {
   }
 }
 
-/* function input(arram) {
-  let type = arram;
-
-  return function () {
-    let templateScope = this.parentScope;
-    let uniqIndex = this.uniqIndex;
-
-    <InputComponent scope={this} />
-  }
-    
-}
- */
-/* class InputComponent extends React.Component {
-  render() {
-    return ((templateScope.readonly)
-      ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
-      : <input key={uniqid()} type={type} onBlur={e => this.afterBlur(e)}
-          style={{backgroundPosition: this.state.backgroundPosition}}
-          onFocus={e => this.whileFocus(e)} id={uniqIndex} 
-          defaultValue={this.state.defaultValue} />
-    )
-  }
-} */
-
-/* function input(arram) {
-  let enteredVal = '';
-
-  function enteredValHandler(e) {
-    enteredVal.value = e.target.value;
-    enteredVal.id = uniqid();
-  }
-
-  let type = arram;
-
-  return function () {
-    let templateScope = this.parentScope;
-    let uniqIndex = this.uniqIndex;
-
-    return((templateScope.readonly) 
-      ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
-      : <input key={uniqid()} type={type} onBlur={e => this.afterBlur(e)}
-          style={{backgroundPosition: this.state.backgroundPosition}}
-          onFocus={e => this.whileFocus(e)} id={uniqIndex} 
-          defaultValue={this.state.defaultValue} />)
-  }
-} */
-
 function input(arram) {
-  let enteredVal = '';
   let type = arram;
-
-/*   console.log(this)
-  console.log(type) */
 
   return function () {
     let templateScope = this.parentScope;
     let uniqIndex = this.uniqIndex;
-
-    if (!this.parentScope.readonly && this.state.isMount) {
-      enteredVal = this.state.defaultValue;
-    }
-
-/*     
-    не работает из-за прослушивателя анимации, который
-    повторно рендерит
-    if (enteredVal !== this.state.defaultValue) {
-      enteredVal = this.state.defaultValue
-    } */
+    let backgroundPosition = this.state.backgroundPosition;
 
     return((templateScope.readonly) 
       ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
-      : <input key={uniqid()} type={type} defaultValue={enteredVal}
-          onFocus={e => this.whileFocus(e)} id={uniqIndex}
-          onChange={e => enteredVal = e.target.value}  
-          onBlur={e => this.afterBlurTest(e.target.value)}
-          style={{backgroundPosition: this.state.backgroundPosition}} />)
+      : <input key={uniqid()} type={type} defaultValue={this.state.defaultValue}
+          onFocus={e => this.afterFocus(e.target)} id={uniqIndex}
+          //onChange={e => enteredVal = e.target.value}  
+          onBlur={e => this.afterBlurTest(e.target)}
+          style={{backgroundPosition: backgroundPosition}} />)
   }
 }
 
