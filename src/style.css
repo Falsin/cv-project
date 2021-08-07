@@ -192,7 +192,6 @@ header .container h1 {
 #templateCV section form .infoBlocks ul > li div #cityName li:hover {
   background: #818181;
 }
-#templateCV section form .infoBlocks ul > li input:focus,
 #templateCV section form .infoBlocks ul > li input.active {
   animation-name: changeBackgroundPosition;
   animation-duration: 1s;
@@ -232,13 +231,6 @@ header .container h1 {
 #templateCV section.expBlock ul.specialStyleKit > li li {
   display: grid;
   grid-template-columns: 1fr 2fr;
-}
-#templateCV .error {
-  /* input:not([type*=button]) {
-      animation-name: changeBackgroundPositionWhileError;
-      animation-duration: 2s;
-      animation-fill-mode: forwards;
-    } */
 }
 #templateCV .error::before {
   content: 'The field can\'t be empty.';
