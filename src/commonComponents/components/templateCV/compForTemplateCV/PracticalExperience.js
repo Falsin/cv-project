@@ -13,23 +13,23 @@ class PracticalExperience extends React.Component {
       practicalExperience: {
         'Company name': {
           value: '',
-          inputElem: input('text'),
+          inputElem: input.bind(this, 'text'),
         },
         'Position title': {
           value: '',
-          inputElem: input('text'),
+          inputElem: input.bind(this, 'text'),
         },
         'Main tasks of your jobs': {
           value: '',
-          inputElem: textArea('text'),
+          inputElem: textArea.bind(this, 'text'),
         },
         'From': {
           value: '',
-          inputElem: input('date'),
+          inputElem: input.bind(this, 'date'),
         },
         'To': {
           value: '',
-          inputElem: input('date'),
+          inputElem: input.bind(this, 'date'),
         },
 
         isValid: true,

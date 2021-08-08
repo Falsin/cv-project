@@ -167,6 +167,7 @@ header .container h1 {
 #templateCV section form .infoBlocks ul > li {
   display: grid;
   grid-template-columns: 0.8fr 2.2fr;
+  position: relative;
 }
 #templateCV section form .infoBlocks ul > li label {
   display: flex;
@@ -177,7 +178,6 @@ header .container h1 {
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
-  position: relative;
 }
 #templateCV section form .infoBlocks ul > li div #cityName {
   position: absolute;
@@ -194,7 +194,7 @@ header .container h1 {
 }
 #templateCV section form .infoBlocks ul > li input.active {
   animation-name: changeBackgroundPosition;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 #templateCV section form .photo {
@@ -243,7 +243,7 @@ header .container h1 {
 }
 #templateCV .error input:not([type*=button]) {
   animation-name: changeBackgroundPositionWhileError;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 #templateCV input:not([type*=button]) {
@@ -262,12 +262,12 @@ header .container h1 {
 }
 #templateCV input:not([type*=button]).afterError {
   animation-name: changeBackgroundPositionAfterError !important;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 #templateCV input:not([type*=button]).validValue {
   animation-name: changeBackgroundPositionValidValue !important;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 #templateCV textarea {

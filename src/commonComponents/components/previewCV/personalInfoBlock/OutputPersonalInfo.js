@@ -18,7 +18,7 @@ class OutputPersonalInfo extends React.Component {
 
         <form>
           <h2>Personal information</h2>
-          <CreateListCompForPreview obj={this.props.parentState.generalInfo}/>
+          <CreateListCompForPreview subObj={this.props.parentState.generalInfo}/>
         </form>
       </div>
     )

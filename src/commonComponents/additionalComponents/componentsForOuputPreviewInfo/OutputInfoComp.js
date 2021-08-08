@@ -10,12 +10,13 @@ class OutputInfoComp extends React.Component {
   }
 
   render() {
+    //console.log(this.props)
     let array = Object.entries(this.props.obj),
-        collectionPractic = array[1][1],
-        templatePractic = array[0][1],
-        renderComp = (collectionPractic.length) 
-                ? <CreateCollectionComp array={collectionPractic}/> 
-                : <CreateListCompForPreview obj={templatePractic}/>;     
+        collection = array[1][1],
+        template = array[0][1],
+        renderComp = (collection.length) 
+                ? <CreateCollectionComp array={collection}/> 
+                : <CreateListCompForPreview subObj={template}/>;     
     
     return (
       <div>

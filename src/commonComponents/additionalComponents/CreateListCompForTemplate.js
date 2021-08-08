@@ -9,7 +9,7 @@ class CreateListCompForTemplate extends React.Component {
     super(props);
 
     this.scope = this.props.scope;
-    this.collectionInputElements = ((params) => {
+    this.collectionInputElements = (() => {
       return Object.values(props.subObj).map(elem => {
         if (typeof elem === 'object') {
           return elem.inputElem()
