@@ -19,9 +19,9 @@ class InputComp extends React.Component {
   }
 
   afterBlur(element) {
+    element.blur()
     if (!element.value.length) {
-      element.classList.remove('active');
-      element.offsetParent.classList.add('error');
+      element.offsetParent.className = 'error';
       element.blur();
 
       this.setState({
@@ -51,15 +51,14 @@ class InputComp extends React.Component {
   }
 
   afterFocus(e) {
-    e.offsetParent.classList.remove('error');
+    e.focus()
 
     const className = !this.state.isValidValue ? 'afterError' : 'active';
-    e.classList.add(className);
+    e.offsetParent.className = className;
 
     this.discoverAnimation(e)
       .then(() => {
-        e.classList.remove('afterError');
-        e.classList.add('active');
+        e.offsetParent.className = 'active'
       })
       .then(() => {
         return (this.setState(state => {
@@ -113,51 +112,13 @@ class InputComp extends React.Component {
           })
           .then(() => {
             let inputElem = document.getElementById(this.uniqIndex);
-            inputElem.classList.remove('active');
-            inputElem.classList.add('afterFocus');
+            inputElem.offsetParent.className = 'afterFocus'
             this.discoverAnimation(inputElem)
-              .then(() => inputElem.classList.remove('afterFocus'))
+              .then(() => inputElem.offsetParent.className = '')
           })
       }
     }
   }
-
-  /* componentDidUpdate(prevProps, prevState) {
-    if (prevProps.array[1].value !== this.props.array[1].value) {
-      //this.setState({
-      //  defaultValue: this.props.array[1].value,
-      //  isActive: (this.props.array[1].value) ? true : false,
-      //  backgroundPosition: '200% 100%, 100% 100%',
-      //})
-
-      console.log('update')
-      new Promise(res => {
-        res(this.setState({defaultValue: this.props.array[1].value}));
-      })
-        .then(() => {
-          console.log(this.state.backgroundPosition)
-          return (
-            this.setState({
-              isActive: (this.props.array[1].value) ? true : false,
-              backgroundPosition: '200% 100%, 100% 100%',
-            })
-          )
-        })
-        .then(() => {
-          let inputElem = document.getElementById(this.uniqIndex);
-          inputElem.classList.remove('active');
-          inputElem.classList.add('afterFocus');
-          this.discoverAnimation(inputElem)
-            .then(() => inputElem.classList.remove('afterFocus'))
-        })
-
-    } else if (!this.parentScope.readonly) {
-      if (prevState.defaultValue !== this.state.defaultValue) {
-        this.parentScope.props.subObj[this.objName].value = this.state.defaultValue;
-        this.parentScope.props.scope.setState(this.parentScope.props.obj);
-      }
-    }
-  } */
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.defaultValue !== nextState.defaultValue ||
@@ -232,12 +193,11 @@ function textArea (arram) {
 
   return function () {
     let templateScope = this.parentScope;
-    let uniqIndex = this.uniqIndex;
 
     return ((templateScope.readonly) 
           ? <textarea key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
           : <textarea key={uniqid()} type={type} defaultValue={this.state.defaultValue}
-              style={{backgroundPosition: this.state.backgroundPosition}}
+              style={{backgroundPosition: this.state.backgroundPosition}} id={this.uniqIndex}
               onFocus={e => {
                 const obj = {
                   name: 'afterFocus',
@@ -254,12 +214,7 @@ function textArea (arram) {
                 }
     
                 this.workWithQueue(obj)
-              }}
-
-              //onFocus={e => this.whileFocus(e)} id={uniqIndex}
-              //onFocus={e => this.afterFocus(e.target)}
-              //onChange={e => enteredVal = e.target.value}
-              /* onBlur={e => this.afterBlur(e.target)} */  />
+              }}  />
       )
   }
 }

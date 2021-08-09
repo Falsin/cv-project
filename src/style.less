@@ -145,8 +145,45 @@ header {
       color: red; 
     }
 
-    input:not([type*=button]) {
+    input:not([type*=button]),
+    textarea {
       animation-name: changeBackgroundPositionWhileError;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .afterError {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPositionAfterError !important;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .validValue {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPositionValidValue !important;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .active {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPosition !important;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .afterActive {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPositionAfterFocus;
       animation-duration: 0.8s;
       animation-fill-mode: forwards;
     }
@@ -163,9 +200,6 @@ header {
     background-repeat: no-repeat, no-repeat;   
     background-size: 200% 2px, 200% 2px;
 
-    transition-property: background-position;
-    transition-duration: 0.8s;
-
     margin-bottom: 5px;
     display: block;
     padding: 5px;
@@ -173,42 +207,20 @@ header {
     border: none;
   }
 
-  input:not([type*=button]).afterError {
-    animation-name: changeBackgroundPositionAfterError !important;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
-  }
-
-  input:not([type*=button]).validValue {
-    animation-name: changeBackgroundPositionValidValue !important;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
-  }
-
   textarea {
     grid-column-start: 2;
     grid-column-end: -1;
     grid-row-start: 1;
     grid-row-end: 2;
-  }
 
-  & input.active {
-    animation-name: changeBackgroundPosition;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
-  }
-
-  & input.afterFocus {
-    animation-name: changeBackgroundPositionAfterFocus;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
+    border: none;
+    outline: none;
+    background-image: linear-gradient(90deg, red 50%, red 50%),
+                      linear-gradient(90deg, green 50%, black 50%);
+    background-repeat: no-repeat, no-repeat;   
+    background-size: 200% 2px, 200% 2px;
   }
 }
-
-  /* @backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
-@backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
-@backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
-@backgroundPosition4: 200% 100%, 0% 100%;   // меняет красный на зелёный  */
 
 @backgroundPosition: 200% 100%, 100% 100%;
 
@@ -237,7 +249,7 @@ header {
   }
 }
 
-@keyframes changeBackgroundPositionAfterFocus {
+@keyframes changeBackgroundPositionAfterActive {
   to {
     background-position: 200% 100%, 100% 100%;
   }

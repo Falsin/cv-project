@@ -111,8 +111,33 @@ header .container h1 {
   z-index: 1;
   color: red;
 }
-#templateCV .error input:not([type*=button]) {
+#templateCV .error input:not([type*=button]),
+#templateCV .error textarea {
   animation-name: changeBackgroundPositionWhileError;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+#templateCV .afterError input:not([type*=button]),
+#templateCV .afterError textarea {
+  animation-name: changeBackgroundPositionAfterError !important;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+#templateCV .validValue input:not([type*=button]),
+#templateCV .validValue textarea {
+  animation-name: changeBackgroundPositionValidValue !important;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+#templateCV .active input:not([type*=button]),
+#templateCV .active textarea {
+  animation-name: changeBackgroundPosition !important;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+#templateCV .afterActive input:not([type*=button]),
+#templateCV .afterActive textarea {
+  animation-name: changeBackgroundPositionAfterFocus;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
@@ -124,44 +149,23 @@ header .container h1 {
   background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
   background-repeat: no-repeat, no-repeat;
   background-size: 200% 2px, 200% 2px;
-  transition-property: background-position;
-  transition-duration: 0.8s;
   margin-bottom: 5px;
   display: block;
   padding: 5px;
   outline: none;
   border: none;
 }
-#templateCV input:not([type*=button]).afterError {
-  animation-name: changeBackgroundPositionAfterError !important;
-  animation-duration: 0.8s;
-  animation-fill-mode: forwards;
-}
-#templateCV input:not([type*=button]).validValue {
-  animation-name: changeBackgroundPositionValidValue !important;
-  animation-duration: 0.8s;
-  animation-fill-mode: forwards;
-}
 #templateCV textarea {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
+  border: none;
+  outline: none;
+  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: 200% 2px, 200% 2px;
 }
-#templateCV input.active {
-  animation-name: changeBackgroundPosition;
-  animation-duration: 0.8s;
-  animation-fill-mode: forwards;
-}
-#templateCV input.afterFocus {
-  animation-name: changeBackgroundPositionAfterFocus;
-  animation-duration: 0.8s;
-  animation-fill-mode: forwards;
-}
-/* @backgroundPosition1: 200% 100%, 100% 100%;  // чёрное подчёркивание
-@backgroundPosition2: 200% 100%, 0% 100%;   //  меняет чёрный на зелёный
-@backgroundPosition3: 100% 100%, 0% 100%;   // меняет зелёный на красный   //
-@backgroundPosition4: 200% 100%, 0% 100%;   // меняет красный на зелёный  */
 @keyframes changeBackgroundPosition {
   to {
     background-position: 200% 100%, 0% 100%;
@@ -182,7 +186,7 @@ header .container h1 {
     background-position: 200% 100%, 100% 100%;
   }
 }
-@keyframes changeBackgroundPositionAfterFocus {
+@keyframes changeBackgroundPositionAfterActive {
   to {
     background-position: 200% 100%, 100% 100%;
   }
