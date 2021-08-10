@@ -119,19 +119,19 @@ header .container h1 {
 }
 #templateCV .afterError input:not([type*=button]),
 #templateCV .afterError textarea {
-  animation-name: changeBackgroundPositionAfterError !important;
+  animation-name: changeBackgroundPositionAfterError;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 #templateCV .validValue input:not([type*=button]),
 #templateCV .validValue textarea {
-  animation-name: changeBackgroundPositionValidValue !important;
+  animation-name: changeBackgroundPositionValidValue;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 #templateCV .active input:not([type*=button]),
 #templateCV .active textarea {
-  animation-name: changeBackgroundPosition !important;
+  animation-name: changeBackgroundPosition;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
@@ -194,38 +194,86 @@ header .container h1 {
 #previewCV {
   margin-top: 4vmax;
   display: flex;
+  /* & #educationalExperience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & ul {
+      list-style: none;
+      flex-grow: 1;
+      
+      & li {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+
+        & label {
+          display: flex;
+          align-items: center;
+          max-width: 110px;
+        }
+      }
+
+      & .EducExpBlock {
+        display: flex;
+        flex-direction: column;
+        & li {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+
+          & label {
+            display: flex;
+            align-items: center;
+            max-width: 110px;
+          }
+        }
+      }
+    }
+  } */
 }
 #previewCV #commonInformation {
   width: 60vw;
-}
-#previewCV #educationalExperience {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#previewCV #educationalExperience ul {
-  list-style: none;
-  flex-grow: 1;
+#previewCV #commonInformation ul {
+  list-style-type: none;
 }
-#previewCV #educationalExperience ul li {
+#previewCV #commonInformation ul li {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  position: relative;
 }
-#previewCV #educationalExperience ul li label {
-  display: flex;
-  align-items: center;
+#previewCV #commonInformation ul li label {
+  width: 110px;
 }
-#previewCV #educationalExperience ul .EducExpBlock {
-  display: flex;
-  flex-direction: column;
+#previewCV #commonInformation ul li input:not([type*=button]) {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: 200% 2px, 200% 2px;
+  margin-bottom: 5px;
+  display: block;
+  padding: 5px;
+  outline: none;
+  border: none;
+  background-position: 200% 100%, 100% 100%;
 }
-#previewCV #educationalExperience ul .EducExpBlock li {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-#previewCV #educationalExperience ul .EducExpBlock li label {
-  display: flex;
-  align-items: center;
+#previewCV #commonInformation ul li textarea {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  border: none;
+  outline: none;
+  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: 200% 2px, 200% 2px;
+  background-position: 200% 100%, 100% 100%;
 }
 #previewCV #personalInformation {
   width: 40vw;

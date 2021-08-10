@@ -48,7 +48,6 @@ class EducationalExperience extends React.Component {
 
         <ul className='specialStyleKit'>
           {duplicateState.educationalExperienceCollection.map((item, id) => {
-            //console.log(item)
             return (
               <li key={id}>
                 <CreateListCompForTemplate subObj={item} obj={duplicateState} scope={this}/>

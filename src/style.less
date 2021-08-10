@@ -156,7 +156,7 @@ header {
   .afterError {
     input:not([type*=button]),
     textarea {
-      animation-name: changeBackgroundPositionAfterError !important;
+      animation-name: changeBackgroundPositionAfterError;
       animation-duration: 0.8s;
       animation-fill-mode: forwards;
     }
@@ -165,7 +165,7 @@ header {
   .validValue {
     input:not([type*=button]),
     textarea {
-      animation-name: changeBackgroundPositionValidValue !important;
+      animation-name: changeBackgroundPositionValidValue;
       animation-duration: 0.8s;
       animation-fill-mode: forwards;
     }
@@ -174,7 +174,7 @@ header {
   .active {
     input:not([type*=button]),
     textarea {
-      animation-name: changeBackgroundPosition !important;
+      animation-name: changeBackgroundPosition;
       animation-duration: 0.8s;
       animation-fill-mode: forwards;
     }
@@ -220,38 +220,35 @@ header {
     background-repeat: no-repeat, no-repeat;   
     background-size: 200% 2px, 200% 2px;
   }
-}
 
-@backgroundPosition: 200% 100%, 100% 100%;
-
-
-@keyframes changeBackgroundPosition {
-  to {
-    background-position: 200% 100%, 0% 100%;
+  @keyframes changeBackgroundPosition {
+    to {
+      background-position: 200% 100%, 0% 100%;
+    }
   }
-}
-
-@keyframes changeBackgroundPositionWhileError {
-  to {
-    background-position: 100% 100%, 0% 100%;
+  
+  @keyframes changeBackgroundPositionWhileError {
+    to {
+      background-position: 100% 100%, 0% 100%;
+    }
   }
-}
-
-@keyframes changeBackgroundPositionAfterError {
-  to {
-    background-position: 200% 100%, 0% 100%;
+  
+  @keyframes changeBackgroundPositionAfterError {
+    to {
+      background-position: 200% 100%, 0% 100%;
+    }
   }
-}
-
-@keyframes changeBackgroundPositionValidValue {
-  to {
-    background-position: 200% 100%, 100% 100%;
+  
+  @keyframes changeBackgroundPositionValidValue {
+    to {
+      background-position: 200% 100%, 100% 100%;
+    }
   }
-}
-
-@keyframes changeBackgroundPositionAfterActive {
-  to {
-    background-position: 200% 100%, 100% 100%;
+  
+  @keyframes changeBackgroundPositionAfterActive {
+    to {
+      background-position: 200% 100%, 100% 100%;
+    }
   }
 }
 
@@ -261,9 +258,61 @@ header {
 
   & #commonInformation {
     width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        position: relative;
+
+        label {
+          width: 110px;
+        }
+
+        input:not([type*=button]) {
+          grid-column-start: 2;
+          grid-column-end: -1;
+          grid-row-start: 1;
+          grid-row-end: 2;
+        
+          background-image: linear-gradient(90deg, red 50%, red 50%),
+                            linear-gradient(90deg, green 50%, black 50%);
+          background-repeat: no-repeat, no-repeat;   
+          background-size: 200% 2px, 200% 2px;
+        
+          margin-bottom: 5px;
+          display: block;
+          padding: 5px;
+          outline: none;
+          border: none;
+          background-position: 200% 100%, 100% 100%;
+          //backgroundPosition: '200% 100%, 100% 100%';
+        }
+        
+        textarea {
+          grid-column-start: 2;
+          grid-column-end: -1;
+          grid-row-start: 1;
+          grid-row-end: 2;
+        
+          border: none;
+          outline: none;
+          background-image: linear-gradient(90deg, red 50%, red 50%),
+                            linear-gradient(90deg, green 50%, black 50%);
+          background-repeat: no-repeat, no-repeat;   
+          background-size: 200% 2px, 200% 2px;
+          background-position: 200% 100%, 100% 100%;
+        }
+      }
+    }
   }
 
-  & #educationalExperience {
+  /* & #educationalExperience {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -279,6 +328,7 @@ header {
         & label {
           display: flex;
           align-items: center;
+          max-width: 110px;
         }
       }
 
@@ -292,11 +342,12 @@ header {
           & label {
             display: flex;
             align-items: center;
+            max-width: 110px;
           }
         }
       }
     }
-  }
+  } */
 
   & #personalInformation {
     width: 40vw;

@@ -10,7 +10,6 @@ class OutputInfoComp extends React.Component {
   }
 
   render() {
-    //console.log(this.props)
     let array = Object.entries(this.props.obj),
         collection = array[1][1],
         template = array[0][1],

@@ -104,7 +104,6 @@ class InputComp extends React.Component {
             return (
               this.setState({
                 isActive: (this.props.array[1].value) ? true : false,
-                backgroundPosition: '200% 100%, 100% 100%',
               })
             )
           })
@@ -112,7 +111,6 @@ class InputComp extends React.Component {
             let inputElem = document.getElementById(this.uniqIndex);
             inputElem.offsetParent.className = 'afterActive'
             this.discoverAnimation(inputElem)
-              .then(() => inputElem.offsetParent.className = '')
           })
       }
     }
@@ -144,19 +142,8 @@ class InputComp extends React.Component {
   }
 
   render() {
-/*     let classNameForLi;
-
-    if (this.state.isActive) {
-      classNameForLi = 'active';
-    } else if (!this.state.isValidValue) {
-      classNameForLi = 'error';
-    } else if (this.state.isValidValue || !this.state.isActive) {
-      classNameForLi = '';
-    } */
-
     let classNameForLi = (this.state.isActive) ? 'active' :
                         (!this.state.isValidValue) ? 'error' : '';
-
 
     return (
       <li key={uniqid()} className={classNameForLi}>

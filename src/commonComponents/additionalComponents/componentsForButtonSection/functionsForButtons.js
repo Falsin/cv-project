@@ -36,7 +36,6 @@ function addInfo(duplicateState) {
       })
       res(this)
     })
-    //.then(response => console.log(response.state))
   } 
 }
 
@@ -59,7 +58,6 @@ function sendInfo(duplicateState, propName) {
 }
 
 function sendSingleInformation(duplicateState) {
-  //console.log(duplicateState)
   let {check} = createObj(duplicateState);
 
   if (check) {
