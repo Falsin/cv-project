@@ -90,9 +90,8 @@ class InputComp extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.array[1].value !== this.props.array[1].value) {
+    if (prevProps.array[1].value !== this.props.array[1].value && this.parentScope.readonly) {
       this.setState({defaultValue: this.props.array[1].value})
-
     } else if (!this.parentScope.readonly) {
       if (prevState.defaultValue !== this.state.defaultValue) {
         this.parentScope.props.subObj[this.objName].value = this.state.defaultValue;
@@ -102,7 +101,6 @@ class InputComp extends React.Component {
           res(this.setState({defaultValue: this.props.array[1].value}));
         })
           .then(() => {
-            console.log(this.state.backgroundPosition)
             return (
               this.setState({
                 isActive: (this.props.array[1].value) ? true : false,
@@ -112,7 +110,7 @@ class InputComp extends React.Component {
           })
           .then(() => {
             let inputElem = document.getElementById(this.uniqIndex);
-            inputElem.offsetParent.className = 'afterFocus'
+            inputElem.offsetParent.className = 'afterActive'
             this.discoverAnimation(inputElem)
               .then(() => inputElem.offsetParent.className = '')
           })
@@ -146,8 +144,22 @@ class InputComp extends React.Component {
   }
 
   render() {
+/*     let classNameForLi;
+
+    if (this.state.isActive) {
+      classNameForLi = 'active';
+    } else if (!this.state.isValidValue) {
+      classNameForLi = 'error';
+    } else if (this.state.isValidValue || !this.state.isActive) {
+      classNameForLi = '';
+    } */
+
+    let classNameForLi = (this.state.isActive) ? 'active' :
+                        (!this.state.isValidValue) ? 'error' : '';
+
+
     return (
-      <li key={uniqid()} className={this.state.isValidValue ? '' : 'error'}>
+      <li key={uniqid()} className={classNameForLi}>
         <label htmlFor={this.uniqIndex}>{this.objName}</label>
         {this.props.elem.call(this, this)}
       </li>
@@ -165,7 +177,7 @@ function input(arram) {
     return((templateScope.readonly) 
       ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
       : <input key={uniqid()} type={type} defaultValue={this.state.defaultValue}
-          className={(this.state.isActive ? 'active' : '')} id={uniqIndex}
+          id={uniqIndex} style={{backgroundPosition: this.state.backgroundPosition}}
           onFocus={e => {
             const obj = {
               name: 'afterFocus',
@@ -182,9 +194,7 @@ function input(arram) {
             }
 
             this.workWithQueue(obj)
-          }}
-
-          style={{backgroundPosition: this.state.backgroundPosition}} />)
+          }} />)
   }
 }
 

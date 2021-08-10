@@ -137,7 +137,7 @@ header .container h1 {
 }
 #templateCV .afterActive input:not([type*=button]),
 #templateCV .afterActive textarea {
-  animation-name: changeBackgroundPositionAfterFocus;
+  animation-name: changeBackgroundPositionAfterActive;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
