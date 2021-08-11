@@ -2,8 +2,8 @@ import React from 'react';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 import cloneObj from '../../../additionalComponents/CloneObj';
 import { textArea, input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
-import { addInfo, sendInfo } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
+import createBtnsAttr from '../../../additionalComponents/componentsForButtonSection/createBtnsAttr';
 
 class PracticalExperience extends React.Component {
   constructor(props) {
@@ -48,6 +48,7 @@ class PracticalExperience extends React.Component {
 
   render() {
     let duplicateState = cloneObj(this.state);
+    const btns = createBtnsAttr.call(this, duplicateState, 'practicExp');
 
     return (
       <section className='expBlock'>
@@ -65,16 +66,7 @@ class PracticalExperience extends React.Component {
 
         <CreateListCompForTemplate subObj={duplicateState.practicalExperience} obj={duplicateState} scope={this}/>
 
-        <ButtonsSection btns={[
-            {
-              value: 'Add information', 
-              func: sendInfo.bind(this, duplicateState, 'practicExp')
-            },
-            {
-              value: 'Plus', 
-              func: addInfo.bind(this, duplicateState)
-            }
-          ]} />
+        <ButtonsSection btns={btns} />
       </section>
     )
   }

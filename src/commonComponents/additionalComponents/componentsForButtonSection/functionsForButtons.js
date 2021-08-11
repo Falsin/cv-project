@@ -57,12 +57,24 @@ function sendInfo(duplicateState, propName) {
   }
 }
 
-function sendSingleInformation(duplicateState) {
-  let {check} = createObj(duplicateState);
+function sendSingleInformation() {
+  let {check} = createObj(this.state);
 
   if (check) {
-    clickHandler(duplicateState, this.commonParentScope);
+    clickHandler(this.state, this.commonParentScope);
   }
 }
 
-export {addInfo, sendInfo, sendSingleInformation};
+function deleteInfoCard() {
+  const arrayOfObjects = Object.values(this.state);
+  const templateObj = arrayOfObjects[0];
+  console.log(arrayOfObjects[1])
+
+  if (!templateObj.isValid) {
+    
+  }
+  //console.log(templateObj.isValid)
+  
+}
+
+export {addInfo, sendInfo, sendSingleInformation, deleteInfoCard};

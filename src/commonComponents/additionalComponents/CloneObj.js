@@ -5,7 +5,6 @@ function cloneObj(sourceObj) {
     if (Array.isArray(sourceObj[key])) {
       newObj[key] = [];
       sourceObj[key].forEach(elem => newObj[key].push(cloneObj(elem)));
-
     } else if (typeof sourceObj[key] !== 'object') {
       newObj[key] = sourceObj[key];
     } else {

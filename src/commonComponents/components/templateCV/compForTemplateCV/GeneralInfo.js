@@ -3,8 +3,7 @@ import InfoBox from './commonInfoComponents/InfoBox';
 import PhotoComp from './commonInfoComponents/PhotoComp'
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 import { input, countryComp } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
-import { sendSingleInformation } from '../../../additionalComponents/componentsForButtonSection/functionsForButtons';
-import cloneObj from '../../../additionalComponents/CloneObj';
+import createBtnsAttr from '../../../additionalComponents/componentsForButtonSection/createBtnsAttr';
 
 class GeneralInfo extends React.Component {
   constructor(props) {
@@ -42,6 +41,8 @@ class GeneralInfo extends React.Component {
   }
   
   render() {
+    const btns = createBtnsAttr.call(this, 'generalInfo')
+
     return(
       <section>
         <form>
@@ -51,12 +52,12 @@ class GeneralInfo extends React.Component {
             <PhotoComp parentScope={this} />
           </div>
 
-          <ButtonsSection btns={[
+          <ButtonsSection btns={btns/* [
             {
               value: 'Add information', 
               func: sendSingleInformation.bind(this, this.state, 'generalInfo')
             }
-          ]} />
+          ] */} />
         </form>
 
       </section>
