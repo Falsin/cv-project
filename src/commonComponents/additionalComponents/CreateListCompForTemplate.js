@@ -1,8 +1,5 @@
 import React from 'react';
-import changeHandler from './ChangeHandler';
-import uniqid from 'uniqid';
 import { InputComp } from './ComponentsForInputsElements/InputsComponents';
-import cloneObj from './CloneObj';
 
 class CreateListCompForTemplate extends React.Component {
   constructor(props) {
@@ -18,10 +15,7 @@ class CreateListCompForTemplate extends React.Component {
     })()
 
     this.state = {
-      idHtmlWithError: [],     // убрать
-      objKeys: {},             // убрать
-      collectionCompElem: [],  // убрать
-      countElemWithError: 0,
+      isRemovedElements: false
     }
   }
 
@@ -33,9 +27,9 @@ class CreateListCompForTemplate extends React.Component {
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-  let initianArray = Object.values(this.props.subObj);
-  let array = [];
+  componentDidUpdate() {
+    let initianArray = Object.values(this.props.subObj);
+    let array = [];
 
     for (const iterator of initianArray) {
       if (typeof iterator === 'object') {
@@ -43,11 +37,44 @@ class CreateListCompForTemplate extends React.Component {
       }
     }
 
-    let checkThisProps = array.every(elem => {
-      return elem.value !== '';
-    });
+    let checkThisProps = array.every(elem => elem.value !== '');
 
     this.props.subObj.isValid = checkThisProps ? true : false;
+
+    //console.log('update')
+    if (this.props.scope.state.removedElements && this.props.scope.state.removedElements.length) {
+      //console.log('update')
+      new Promise(res => {
+        res(this.setState({isRemovedElements: true}))
+      })
+      //.then(() => console.log(this.state))
+    } else if (this.props.scope.state.removedElements && !this.props.scope.state.removedElements.length) {
+      this.setState({isRemovedElements: false})
+    }
+  }
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props !== nextProps || this.state.isRemovedElements !== nextState.isRemovedElements
+/*     const currentArr = this.props.scope.state.removedElements;
+    const nextArr = nextProps.scope.state.removedElements;
+
+    console.log(this.props.subObj !== nextProps.subObj)
+    console.log(currentArr)
+
+    if (currentArr) {
+      if (currentArr.length === 0 && nextArr.length !== 0) {
+        return true;
+      } else if (currentArr.length !== 0 && nextArr.length === 0) {
+        return true;
+      }
+    } else if (this.props.subObj !== nextProps.subObj) {
+      return true;
+    }
+    return false; */
+
+    /* return (currentArr && ((currentArr.length === 0 && nextArr.length !== 0)
+    || (currentArr.length !== 0 && nextArr.length === 0))) */
   }
 
   render() {

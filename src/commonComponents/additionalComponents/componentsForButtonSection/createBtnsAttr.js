@@ -20,7 +20,7 @@ function returnArrBtns(duplicateState, sectionName) {
       },
       {
         value: 'Minus', 
-        func: deleteInfoCard.bind(this)
+        func: deleteInfoCard.bind(this, duplicateState)
       }]
     : 
       [{

@@ -34,7 +34,9 @@ class PracticalExperience extends React.Component {
 
         isValid: true,
       },
-      practicalExperienceCollection: []
+
+      practicalExperienceCollection: [],
+      removedElements: []
     }
 
     this.parentScope = props.parentScope();

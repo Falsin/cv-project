@@ -28,6 +28,7 @@ class EducationalExperience extends React.Component {
       },
 
       educationalExperienceCollection: [],
+      removedElements: []
     }
 
     this.parentScope = props.parentScope();

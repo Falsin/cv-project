@@ -1,5 +1,5 @@
 import React from 'react';
-import uniqid from 'uniqid'
+import uniqid from 'uniqid';
 
 class InputComp extends React.Component {
   constructor(props) {
@@ -12,9 +12,16 @@ class InputComp extends React.Component {
     this.state = {
       isValidValue: true,
       defaultValue: props.array[1].value,
-      backgroundPosition: '200% 100%, 100% 100%',
       isActive: (props.array[1].value) ? true : false,
+      backgroundPosition: '200% 100%, 100% 100%',
       queue: [],
+    }
+  }
+
+  componentDidMount() {
+    if (!this.parentScope.readonly) {
+      const elem = document.getElementById(this.uniqIndex);
+      this.discoverAnimation(elem);
     }
   }
 
@@ -90,6 +97,103 @@ class InputComp extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+/*     console.log(this.uniqIndex)
+    console.log(this.state) */
+    if (prevProps.array[1].value !== this.props.array[1].value && this.parentScope.readonly) {
+      this.setState({defaultValue: this.props.array[1].value})
+    } else if (!this.parentScope.readonly) {
+
+      if (prevState.defaultValue !== this.state.defaultValue) {
+        this.parentScope.props.subObj[this.objName].value = this.state.defaultValue;
+        this.parentScope.props.scope.setState(this.parentScope.props.obj);
+      } else if (prevProps.array[1].value !== this.props.array[1].value) {
+        new Promise(res => {
+          res(this.setState({defaultValue: this.props.array[1].value}));
+        })
+          .then(() => {
+            return (
+              this.setState({
+                isActive: (this.props.array[1].value) ? true : false,
+              })
+            )
+          })
+          .then(() => {
+            let inputElem = document.getElementById(this.uniqIndex);
+            inputElem.offsetParent.className = 'afterActive'
+            this.discoverAnimation(inputElem)
+          })
+      } else if (this.parentScope.state.isRemovedElements /* && 
+                prevProps.scope.state.isRemovedElements !== this.props.scope.state.isRemovedElements */) {
+        const requiredElementId = this.parentScope.props.scope.state.removedElements.findIndex(elem => {
+          return elem.objName === this.objName;
+        })
+
+        if (requiredElementId !== -1) {
+          const requiredElement = this.parentScope.props.scope.state.removedElements[requiredElementId]
+
+/*           console.log(requiredElementId)
+          console.log(requiredElement) */
+          let cloneArr = [...this.parentScope.props.scope.state.removedElements];
+          cloneArr.splice(requiredElementId, 1);
+
+          new Promise(res => {
+            this.parentScope.props.scope.setState({
+              removedElements: cloneArr,
+            })
+            res(this.parentScope.props.scope)
+          })
+          .then(() => this.setState(requiredElement.state))
+          .then(() => console.log(this.state))
+        }
+
+
+        /* new Promise(res => {
+          console.log('hello')
+          res(this.setState(requiredElement.state))
+        })
+        .then(() => {
+          let cloneArr = [...this.parentScope.props.scope.state.removedElements];
+          cloneArr.splice(requiredElementId, 1);
+          this.parentScope.props.scope.setState({
+            removedElements: cloneArr,
+          })
+        }) */
+
+ /*        let cloneArr = [...this.parentScope.props.scope.state.removedElements];
+        cloneArr.splice(requiredElementId, 1);
+
+        new Promise(res => {
+          this.parentScope.props.scope.setState({
+            removedElements: cloneArr,
+          })
+          res(this.parentScope.props.scope)
+        })
+        .then(() => this.setState(requiredElement.state)) */
+
+        /* .then(response => {
+          console.log(this.parentScope.state)
+          console.log(response.state)
+        }) */
+/*         this.parentScope.props.scope.setState({
+          removedElements: cloneArr,
+        }) */
+
+        /* const requiredElement = this.parentScope.props.scope.state.removedElements.find(elem => {
+          return elem.objName === this.objName;
+        })
+        console.log(requiredElement)
+
+        new Promise(res => {
+          this.setState(requiredElement.state)
+        })
+        .then(() => console.log(this.state))
+
+        console.log(requiredElement) */
+      }
+    }
+  }
+
+  /* componentDidUpdate(prevProps, prevState) {
     if (prevProps.array[1].value !== this.props.array[1].value && this.parentScope.readonly) {
       this.setState({defaultValue: this.props.array[1].value})
     } else if (!this.parentScope.readonly) {
@@ -114,14 +218,18 @@ class InputComp extends React.Component {
           })
       }
     }
-  }
+  } */
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.defaultValue !== nextState.defaultValue ||
-        nextProps.array[1].value !== this.state.defaultValue) {
-      return true;
-    }
-    return false;
+    //console.log(this.parentScope.state)
+    //console.log(this.parentScope.state && this.parentScope.state.isRemovedElements)
+    //console.log(this.props.scope.state)
+    return (
+      this.state.defaultValue !== nextState.defaultValue ||
+      nextProps.array[1].value !== this.state.defaultValue ||
+      (this.parentScope.state && this.parentScope.state.isRemovedElements /* &&
+        this.props.scope.state.isRemovedElements !== nextProps.scope.state.isRemovedElements */)
+    )
   }
 
   workWithQueue(obj) {
@@ -141,7 +249,27 @@ class InputComp extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    let obj = {
+      objName: this.objName,
+      state: this.state,
+    }
+
+    console.log(this.state)
+
+    if (!this.parentScope.readonly) {
+      this.parentScope.props.scope.setState(state => {
+        return {removedElements: [...state.removedElements, obj]}
+      })
+    }
+  }
+
   render() {
+
+/*     if (!this.parentScope.readonly) {
+      console.log(this.state)
+    } */
+    //console.log(this.props)
     let classNameForLi = (this.state.isActive) ? 'active' :
                         (!this.state.isValidValue) ? 'error' : '';
 
