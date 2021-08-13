@@ -7,7 +7,7 @@ class CreateCollectionComp extends React.Component {
       <ul>
         {this.props.array.map((item, id) => {
           return (
-            <li key={id} className='ExpBlock'>
+            <li key={id} className='expBlock'>
               <CreateListCompForPreview subObj={item}/>
             </li>
           )

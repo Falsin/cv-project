@@ -44,6 +44,10 @@ class EducationalExperience extends React.Component {
     let duplicateState = cloneObj(this.state);
     const btns = createBtnsAttr.call(this, duplicateState, 'educExp');
 
+    let templateComp = (this.state.removedElements.length) 
+                        ? <CreateListCompForTemplate subObj={duplicateState.educationalExperience} obj={duplicateState} scope={this} isRemoved={true}/>
+                        : <CreateListCompForTemplate subObj={duplicateState.educationalExperience} obj={duplicateState} scope={this}/>
+
     return (
       <section className='expBlock'>
         <h2>Educational experience</h2>
@@ -58,7 +62,7 @@ class EducationalExperience extends React.Component {
           })}
         </ul>
 
-        <CreateListCompForTemplate subObj={duplicateState.educationalExperience} obj={duplicateState} scope={this}/>
+        {templateComp}
 
         <ButtonsSection btns={btns}/>
       </section>

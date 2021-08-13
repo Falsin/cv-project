@@ -70,18 +70,6 @@ function deleteInfoCard(duplicateState) {
   arrayOfStateObj[1].splice(-1, 1);
   this.setState(duplicateState);
 
-/*   let arrayOfStateObj = Object.values(duplicateState);
-  let templateObj = arrayOfStateObj[0];
-  let arrayOfInfoObj = arrayOfStateObj[1]
-
-  if (!templateObj.isValid) {
-    //arrayOfObjects[0] = arrayOfObjects[1].splice(-1, 1)[0];
-    const removedElem = arrayOfInfoObj.splice(-1, 1)[0];
-    for (const key in templateObj) {
-      templateObj[key] = removedElem[key];
-    }
-  } */
-
   this.setState(duplicateState);
 }
 
