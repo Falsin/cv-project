@@ -26,22 +26,6 @@ class PreviewCV extends React.Component {
         </div>
 
         <button onClick={() => {
-          /* let printContents = document.getElementById("previewCV").innerHTML;
-          let originalContents = document.body.innerHTML;
-          document.body.innerHTML = printContents;
-          window.print();
-          document.body.innerHTML = originalContents; */
-
-         /*  const content = document.getElementById('previewCV');
-          let pri = document.getElementById("ifmcontentstoprint").contentWindow;
-          pri.document.open();
-          pri.document.write(content.innerHTML);
-          pri.document.close();
-          pri.focus();
-          pri.print(); */
-
-          /* let printContents = document.getElementById("templateCV");
-          printContents.style.display = 'none'; */
           window.print()
         }}>Print</button>
       </section>

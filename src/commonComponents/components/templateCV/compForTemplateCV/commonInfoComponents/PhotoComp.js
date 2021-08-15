@@ -1,5 +1,4 @@
 import React from 'react';
-import cloneObj from '../../../../additionalComponents/CloneObj';
 
 class PhotoComp extends React.Component {
   constructor(props) {

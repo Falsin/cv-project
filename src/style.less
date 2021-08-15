@@ -9,14 +9,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  //border: solid red 1px;
+}
+
+body {
+  background: gray;
+  display: flex;
+  justify-content: center;
 }
 
 #root {
-  .size(100%, 100%)
+  .size(210mm, 100%);
+  background: white;
+  margin: 3vmin 0;
+  //position: relative;
 }
 
 header {
+  margin: 2vmin 0;
+
   & .container {
     display: flex;
     align-items: center;
@@ -33,74 +43,93 @@ header {
   }
 }
 
-#templateCV {
+/* #templateCV {
   & section {
     display: flex;
     flex-direction: column;
     align-items: center;
 
     & form {
+      width: 60%;
       display: flex;
       align-items: center;
       flex-direction: column;
 
       & .infoBlocks {
+        width: 100%;
         display: flex;
 
-        & ul {
-          display: flex;
-          flex-direction: column;
+        & > div:not('.photo') {
+          width: 60%;
+          margin: 3vmin;
+          //margin-right: 3vmin;
+          background: red;
 
-          & > li {
-            display: grid;
-            grid-template-columns: 0.8fr 2.2fr;
-            position: relative;
-
-            & label {
-              display: flex;
-              align-items: center;
-            }
-
-            & div {
-              grid-column-start: 2;
-              grid-column-end: -1;
-              grid-row-start: 1;
-              grid-row-end: 2;
-
-              #cityName {
-                position: absolute;
-                width: 100%;
-                background: rgb(182, 182, 182);
-                z-index: 1;
-              
-                li {
-                  display: block;
-                  cursor: pointer;
-                  padding: 1vmin;
-
-                  &:hover {
-                    background: rgb(129, 129, 129);
+          & ul {
+            display: flex;
+            flex-direction: column;
+  
+            & > li {
+              display: grid;
+              //grid-template-columns: 0.8fr 2.2fr;
+              grid-template-columns: 1fr 3fr;
+              position: relative;
+  
+              & label {
+                display: flex;
+                align-items: center;
+                //width: 55px;
+              }
+  
+              & div {
+                grid-column-start: 2;
+                grid-column-end: -1;
+                grid-row-start: 1;
+                grid-row-end: 2;
+  
+                #cityName {
+                  position: absolute;
+                  width: 100%;
+                  background: rgb(182, 182, 182);
+                  z-index: 1;
+                
+                  li {
+                    display: block;
+                    cursor: pointer;
+                    padding: 1vmin;
+  
+                    &:hover {
+                      background: rgb(129, 129, 129);
+                    }
                   }
                 }
               }
             }
           }
         }
-      }
+
+        & .photo{
+          width: 40%;
+          //.size(20vmin, 25vmin);
+          background-image: url(@emptyAvatar);
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          //position: relative;
   
-      & .photo{
-        .size(20vmin, 25vmin);
-        background-image: url(@emptyAvatar);
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-      
-        & label {
-          display: block;
-          .size(100%, 100%);
-      
-          & input {
-            display: none;
+          &::after {
+            content: '';
+            display: block;
+            padding: 80%;
+          }
+        
+          & label {
+            display: block;
+            .size(100%, 100%);
+        
+            & input {
+              display: none;
+            }
           }
         }
       }
@@ -250,26 +279,184 @@ header {
       background-position: 200% 100%, 100% 100%;
     }
   }
-}
-
-/* .printme { display: none;}
-@media print { 
-    .no-printme  { display: none;}
-    .printme  { display: block;}
 } */
 
-@media print { 
-  //.no-printme  { display: none;}
-/*   #previewCV  { 
-    display: block;
-    background: red;
-  } */
-  #templateCV {
-    display: none;
+#templateCV {
+  & section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & form {
+      width: 60%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      & .infoBlocks {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        & > div:not(.photo) {
+          width: 60%;
+          margin-right: 3vmin;
+
+          & ul {
+            display: flex;
+            flex-direction: column;
+            list-style-type: none;
+  
+            & > li {
+              display: grid;
+              //grid-template-columns: 0.8fr 2.2fr;
+              grid-template-columns: 1fr 3.5fr;
+              position: relative;
+  
+              & label {
+                display: flex;
+                align-items: center;
+                //width: 55px;
+              }
+  
+              & div {
+                grid-column-start: 2;
+                grid-column-end: -1;
+                grid-row-start: 1;
+                grid-row-end: 2;
+  
+                #cityName {
+                  position: absolute;
+                  width: 100%;
+                  background: rgb(182, 182, 182);
+                  z-index: 1;
+                
+                  li {
+                    display: block;
+                    cursor: pointer;
+                    padding: 1vmin;
+  
+                    &:hover {
+                      background: rgb(129, 129, 129);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        & .photo{
+          //border: solid 1px black;
+          width: 30%;
+          background-image: linear-gradient(rgba(54, 54, 54, 0.1), rgba(54, 54, 54, 0.1)),
+                                            url(@emptyAvatar);
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          //background-blend-mode: luminosity;
+          
+        
+          & label {
+            width: 100%;
+            display: block;
+            .size(100%, 100%);
+
+            &::after {
+              content: '';
+              display: block;
+              padding: 70%;
+            }
+        
+            & input {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    & > ul {
+      list-style-type: none;
+
+      & li {
+        display: grid;
+        position: relative;
+        grid-template-columns: 1fr 2fr;
+
+        & label {
+          display: block;
+          max-width: 110px; 
+        }
+      }
+    }
   }
 
-  body {
-    background: red !important; 
+  & section.expBlock {
+    & ul.specialStyleKit > li {
+      display: flex;
+      flex-direction: column;
+
+      & li {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+  }
+
+  .error {
+    &::before {
+      content: 'The field can\'t be empty.';
+      grid-column-start: 2;
+      grid-column-end: -1;
+      grid-row-start: 1;
+      grid-row-end: 2;
+      z-index: 1;
+      color: red; 
+    }
+
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPositionWhileError;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .afterError {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPositionAfterError;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .validValue {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPositionValidValue;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .active {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPosition;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .afterActive {
+    input:not([type*=button]),
+    textarea {
+      animation-name: changeBackgroundPositionAfterActive;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
   }
 
   input:not([type*=button]) {
@@ -278,21 +465,61 @@ header {
     grid-row-start: 1;
     grid-row-end: 2;
 
-    //box-shadow: 2px 2px 2px 2px green;
-
     background-image: linear-gradient(90deg, red 50%, red 50%),
-                      linear-gradient(90deg, green 50%, black 50%) !important;
-    background-repeat: no-repeat, no-repeat !important;   
-    background-size: 200% 2px, 200% 2px !important;
+                      linear-gradient(90deg, green 50%, black 50%);
+    background-repeat: no-repeat, no-repeat;   
+    background-size: 200% 2px, 200% 2px;
 
-    margin-bottom: 5px !important;
+    margin-bottom: 5px;
     display: block;
     padding: 5px;
     outline: none;
     border: none;
-    background-position: 200% 100%, 100% 100% !important;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
+    width: 100%;
+  }
+
+  textarea {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    border: none;
+    outline: none;
+    background-image: linear-gradient(90deg, red 50%, red 50%),
+                      linear-gradient(90deg, green 50%, black 50%);
+    background-repeat: no-repeat, no-repeat;   
+    background-size: 200% 2px, 200% 2px;
+  }
+
+  @keyframes changeBackgroundPosition {
+    to {
+      background-position: 200% 100%, 0% 100%;
+    }
+  }
+  
+  @keyframes changeBackgroundPositionWhileError {
+    to {
+      background-position: 100% 100%, 0% 100%;
+    }
+  }
+  
+  @keyframes changeBackgroundPositionAfterError {
+    to {
+      background-position: 200% 100%, 0% 100%;
+    }
+  }
+  
+  @keyframes changeBackgroundPositionValidValue {
+    to {
+      background-position: 200% 100%, 100% 100%;
+    }
+  }
+  
+  @keyframes changeBackgroundPositionAfterActive {
+    to {
+      background-position: 200% 100%, 100% 100%;
+    }
   }
 }
 
@@ -344,7 +571,6 @@ header {
           outline: none;
           border: none;
           background-position: 200% 100%, 100% 100%;
-          //backgroundPosition: '200% 100%, 100% 100%';
         }
         
         textarea {
@@ -365,56 +591,24 @@ header {
     }
   }
 
-  /* & #educationalExperience {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    & ul {
-      list-style: none;
-      flex-grow: 1;
-      
-      & li {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-
-        & label {
-          display: flex;
-          align-items: center;
-          max-width: 110px;
-        }
-      }
-
-      & .EducExpBlock {
-        display: flex;
-        flex-direction: column;
-        & li {
-          display: grid;
-          grid-template-columns: 1fr 2fr;
-
-          & label {
-            display: flex;
-            align-items: center;
-            max-width: 110px;
-          }
-        }
-      }
-    }
-  } */
-
   & #personalInformation {
-    width: 40vw;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     & #photoBlock {
-      @currentWidth: 25vw;
+      width: 90%;
 
-      .size(@currentWidth, @currentWidth * 1.5);
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
+
+      &::after {
+        content: '';
+        display: block;
+        padding-top: 150%;
+      }
     }
 
     & ul {
@@ -436,3 +630,26 @@ header {
     }
   }
 }
+
+@media print { 
+  * {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  
+  #templateCV {
+    display: none;
+  }
+}
+
+/* @media screen and (min-width: 1000px) {
+  #root {
+    .size(80%; 100%)
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  #root {
+    .size(60%; 100%)
+  }
+} */
