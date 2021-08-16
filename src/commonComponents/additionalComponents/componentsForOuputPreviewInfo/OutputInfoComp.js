@@ -18,11 +18,11 @@ class OutputInfoComp extends React.Component {
                 : <CreateListCompForPreview subObj={template}/>;     
     
     return (
-      <div>
+      <section>
         <h2>{this.props.headline}</h2>
 
         {renderComp}
-      </div>
+      </section>
     )
   }
 }

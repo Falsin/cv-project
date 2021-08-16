@@ -13,380 +13,443 @@
 
 body {
   background: gray;
-  display: flex;
   justify-content: center;
 }
 
 #root {
-  .size(210mm, 100%);
-  background: white;
-  margin: 3vmin 0;
-  //position: relative;
-}
+  .size(100%, 100%);
+  background: gray;
 
-header {
-  margin: 2vmin 0;
-
-  & .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  header {
+    background: rgb(53, 51, 51);
   
-    & img {
-      .size(10vmin; 10vmin);
-      margin-right: 1vmin;
-    }
-  
-    & h1{
-      margin-left: 1vmin;
+    & .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      & img {
+        .size(10vmin; 10vmin);
+        margin-right: 1vmin;
+      }
+    
+      & h1{
+        margin-left: 1vmin;
+      }
     }
   }
-}
 
-#templateCV {
-  & section {
+  & > div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 4vmin 0;
 
-    & form {
-      width: 60%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-
-      & .infoBlocks {
-        width: 100%;
+    #templateCV {
+      background: white;
+      .size(210mm, 100%);
+    
+      & section {
+        margin: 3vmin 0;
         display: flex;
+        flex-direction: column;
         align-items: center;
-
-        & > div:not(.photo) {
-          width: 60%;
-          margin-right: 3vmin;
-
-          & ul {
+    
+        & form {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+    
+          & .infoBlocks {
             display: flex;
-            flex-direction: column;
-            list-style-type: none;
-  
-            & > li {
-              display: grid;
-              //grid-template-columns: 0.8fr 2.2fr;
-              grid-template-columns: 1fr 3.5fr;
-              position: relative;
-  
-              & label {
+            align-items: center;
+            width: 100%;
+            justify-content: center;
+    
+            & > div:not(.photo) {
+              //width: 60%;
+              margin-right: 3vmin;
+    
+              & ul {
                 display: flex;
-                align-items: center;
-                //width: 55px;
-              }
-  
-              & div {
-                grid-column-start: 2;
-                grid-column-end: -1;
-                grid-row-start: 1;
-                grid-row-end: 2;
-  
-                #cityName {
-                  position: absolute;
-                  width: 100%;
-                  background: rgb(182, 182, 182);
-                  z-index: 1;
-                
-                  li {
-                    display: block;
-                    cursor: pointer;
-                    padding: 1vmin;
-  
-                    &:hover {
-                      background: rgb(129, 129, 129);
+                flex-direction: column;
+                list-style-type: none;
+      
+                & > li {
+                  display: grid;
+                  //grid-template-columns: 1fr 3.5fr;
+                  grid-template-columns: auto 250px;
+                  position: relative;
+                  //border: solid red 1px;
+      
+                  & label {
+                    display: flex;
+                    align-items: center;
+                  }
+      
+                  & div {
+                    grid-column-start: 2;
+                    grid-column-end: -1;
+                    grid-row-start: 1;
+                    grid-row-end: 2;
+      
+                    #cityName {
+                      position: absolute;
+                      width: 100%;
+                      background: rgb(182, 182, 182);
+                      z-index: 1;
+                    
+                      li {
+                        display: block;
+                        cursor: pointer;
+                        padding: 1vmin;
+      
+                        &:hover {
+                          background: rgb(129, 129, 129);
+                        }
+                      }
                     }
                   }
                 }
               }
             }
+    
+            & .photo{
+              //border: solid 1px black;
+              background-image: linear-gradient(rgba(68, 68, 68, 0.2), rgba(rgba(68, 68, 68, 0.2))),
+                                                url(@emptyAvatar);
+              background-size: cover;
+              background-position: center center;
+              background-repeat: no-repeat;
+              width: 12%;
+              
+              & label {
+                width: 100%;
+                display: block;
+                .size(100%, 100%);
+                position: relative;
+    
+                &::after {
+                  content: '';
+                  display: block;
+                  padding-top: 150%;
+                }
+            
+                & input {
+                  display: none;
+                }
+              }
+            }
           }
         }
+    
+        & > ul {
+          list-style-type: none;
+    
+          & li {
+            display: grid;
+            position: relative;
+            grid-template-columns: 1fr 2fr;
+    
+            & label {
+              display: block;
+              max-width: 110px; 
+            }
+          }
+        }
+      }
+    
+      & section.expBlock {
+        & ul.specialStyleKit > li {
+          display: flex;
+          flex-direction: column;
+    
+          & li {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+          }
+        }
+      }
+    
+      .error {
+        &::before {
+          content: 'The field can\'t be empty.';
+          grid-column-start: 2;
+          grid-column-end: -1;
+          grid-row-start: 1;
+          grid-row-end: 2;
+          z-index: 1;
+          color: red; 
+        }
+    
+        input:not([type=button]),
+        textarea {
+          animation-name: changeBackgroundPositionWhileError;
+          animation-duration: 0.8s;
+          animation-fill-mode: forwards;
+        }
+      }
+    
+      .afterError {
+        input:not([type=button]),
+        textarea {
+          animation-name: changeBackgroundPositionAfterError;
+          animation-duration: 0.8s;
+          animation-fill-mode: forwards;
+        }
+      }
+    
+      .validValue {
+        input:not([type=button]),
+        textarea {
+          animation-name: changeBackgroundPositionValidValue;
+          animation-duration: 0.8s;
+          animation-fill-mode: forwards;
+        }
+      }
+    
+      .active {
+        textarea {
+          animation-name: changeBackgroundPosition;
+          animation-duration: 0.8s;
+          animation-fill-mode: forwards;
+        }
+      }
+    
+      .afterActive {
+        input:not([type=button]),
+        textarea {
+          animation-name: changeBackgroundPositionAfterActive;
+          animation-duration: 0.8s;
+          animation-fill-mode: forwards;
+        }
+      }
+    
+      input:not([type=button]) {
+        grid-column-start: 2;
+        grid-column-end: -1;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    
+        background-image: linear-gradient(90deg, red 50%, red 50%),
+                          linear-gradient(90deg, green 50%, black 50%);
+        background-repeat: no-repeat, no-repeat;   
+        background-size: 200% 2px, 200% 2px;
+    
+        margin-bottom: 5px;
+        display: block;
+        padding: 5px;
+        outline: none;
+        border: none;
+        //width: 100%;
+        width: 250px;
+      }
+    
+      textarea {
+        grid-column-start: 2;
+        grid-column-end: -1;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    
+        border: none;
+        outline: none;
+        background-image: linear-gradient(90deg, red 50%, red 50%),
+                          linear-gradient(90deg, green 50%, black 50%);
+        background-repeat: no-repeat, no-repeat;   
+        background-size: 200% 2px, 200% 2px;
+      }
+    
+      @keyframes changeBackgroundPosition {
+        to {
+          background-position: 200% 100%, 0% 100%;
+        }
+      }
+      
+      @keyframes changeBackgroundPositionWhileError {
+        to {
+          background-position: 100% 100%, 0% 100%;
+        }
+      }
+      
+      @keyframes changeBackgroundPositionAfterError {
+        to {
+          background-position: 200% 100%, 0% 100%;
+        }
+      }
+      
+      @keyframes changeBackgroundPositionValidValue {
+        to {
+          background-position: 200% 100%, 100% 100%;
+        }
+      }
+      
+      @keyframes changeBackgroundPositionAfterActive {
+        to {
+          background-position: 200% 100%, 100% 100%;
+        }
+      }
+    }
+    
+    #previewCV {
+      margin-top: 4vmin;
+      padding-bottom: 3vmin;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      align-items: center;
+      .size(210mm, 100%);
+    
+      & > div {
+        display: flex;
+        width: 100%;
 
-        & .photo{
-          //border: solid 1px black;
-          width: 30%;
-          background-image: linear-gradient(rgba(54, 54, 54, 0.1), rgba(54, 54, 54, 0.1)),
-                                            url(@emptyAvatar);
-          background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
-          //background-blend-mode: luminosity;
-          
+        & #commonInformation {
+          width: 60%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          & > section {
+            margin: 3vmin 0;
+
+            h2 {
+              text-align: center;
+            }
         
-          & label {
-            width: 100%;
-            display: block;
-            .size(100%, 100%);
-
+            ul {
+              list-style-type: none;
+        
+              li:not(.expBlock) {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                position: relative;
+        
+                label {
+                  width: 110px;
+                }
+        
+                input:not([type=button]) {
+                  grid-column-start: 2;
+                  grid-column-end: -1;
+                  grid-row-start: 1;
+                  grid-row-end: 2;
+                
+                  background-image: linear-gradient(90deg, red 50%, red 50%),
+                                    linear-gradient(90deg, green 50%, black 50%);
+                  background-repeat: no-repeat, no-repeat;   
+                  background-size: 200% 2px, 200% 2px;
+                
+                  margin-bottom: 5px;
+                  display: block;
+                  padding: 5px;
+                  outline: none !important;
+                  border: none;
+                  background-position: 200% 100%, 100% 100%;
+                }
+                
+                textarea {
+                  grid-column-start: 2;
+                  grid-column-end: -1;
+                  grid-row-start: 1;
+                  grid-row-end: 2;
+                
+                  border: none;
+                  outline: none;
+                  background-image: linear-gradient(90deg, red 50%, red 50%),
+                                    linear-gradient(90deg, green 50%, black 50%);
+                  background-repeat: no-repeat, no-repeat;   
+                  background-size: 200% 2px, 200% 2px;
+                  background-position: 200% 100%, 100% 100%;
+                }
+              }
+            }
+          }
+        }
+      
+        & #personalInformation {
+          width: 40%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 3vmin 0;
+      
+          & #photoBlock {
+            width: 60%;
+      
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin-bottom: 3vmin;
+      
             &::after {
               content: '';
               display: block;
-              padding: 70%;
+              padding-top: 150%;
             }
-        
-            & input {
-              display: none;
+          }
+      
+          & ul {
+            list-style-type: none;
+      
+            & li {
+              display: flex;
+              
+              & label {
+                flex-grow: 1;
+              }
+      
+              & input {
+                outline: none;
+                border: none;
+                border-bottom: solid black 2px;
+              }
             }
           }
         }
       }
     }
+  }
 
-    & > ul {
-      list-style-type: none;
+  footer {
+    text-align: center;
+    padding: 3vmin 0;
+    background: rgb(53, 51, 51);
 
-      & li {
-        display: grid;
-        position: relative;
-        grid-template-columns: 1fr 2fr;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
 
-        & label {
-          display: block;
-          max-width: 110px; 
-        }
+  .buttons {
+    margin-top: 2vmin;
+
+    input {
+      margin: 0 2vmin;
+      padding: 1vmin;
+      border: none;
+      outline: none;
+      background: rgb(180, 174, 174);
+      cursor: pointer;
+
+      &[value='Add information'] {
+        border-radius: 6px;
       }
-    }
-  }
 
-  & section.expBlock {
-    & ul.specialStyleKit > li {
-      display: flex;
-      flex-direction: column;
-
-      & li {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-      }
-    }
-  }
-
-  .error {
-    &::before {
-      content: 'The field can\'t be empty.';
-      grid-column-start: 2;
-      grid-column-end: -1;
-      grid-row-start: 1;
-      grid-row-end: 2;
-      z-index: 1;
-      color: red; 
-    }
-
-    input:not([type*=button]),
-    textarea {
-      animation-name: changeBackgroundPositionWhileError;
-      animation-duration: 0.8s;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  .afterError {
-    input:not([type*=button]),
-    textarea {
-      animation-name: changeBackgroundPositionAfterError;
-      animation-duration: 0.8s;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  .validValue {
-    input:not([type*=button]),
-    textarea {
-      animation-name: changeBackgroundPositionValidValue;
-      animation-duration: 0.8s;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  .active {
-    input:not([type*=button]),
-    textarea {
-      animation-name: changeBackgroundPosition;
-      animation-duration: 0.8s;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  .afterActive {
-    input:not([type*=button]),
-    textarea {
-      animation-name: changeBackgroundPositionAfterActive;
-      animation-duration: 0.8s;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  input:not([type*=button]) {
-    grid-column-start: 2;
-    grid-column-end: -1;
-    grid-row-start: 1;
-    grid-row-end: 2;
-
-    background-image: linear-gradient(90deg, red 50%, red 50%),
-                      linear-gradient(90deg, green 50%, black 50%);
-    background-repeat: no-repeat, no-repeat;   
-    background-size: 200% 2px, 200% 2px;
-
-    margin-bottom: 5px;
-    display: block;
-    padding: 5px;
-    outline: none;
-    border: none;
-    width: 100%;
-  }
-
-  textarea {
-    grid-column-start: 2;
-    grid-column-end: -1;
-    grid-row-start: 1;
-    grid-row-end: 2;
-
-    border: none;
-    outline: none;
-    background-image: linear-gradient(90deg, red 50%, red 50%),
-                      linear-gradient(90deg, green 50%, black 50%);
-    background-repeat: no-repeat, no-repeat;   
-    background-size: 200% 2px, 200% 2px;
-  }
-
-  @keyframes changeBackgroundPosition {
-    to {
-      background-position: 200% 100%, 0% 100%;
-    }
-  }
+      &:not([value='Add information']) {
+        text-align: center;
+        border-radius: 50%;
+        font-weight: 900;
   
-  @keyframes changeBackgroundPositionWhileError {
-    to {
-      background-position: 100% 100%, 0% 100%;
-    }
-  }
+        &[value=' + '] {
+          background: green;
+          color: white;
+        }
   
-  @keyframes changeBackgroundPositionAfterError {
-    to {
-      background-position: 200% 100%, 0% 100%;
-    }
-  }
-  
-  @keyframes changeBackgroundPositionValidValue {
-    to {
-      background-position: 200% 100%, 100% 100%;
-    }
-  }
-  
-  @keyframes changeBackgroundPositionAfterActive {
-    to {
-      background-position: 200% 100%, 100% 100%;
-    }
-  }
-}
-
-#previewCV {
-  margin-top: 4vmax;
-  display: flex;
-  flex-direction: column;
-
-  & > div {
-    display: flex;
-  }
-
-  & #commonInformation {
-    width: 60vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    h2 {
-      text-align: center;
-    }
-
-    ul {
-      list-style-type: none;
-
-      li:not(.expBlock) {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        position: relative;
-
-        label {
-          width: 110px;
-        }
-
-        input:not([type*=button]) {
-          grid-column-start: 2;
-          grid-column-end: -1;
-          grid-row-start: 1;
-          grid-row-end: 2;
-        
-          background-image: linear-gradient(90deg, red 50%, red 50%),
-                            linear-gradient(90deg, green 50%, black 50%);
-          background-repeat: no-repeat, no-repeat;   
-          background-size: 200% 2px, 200% 2px;
-        
-          margin-bottom: 5px;
-          display: block;
-          padding: 5px;
-          outline: none;
-          border: none;
-          background-position: 200% 100%, 100% 100%;
-        }
-        
-        textarea {
-          grid-column-start: 2;
-          grid-column-end: -1;
-          grid-row-start: 1;
-          grid-row-end: 2;
-        
-          border: none;
-          outline: none;
-          background-image: linear-gradient(90deg, red 50%, red 50%),
-                            linear-gradient(90deg, green 50%, black 50%);
-          background-repeat: no-repeat, no-repeat;   
-          background-size: 200% 2px, 200% 2px;
-          background-position: 200% 100%, 100% 100%;
-        }
-      }
-    }
-  }
-
-  & #personalInformation {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    & #photoBlock {
-      width: 90%;
-
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-
-      &::after {
-        content: '';
-        display: block;
-        padding-top: 150%;
-      }
-    }
-
-    & ul {
-      list-style-type: none;
-
-      & li {
-        display: flex;
-        
-        & label {
-          flex-grow: 1;
-        }
-
-        & input {
-          outline: none;
-          border: none;
-          border-bottom: solid black 1px;
+        &[value=' − '] {
+          background: red;
+          color: white;
         }
       }
     }
@@ -398,20 +461,24 @@ header {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
-  
-  #templateCV {
+
+  header, footer, #templateCV {
     display: none;
   }
-}
 
-/* @media screen and (min-width: 1000px) {
   #root {
-    .size(80%; 100%)
-  }
-}
 
-@media screen and (min-width: 1500px) {
-  #root {
-    .size(60%; 100%)
+    & > div {
+      margin: 0;
+
+      border: solid 5px green;
+
+      #previewCV {
+        margin: 0;
+        display: flex;
+        .size(100%, 100%);
+      }
+    }
   }
-} */
+
+}

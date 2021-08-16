@@ -14,10 +14,10 @@ class CommonInformation extends React.Component {
 
   render() {
     return (
-      <div id='commonInformation'>
+      <section id='commonInformation'>
         <OutputInfoComp obj={this.props.obj.educExp} headline='Educational experience'/>
         <OutputInfoComp obj={this.props.obj.practicExp} headline='Practical experience'/>
-      </div>
+      </section>
     )
   }
 }

@@ -18,7 +18,11 @@ class PhotoBlock extends React.Component {
 
   render() {
     return (
-      <div id='photoBlock' style={{backgroundImage: `url(${this.state.url})`}}></div>
+      <div id='photoBlock' 
+        style={{
+          backgroundImage: `linear-gradient(rgba(68, 68, 68, 0.2), rgba(68, 68, 68, 0.2)), url(${this.state.url})`
+        }} 
+      />
     )
   }
 }

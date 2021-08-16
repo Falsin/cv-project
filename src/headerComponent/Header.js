@@ -1,5 +1,5 @@
 import React from 'react';
-import constructor from '../images/сonstructor.jpg';
+import constructor from '../images/сonstructor.png';
 
 class Header extends React.Component {
   render() {

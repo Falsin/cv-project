@@ -5,126 +5,137 @@
 }
 body {
   background: gray;
-  display: flex;
   justify-content: center;
 }
 #root {
-  width: 210mm;
+  width: 100%;
   height: 100%;
-  background: white;
-  margin: 3vmin 0;
+  background: gray;
 }
-header {
-  margin: 2vmin 0;
+#root header {
+  background: #353333;
 }
-header .container {
+#root header .container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-header .container img {
+#root header .container img {
   width: 10vmin;
   height: 10vmin;
   margin-right: 1vmin;
 }
-header .container h1 {
+#root header .container h1 {
   margin-left: 1vmin;
 }
-#templateCV section {
+#root > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4vmin 0;
+}
+#root > div #templateCV {
+  background: white;
+  width: 210mm;
+  height: 100%;
+}
+#root > div #templateCV section {
+  margin: 3vmin 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#templateCV section form {
-  width: 60%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-#templateCV section form .infoBlocks {
+#root > div #templateCV section form {
   width: 100%;
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
-#templateCV section form .infoBlocks > div:not(.photo) {
-  width: 60%;
+#root > div #templateCV section form .infoBlocks {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+#root > div #templateCV section form .infoBlocks > div:not(.photo) {
   margin-right: 3vmin;
 }
-#templateCV section form .infoBlocks > div:not(.photo) ul {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) ul {
   display: flex;
   flex-direction: column;
   list-style-type: none;
 }
-#templateCV section form .infoBlocks > div:not(.photo) ul > li {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li {
   display: grid;
-  grid-template-columns: 1fr 3.5fr;
+  grid-template-columns: auto 250px;
   position: relative;
 }
-#templateCV section form .infoBlocks > div:not(.photo) ul > li label {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li label {
   display: flex;
   align-items: center;
 }
-#templateCV section form .infoBlocks > div:not(.photo) ul > li div {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
 }
-#templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName {
   position: absolute;
   width: 100%;
   background: #b6b6b6;
   z-index: 1;
 }
-#templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName li {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName li {
   display: block;
   cursor: pointer;
   padding: 1vmin;
 }
-#templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName li:hover {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName li:hover {
   background: #818181;
 }
-#templateCV section form .infoBlocks .photo {
-  width: 30%;
-  background-image: linear-gradient(rgba(54, 54, 54, 0.1), rgba(54, 54, 54, 0.1)), url('images/emptyAvatar.jpg');
+#root > div #templateCV section form .infoBlocks .photo {
+  background-image: linear-gradient(rgba(68, 68, 68, 0.2), rgba(68, 68, 68, 0.2)), url('images/emptyAvatar.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  width: 12%;
 }
-#templateCV section form .infoBlocks .photo label {
+#root > div #templateCV section form .infoBlocks .photo label {
   display: block;
   width: 100%;
   height: 100%;
+  position: relative;
 }
-#templateCV section form .infoBlocks .photo label::after {
+#root > div #templateCV section form .infoBlocks .photo label::after {
   content: '';
   display: block;
-  padding: 70%;
+  padding-top: 150%;
 }
-#templateCV section form .infoBlocks .photo label input {
+#root > div #templateCV section form .infoBlocks .photo label input {
   display: none;
 }
-#templateCV section > ul {
+#root > div #templateCV section > ul {
   list-style-type: none;
 }
-#templateCV section > ul li {
+#root > div #templateCV section > ul li {
   display: grid;
   position: relative;
   grid-template-columns: 1fr 2fr;
 }
-#templateCV section > ul li label {
+#root > div #templateCV section > ul li label {
   display: block;
   max-width: 110px;
 }
-#templateCV section.expBlock ul.specialStyleKit > li {
+#root > div #templateCV section.expBlock ul.specialStyleKit > li {
   display: flex;
   flex-direction: column;
 }
-#templateCV section.expBlock ul.specialStyleKit > li li {
+#root > div #templateCV section.expBlock ul.specialStyleKit > li li {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-#templateCV .error::before {
+#root > div #templateCV .error::before {
   content: 'The field can\'t be empty.';
   grid-column-start: 2;
   grid-column-end: -1;
@@ -133,37 +144,36 @@ header .container h1 {
   z-index: 1;
   color: red;
 }
-#templateCV .error input:not([type*=button]),
-#templateCV .error textarea {
+#root > div #templateCV .error input:not([type=button]),
+#root > div #templateCV .error textarea {
   animation-name: changeBackgroundPositionWhileError;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-#templateCV .afterError input:not([type*=button]),
-#templateCV .afterError textarea {
+#root > div #templateCV .afterError input:not([type=button]),
+#root > div #templateCV .afterError textarea {
   animation-name: changeBackgroundPositionAfterError;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-#templateCV .validValue input:not([type*=button]),
-#templateCV .validValue textarea {
+#root > div #templateCV .validValue input:not([type=button]),
+#root > div #templateCV .validValue textarea {
   animation-name: changeBackgroundPositionValidValue;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-#templateCV .active input:not([type*=button]),
-#templateCV .active textarea {
+#root > div #templateCV .active textarea {
   animation-name: changeBackgroundPosition;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-#templateCV .afterActive input:not([type*=button]),
-#templateCV .afterActive textarea {
+#root > div #templateCV .afterActive input:not([type=button]),
+#root > div #templateCV .afterActive textarea {
   animation-name: changeBackgroundPositionAfterActive;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-#templateCV input:not([type*=button]) {
+#root > div #templateCV input:not([type=button]) {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
@@ -176,9 +186,9 @@ header .container h1 {
   padding: 5px;
   outline: none;
   border: none;
-  width: 100%;
+  width: 250px;
 }
-#templateCV textarea {
+#root > div #templateCV textarea {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
@@ -214,35 +224,44 @@ header .container h1 {
     background-position: 200% 100%, 100% 100%;
   }
 }
-#previewCV {
-  margin-top: 4vmax;
+#root > div #previewCV {
+  margin-top: 4vmin;
+  padding-bottom: 3vmin;
   display: flex;
   flex-direction: column;
+  background: white;
+  align-items: center;
+  width: 210mm;
+  height: 100%;
 }
-#previewCV > div {
+#root > div #previewCV > div {
   display: flex;
+  width: 100%;
 }
-#previewCV #commonInformation {
-  width: 60vw;
+#root > div #previewCV > div #commonInformation {
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#previewCV #commonInformation h2 {
+#root > div #previewCV > div #commonInformation > section {
+  margin: 3vmin 0;
+}
+#root > div #previewCV > div #commonInformation > section h2 {
   text-align: center;
 }
-#previewCV #commonInformation ul {
+#root > div #previewCV > div #commonInformation > section ul {
   list-style-type: none;
 }
-#previewCV #commonInformation ul li:not(.expBlock) {
+#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) {
   display: grid;
   grid-template-columns: 1fr 2fr;
   position: relative;
 }
-#previewCV #commonInformation ul li:not(.expBlock) label {
+#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) label {
   width: 110px;
 }
-#previewCV #commonInformation ul li:not(.expBlock) input:not([type*=button]) {
+#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) input:not([type=button]) {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
@@ -253,11 +272,11 @@ header .container h1 {
   margin-bottom: 5px;
   display: block;
   padding: 5px;
-  outline: none;
+  outline: none !important;
   border: none;
   background-position: 200% 100%, 100% 100%;
 }
-#previewCV #commonInformation ul li:not(.expBlock) textarea {
+#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) textarea {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
@@ -269,54 +288,93 @@ header .container h1 {
   background-size: 200% 2px, 200% 2px;
   background-position: 200% 100%, 100% 100%;
 }
-#previewCV #personalInformation {
+#root > div #previewCV > div #personalInformation {
   width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 3vmin 0;
 }
-#previewCV #personalInformation #photoBlock {
-  width: 90%;
+#root > div #previewCV > div #personalInformation #photoBlock {
+  width: 60%;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  margin-bottom: 3vmin;
 }
-#previewCV #personalInformation #photoBlock::after {
+#root > div #previewCV > div #personalInformation #photoBlock::after {
   content: '';
   display: block;
   padding-top: 150%;
 }
-#previewCV #personalInformation ul {
+#root > div #previewCV > div #personalInformation ul {
   list-style-type: none;
 }
-#previewCV #personalInformation ul li {
+#root > div #previewCV > div #personalInformation ul li {
   display: flex;
 }
-#previewCV #personalInformation ul li label {
+#root > div #previewCV > div #personalInformation ul li label {
   flex-grow: 1;
 }
-#previewCV #personalInformation ul li input {
+#root > div #previewCV > div #personalInformation ul li input {
   outline: none;
   border: none;
-  border-bottom: solid black 1px;
+  border-bottom: solid black 2px;
+}
+#root footer {
+  text-align: center;
+  padding: 3vmin 0;
+  background: #353333;
+}
+#root footer a {
+  color: white;
+  text-decoration: none;
+}
+#root .buttons {
+  margin-top: 2vmin;
+}
+#root .buttons input {
+  margin: 0 2vmin;
+  padding: 1vmin;
+  border: none;
+  outline: none;
+  background: #b4aeae;
+  cursor: pointer;
+}
+#root .buttons input[value='Add information'] {
+  border-radius: 6px;
+}
+#root .buttons input:not([value='Add information']) {
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 900;
+}
+#root .buttons input:not([value='Add information'])[value=' + '] {
+  background: green;
+  color: white;
+}
+#root .buttons input:not([value='Add information'])[value=' − '] {
+  background: red;
+  color: white;
 }
 @media print {
   * {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
+  header,
+  footer,
   #templateCV {
     display: none;
   }
-}
-/* @media screen and (min-width: 1000px) {
-  #root {
-    .size(80%; 100%)
+  #root > div {
+    margin: 0;
+    border: solid 5px green;
+  }
+  #root > div #previewCV {
+    margin: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
   }
 }
-
-@media screen and (min-width: 1500px) {
-  #root {
-    .size(60%; 100%)
-  }
-} */

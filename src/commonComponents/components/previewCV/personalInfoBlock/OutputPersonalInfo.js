@@ -12,7 +12,7 @@ class OutputPersonalInfo extends React.Component {
 
   render() {
     return (
-      <div id='personalInformation'>
+      <section id='personalInformation'>
 
         <PhotoBlock obj={this.props.parentState.generalInfo.Avatar}/>
 
@@ -20,7 +20,7 @@ class OutputPersonalInfo extends React.Component {
           <h2>Personal information</h2>
           <CreateListCompForPreview subObj={this.props.parentState.generalInfo}/>
         </form>
-      </div>
+      </section>
     )
   }
 }

@@ -52,12 +52,7 @@ class GeneralInfo extends React.Component {
             <PhotoComp parentScope={this} />
           </div>
 
-          <ButtonsSection btns={btns/* [
-            {
-              value: 'Add information', 
-              func: sendSingleInformation.bind(this, this.state, 'generalInfo')
-            }
-          ] */} />
+          <ButtonsSection btns={btns} />
         </form>
 
       </section>
