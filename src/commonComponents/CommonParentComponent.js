@@ -7,8 +7,8 @@ class CommonParentComponent extends React.Component {
   render() {
     return (
       <div>
-        <TemplateCV parentScope={this} />
-        {/* <PreviewCV parentScope={this}/> */}
+        {/* <TemplateCV parentScope={this} /> */}
+        <PreviewCV parentScope={this}/>
       </div>
     )
   }
