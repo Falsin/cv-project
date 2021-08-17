@@ -6,14 +6,13 @@ import CommonParentComponent from './commonComponents/CommonParentComponent';
 
 import style from './style.css';
 
-
-
-
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-{/*     <CommonParentComponent />
-    <Footer /> */}
+    <div>
+      <Header />
+      <CommonParentComponent />
+      <Footer />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
