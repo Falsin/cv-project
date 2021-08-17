@@ -27,10 +27,10 @@ import style from './style.css';
 } */
 
 ReactDOM.render(
-  <div>
+  <>
     <Header />
-      <CommonParentComponent />
-      <Footer />
-  </div>,
+    <CommonParentComponent />
+    <Footer />
+  </>,
   document.getElementById('root')
 );
