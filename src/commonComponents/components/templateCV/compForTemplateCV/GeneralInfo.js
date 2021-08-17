@@ -39,6 +39,10 @@ class GeneralInfo extends React.Component {
   componentDidMount() {
     this.parentScope.setState(this.state);
   }
+
+  shouldComponentUpdate(prevProps, prevState) {
+    return prevState !== this.state;
+  }
   
   render() {
     const btns = createBtnsAttr.call(this, 'generalInfo')

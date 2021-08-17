@@ -5,9 +5,10 @@ import PreviewCV from './components/previewCV/PreviewCV';
 class CommonParentComponent extends React.Component {
 
   render() {
+    console.log(this.state)
     return (
       <div>
-        {/* <TemplateCV parentScope={this} /> */}
+        <TemplateCV parentScope={this} />
         <PreviewCV parentScope={this}/>
       </div>
     )

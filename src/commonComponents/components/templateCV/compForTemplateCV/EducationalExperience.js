@@ -40,6 +40,10 @@ class EducationalExperience extends React.Component {
     this.parentScope.setState({educExp: cloneObj(this.state)});
   }
 
+  shouldComponentUpdate(prevProps, prevState) {
+    return prevState !== this.state;
+  }
+
   render() {
     let duplicateState = cloneObj(this.state);
     const btns = createBtnsAttr.call(this, duplicateState, 'educExp');
