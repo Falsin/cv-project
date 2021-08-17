@@ -28,7 +28,7 @@ import style from './style.css';
 
 ReactDOM.render(
   <>
-    {/* <Header /> */}
+    <Header />
     {/* <CommonParentComponent /> */}
     <Footer />
   </>,
