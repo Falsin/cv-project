@@ -29,7 +29,7 @@ import style from './style.css';
 ReactDOM.render(
   <>
     <Header />
-    {/* <CommonParentComponent /> */}
+    <CommonParentComponent />
     <Footer />
   </>,
   document.getElementById('root')
