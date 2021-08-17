@@ -19,8 +19,8 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <CommonParentComponent />
-        <Footer />
+{/*         <CommonParentComponent />
+        <Footer /> */}
       </div>
     )
   }
