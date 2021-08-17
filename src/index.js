@@ -12,8 +12,8 @@ import style from './style.css';
 ReactDOM.render(
   <React.StrictMode>
     <Header />
-    <CommonParentComponent />
-    <Footer />
+{/*     <CommonParentComponent />
+    <Footer /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
