@@ -6,13 +6,29 @@ import CommonParentComponent from './commonComponents/CommonParentComponent';
 
 import style from './style.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <div>
-      <Header />
+const Components = (
+  <div>
+    <Header />
+    <CommonParentComponent />
+    <Footer />
+  </div>
+);
+
+/* class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
       <CommonParentComponent />
       <Footer />
-    </div>
+      </div>
+    )
+  }
+} */
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Components />
   </React.StrictMode>,
   document.getElementById('root')
 );
