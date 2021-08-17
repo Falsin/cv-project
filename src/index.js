@@ -14,19 +14,23 @@ import style from './style.css';
   </div>
 ); */
 
-class App extends React.Component {
+/* class App extends React.Component {
   render() {
     return (
       <div>
         <Header />
         <CommonParentComponent />
-{/*         <CommonParentComponent />
-        <Footer /> */}
+        <Footer />
       </div>
     )
   }
-}
+} */
 
-ReactDOM.render(<App />,
+ReactDOM.render(
+  <div>
+    <Header />
+      <CommonParentComponent />
+      <Footer />
+  </div>,
   document.getElementById('root')
 );
