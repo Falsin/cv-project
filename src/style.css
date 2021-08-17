@@ -3,17 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+html,
 body {
-  background: gray;
-  justify-content: center;
-}
-#root {
   width: 100%;
   height: 100%;
+}
+body {
+  background: gray;
+}
+#root {
   background: gray;
 }
 #root header {
+  padding: 1vmin 0;
   background: #353333;
+  color: white;
 }
 #root header .container {
   display: flex;
@@ -29,6 +33,8 @@ body {
   margin-left: 1vmin;
 }
 #root > div {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,6 +44,7 @@ body {
   background: white;
   width: 210mm;
   height: 100%;
+  padding: 0 4vmin;
 }
 #root > div #templateCV section {
   margin: 3vmin 0;
@@ -60,38 +67,27 @@ body {
 #root > div #templateCV section form .infoBlocks > div:not(.photo) {
   margin-right: 3vmin;
 }
-#root > div #templateCV section form .infoBlocks > div:not(.photo) ul {
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
+#root > div #templateCV section form .infoBlocks > div:not(.photo) > ul > li {
+  grid-template-columns: 70px minmax(auto, 250px);
 }
-#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li {
-  display: grid;
-  grid-template-columns: auto 250px;
-  position: relative;
-}
-#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li label {
-  display: flex;
-  align-items: center;
-}
-#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) > ul > li div {
   grid-column-start: 2;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 2;
 }
-#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) > ul > li div #cityName {
   position: absolute;
   width: 100%;
   background: #b6b6b6;
   z-index: 1;
 }
-#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName li {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) > ul > li div #cityName li {
   display: block;
   cursor: pointer;
   padding: 1vmin;
 }
-#root > div #templateCV section form .infoBlocks > div:not(.photo) ul > li div #cityName li:hover {
+#root > div #templateCV section form .infoBlocks > div:not(.photo) > ul > li div #cityName li:hover {
   background: #818181;
 }
 #root > div #templateCV section form .infoBlocks .photo {
@@ -115,25 +111,9 @@ body {
 #root > div #templateCV section form .infoBlocks .photo label input {
   display: none;
 }
-#root > div #templateCV section > ul {
-  list-style-type: none;
-}
-#root > div #templateCV section > ul li {
-  display: grid;
-  position: relative;
-  grid-template-columns: 1fr 2fr;
-}
-#root > div #templateCV section > ul li label {
-  display: block;
-  max-width: 110px;
-}
 #root > div #templateCV section.expBlock ul.specialStyleKit > li {
   display: flex;
   flex-direction: column;
-}
-#root > div #templateCV section.expBlock ul.specialStyleKit > li li {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
 }
 #root > div #templateCV .error::before {
   content: 'The field can\'t be empty.';
@@ -162,7 +142,8 @@ body {
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-#root > div #templateCV .active textarea {
+#root > div #templateCV .active textarea,
+#root > div #templateCV .active input {
   animation-name: changeBackgroundPosition;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
@@ -173,31 +154,9 @@ body {
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-#root > div #templateCV input:not([type=button]) {
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
-  background-repeat: no-repeat, no-repeat;
-  background-size: 200% 2px, 200% 2px;
-  margin-bottom: 5px;
-  display: block;
-  padding: 5px;
-  outline: none;
-  border: none;
-  width: 250px;
-}
+#root > div #templateCV input:not([type=button]),
 #root > div #templateCV textarea {
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  border: none;
-  outline: none;
   background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
-  background-repeat: no-repeat, no-repeat;
-  background-size: 200% 2px, 200% 2px;
 }
 @keyframes changeBackgroundPosition {
   to {
@@ -225,8 +184,8 @@ body {
   }
 }
 #root > div #previewCV {
+  padding: 0 4vmin 3vmin 4vmin;
   margin-top: 4vmin;
-  padding-bottom: 3vmin;
   display: flex;
   flex-direction: column;
   background: white;
@@ -239,6 +198,7 @@ body {
   width: 100%;
 }
 #root > div #previewCV > div #commonInformation {
+  margin-right: 4vmin;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -250,50 +210,12 @@ body {
 #root > div #previewCV > div #commonInformation > section h2 {
   text-align: center;
 }
-#root > div #previewCV > div #commonInformation > section ul {
-  list-style-type: none;
-}
-#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  position: relative;
-}
-#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) label {
-  width: 110px;
-}
-#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) input:not([type=button]) {
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
-  background-repeat: no-repeat, no-repeat;
-  background-size: 200% 2px, 200% 2px;
-  margin-bottom: 5px;
-  display: block;
-  padding: 5px;
-  outline: none !important;
-  border: none;
-  background-position: 200% 100%, 100% 100%;
-}
-#root > div #previewCV > div #commonInformation > section ul li:not(.expBlock) textarea {
-  grid-column-start: 2;
-  grid-column-end: -1;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  border: none;
-  outline: none;
-  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
-  background-repeat: no-repeat, no-repeat;
-  background-size: 200% 2px, 200% 2px;
-  background-position: 200% 100%, 100% 100%;
-}
 #root > div #previewCV > div #personalInformation {
+  padding-top: 3vmin;
   width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3vmin 0;
 }
 #root > div #previewCV > div #personalInformation #photoBlock {
   width: 60%;
@@ -311,15 +233,39 @@ body {
   list-style-type: none;
 }
 #root > div #previewCV > div #personalInformation ul li {
-  display: flex;
-}
-#root > div #previewCV > div #personalInformation ul li label {
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 70px minmax(auto, 200px);
 }
 #root > div #previewCV > div #personalInformation ul li input {
   outline: none;
   border: none;
-  border-bottom: solid black 2px;
+}
+#root > div ul {
+  list-style-type: none;
+}
+#root > div ul li:not(.expBlock) {
+  display: grid;
+  position: relative;
+  grid-template-columns: 110px minmax(auto, 250px);
+}
+#root > div ul li:not(.expBlock) label {
+  display: block;
+}
+#root > div ul input:not([type=button]),
+#root > div ul textarea {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-image: linear-gradient(90deg, red 50%, red 50%), linear-gradient(90deg, green 50%, black 50%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: 200% 2px, 200% 2px;
+  margin-bottom: 5px;
+  display: block;
+  padding: 5px;
+  outline: none;
+  border: none;
+  width: 100%;
 }
 #root footer {
   text-align: center;
@@ -330,19 +276,22 @@ body {
   color: white;
   text-decoration: none;
 }
-#root .buttons {
-  margin-top: 2vmin;
-}
-#root .buttons input {
+#root input[type='button'] {
+  border-radius: 6px;
   margin: 0 2vmin;
   padding: 1vmin;
   border: none;
   outline: none;
-  background: #b4aeae;
   cursor: pointer;
+  background: green;
+  color: white;
+}
+#root .buttons {
+  margin-top: 2vmin;
 }
 #root .buttons input[value='Add information'] {
   border-radius: 6px;
+  background: #8a8686;
 }
 #root .buttons input:not([value='Add information']) {
   text-align: center;
@@ -369,12 +318,52 @@ body {
   }
   #root > div {
     margin: 0;
-    border: solid 5px green;
   }
   #root > div #previewCV {
     margin: 0;
     display: flex;
     width: 100%;
     height: 100%;
+  }
+}
+@media screen and (orientation: portrait) and (max-width: 210mm) {
+  #root header {
+    padding: 3vmin 0;
+  }
+  #root > div #templateCV,
+  #root > div #previewCV {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (orientation: portrait) and (max-width: 500px) {
+  #root > div #previewCV > div {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  #root > div #previewCV > div > #personalInformation,
+  #root > div #previewCV > div > #commonInformation {
+    width: 100%;
+    margin: 0;
+  }
+  #root > div #previewCV > div > #personalInformation input,
+  #root > div #previewCV > div > #commonInformation input,
+  #root > div #previewCV > div > #personalInformation textarea,
+  #root > div #previewCV > div > #commonInformation textarea {
+    width: 200px;
+  }
+  #root > div #previewCV > div > #personalInformation {
+    flex-direction: row-reverse;
+  }
+  #root > div #previewCV > div > #personalInformation form {
+    margin-right: 3vmin;
+  }
+  #root > div #previewCV > div > #personalInformation #photoBlock {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 210mm) {
+  #root input[type='button'] {
+    margin: 0 1vmin;
   }
 }

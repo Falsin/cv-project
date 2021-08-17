@@ -25,7 +25,9 @@ class PreviewCV extends React.Component {
         {this.state && <OutputPersonalInfo parentState={this.state} />}
         </div>
 
-        <button onClick={() => window.print()}>Print</button>
+        <input type='button' value='Print' onClick={() => window.print()}/>
+
+        {/* <button onClick={() => window.print()}>Print</button> */}
       </section>
     )
   }

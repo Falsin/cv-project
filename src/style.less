@@ -11,17 +11,21 @@
   box-sizing: border-box;
 }
 
+html, body {
+  .size(100%, 100%);
+}
+
 body {
   background: gray;
-  justify-content: center;
 }
 
 #root {
-  .size(100%, 100%);
   background: gray;
 
   header {
+    padding: 1vmin 0;
     background: rgb(53, 51, 51);
+    color: white;
   
     & .container {
       display: flex;
@@ -40,6 +44,7 @@ body {
   }
 
   & > div {
+    .size(100%, 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,6 +53,7 @@ body {
     #templateCV {
       background: white;
       .size(210mm, 100%);
+      padding: 0 4vmin;
     
       & section {
         margin: 3vmin 0;
@@ -68,55 +74,40 @@ body {
             justify-content: center;
     
             & > div:not(.photo) {
-              //width: 60%;
               margin-right: 3vmin;
+
+              & > ul > li {
+                grid-template-columns: 70px minmax(auto, 250px);
+
+                & div {
+                  grid-column-start: 2;
+                  grid-column-end: -1;
+                  grid-row-start: 1;
+                  grid-row-end: 2;
     
-              & ul {
-                display: flex;
-                flex-direction: column;
-                list-style-type: none;
-      
-                & > li {
-                  display: grid;
-                  //grid-template-columns: 1fr 3.5fr;
-                  grid-template-columns: auto 250px;
-                  position: relative;
-                  //border: solid red 1px;
-      
-                  & label {
-                    display: flex;
-                    align-items: center;
-                  }
-      
-                  & div {
-                    grid-column-start: 2;
-                    grid-column-end: -1;
-                    grid-row-start: 1;
-                    grid-row-end: 2;
-      
-                    #cityName {
-                      position: absolute;
-                      width: 100%;
-                      background: rgb(182, 182, 182);
-                      z-index: 1;
-                    
-                      li {
-                        display: block;
-                        cursor: pointer;
-                        padding: 1vmin;
-      
-                        &:hover {
-                          background: rgb(129, 129, 129);
-                        }
+                  #cityName {
+                    position: absolute;
+                    width: 100%;
+                    background: rgb(182, 182, 182);
+                    z-index: 1;
+                  
+                    li {
+                      display: block;
+                      cursor: pointer;
+                      padding: 1vmin;
+    
+                      &:hover {
+                        background: rgb(129, 129, 129);
                       }
                     }
                   }
                 }
+
               }
             }
+            
     
             & .photo{
-              //border: solid 1px black;
               background-image: linear-gradient(rgba(68, 68, 68, 0.2), rgba(rgba(68, 68, 68, 0.2))),
                                                 url(@emptyAvatar);
               background-size: cover;
@@ -143,32 +134,12 @@ body {
             }
           }
         }
-    
-        & > ul {
-          list-style-type: none;
-    
-          & li {
-            display: grid;
-            position: relative;
-            grid-template-columns: 1fr 2fr;
-    
-            & label {
-              display: block;
-              max-width: 110px; 
-            }
-          }
-        }
       }
-    
+
       & section.expBlock {
         & ul.specialStyleKit > li {
           display: flex;
           flex-direction: column;
-    
-          & li {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-          }
         }
       }
     
@@ -210,7 +181,7 @@ body {
       }
     
       .active {
-        textarea {
+        textarea, input {
           animation-name: changeBackgroundPosition;
           animation-duration: 0.8s;
           animation-fill-mode: forwards;
@@ -226,38 +197,10 @@ body {
         }
       }
     
-      input:not([type=button]) {
-        grid-column-start: 2;
-        grid-column-end: -1;
-        grid-row-start: 1;
-        grid-row-end: 2;
-    
+      input:not([type=button]),
+      textarea { 
         background-image: linear-gradient(90deg, red 50%, red 50%),
                           linear-gradient(90deg, green 50%, black 50%);
-        background-repeat: no-repeat, no-repeat;   
-        background-size: 200% 2px, 200% 2px;
-    
-        margin-bottom: 5px;
-        display: block;
-        padding: 5px;
-        outline: none;
-        border: none;
-        //width: 100%;
-        width: 250px;
-      }
-    
-      textarea {
-        grid-column-start: 2;
-        grid-column-end: -1;
-        grid-row-start: 1;
-        grid-row-end: 2;
-    
-        border: none;
-        outline: none;
-        background-image: linear-gradient(90deg, red 50%, red 50%),
-                          linear-gradient(90deg, green 50%, black 50%);
-        background-repeat: no-repeat, no-repeat;   
-        background-size: 200% 2px, 200% 2px;
       }
     
       @keyframes changeBackgroundPosition {
@@ -292,8 +235,8 @@ body {
     }
     
     #previewCV {
+      padding: 0 4vmin 3vmin 4vmin;
       margin-top: 4vmin;
-      padding-bottom: 3vmin;
       display: flex;
       flex-direction: column;
       background: white;
@@ -305,6 +248,7 @@ body {
         width: 100%;
 
         & #commonInformation {
+          margin-right: 4vmin;
           width: 60%;
           display: flex;
           flex-direction: column;
@@ -316,63 +260,15 @@ body {
             h2 {
               text-align: center;
             }
-        
-            ul {
-              list-style-type: none;
-        
-              li:not(.expBlock) {
-                display: grid;
-                grid-template-columns: 1fr 2fr;
-                position: relative;
-        
-                label {
-                  width: 110px;
-                }
-        
-                input:not([type=button]) {
-                  grid-column-start: 2;
-                  grid-column-end: -1;
-                  grid-row-start: 1;
-                  grid-row-end: 2;
-                
-                  background-image: linear-gradient(90deg, red 50%, red 50%),
-                                    linear-gradient(90deg, green 50%, black 50%);
-                  background-repeat: no-repeat, no-repeat;   
-                  background-size: 200% 2px, 200% 2px;
-                
-                  margin-bottom: 5px;
-                  display: block;
-                  padding: 5px;
-                  outline: none !important;
-                  border: none;
-                  background-position: 200% 100%, 100% 100%;
-                }
-                
-                textarea {
-                  grid-column-start: 2;
-                  grid-column-end: -1;
-                  grid-row-start: 1;
-                  grid-row-end: 2;
-                
-                  border: none;
-                  outline: none;
-                  background-image: linear-gradient(90deg, red 50%, red 50%),
-                                    linear-gradient(90deg, green 50%, black 50%);
-                  background-repeat: no-repeat, no-repeat;   
-                  background-size: 200% 2px, 200% 2px;
-                  background-position: 200% 100%, 100% 100%;
-                }
-              }
-            }
           }
         }
       
         & #personalInformation {
+          padding-top: 3vmin;
           width: 40%;
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin: 3vmin 0;
       
           & #photoBlock {
             width: 60%;
@@ -393,20 +289,51 @@ body {
             list-style-type: none;
       
             & li {
-              display: flex;
-              
-              & label {
-                flex-grow: 1;
-              }
+              display: grid;
+              grid-template-columns: 70px minmax(auto, 200px);
       
               & input {
                 outline: none;
                 border: none;
-                border-bottom: solid black 2px;
               }
             }
           }
         }
+      }
+    }
+
+    & ul {
+      list-style-type: none;
+
+      & li:not(.expBlock) {
+        display: grid;
+        position: relative;
+        grid-template-columns: 110px minmax(auto, 250px);
+
+        & label {
+          display: block;
+        }
+      }
+
+      input:not([type=button]),
+      textarea {
+        grid-column-start: 2;
+        grid-column-end: -1;
+        grid-row-start: 1;
+        grid-row-end: 2;
+
+        background-image: linear-gradient(90deg, red 50%, red 50%),
+                          linear-gradient(90deg, green 50%, black 50%);
+
+        background-repeat: no-repeat, no-repeat;   
+        background-size: 200% 2px, 200% 2px;
+    
+        margin-bottom: 5px;
+        display: block;
+        padding: 5px;
+        outline: none;
+        border: none;
+        width: 100%;
       }
     }
   }
@@ -422,21 +349,26 @@ body {
     }
   }
 
+  input[type='button'] {
+    border-radius: 6px;
+    margin: 0 2vmin;
+    padding: 1vmin;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: green;
+    color: white;
+  }
+
   .buttons {
     margin-top: 2vmin;
 
     input {
-      margin: 0 2vmin;
-      padding: 1vmin;
-      border: none;
-      outline: none;
-      background: rgb(180, 174, 174);
-      cursor: pointer;
-
       &[value='Add information'] {
         border-radius: 6px;
+        background: rgb(138, 134, 134);
       }
-
+      
       &:not([value='Add information']) {
         text-align: center;
         border-radius: 50%;
@@ -471,8 +403,6 @@ body {
     & > div {
       margin: 0;
 
-      border: solid 5px green;
-
       #previewCV {
         margin: 0;
         display: flex;
@@ -480,5 +410,64 @@ body {
       }
     }
   }
+}
 
+@media screen and (orientation: portrait) and (max-width: 210mm) {
+  #root {
+
+    header {
+      padding: 3vmin 0;
+    }
+
+    & > div {
+      #templateCV,
+      #previewCV {
+        .size(100%, 100%)
+      }
+    }
+  }
+}
+
+@media screen and (orientation: portrait) and (max-width: 500px) {
+  #root {
+    & > div {
+      #previewCV {
+        & > div {
+          flex-direction: column-reverse;
+          align-items: center;
+
+          & > #personalInformation,
+          & > #commonInformation {
+            width: 100%;
+            margin: 0;
+            
+            input,
+            textarea {
+              width: 200px;
+            }
+          }
+
+          & > #personalInformation {
+            flex-direction: row-reverse;
+
+            form {
+              margin-right: 3vmin;
+            }
+
+            #photoBlock {
+              width: 30%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 210mm) {
+  #root {
+    input[type='button'] {
+      margin: 0 1vmin;
+    }
+  }
 }

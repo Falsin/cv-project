@@ -196,7 +196,7 @@ function input(arram) {
     let uniqIndex = this.uniqIndex;
 
     return((templateScope.readonly) 
-      ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
+      ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly style={{backgroundPosition: this.state.backgroundPosition}}/>
       : <input key={uniqid()} type={type} defaultValue={this.state.defaultValue}
           id={uniqIndex} style={{backgroundPosition: this.state.backgroundPosition}}
           onFocus={e => {
@@ -226,7 +226,7 @@ function textArea (arram) {
     let templateScope = this.parentScope;
 
     return ((templateScope.readonly) 
-          ? <textarea key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
+          ? <textarea key={uniqid()} type={type} value={this.state.defaultValue} readOnly style={{backgroundPosition: this.state.backgroundPosition}}/>
           : <textarea key={uniqid()} type={type} defaultValue={this.state.defaultValue}
               style={{backgroundPosition: this.state.backgroundPosition}} id={this.uniqIndex}
               onFocus={e => {
@@ -320,7 +320,7 @@ function countryComp(arram) {
     let uniqIndex = this.uniqIndex;
 
     return ((templateScope.readonly) 
-        ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly />
+        ? <input key={uniqid()} type={type} value={this.state.defaultValue} readOnly style={{backgroundPosition: this.state.backgroundPosition}}/>
         : <div>
             <input type={type} key={uniqid()}
               style={{backgroundPosition: this.state.backgroundPosition}}
