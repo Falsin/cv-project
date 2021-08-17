@@ -12,7 +12,7 @@ body {
   background: gray;
 }
 #root {
-  background: gray;
+  background: red;
 }
 #root header {
   padding: 1vmin 0;
