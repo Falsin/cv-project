@@ -9,7 +9,7 @@ class CommonParentComponent extends React.Component {
     return (
       <div>
         <TemplateCV parentScope={this} />
-        {/* <PreviewCV parentScope={this}/> */}
+        <PreviewCV parentScope={this}/>
       </div>
     )
   }
