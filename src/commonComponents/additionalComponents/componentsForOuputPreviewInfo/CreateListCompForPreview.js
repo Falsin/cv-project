@@ -11,6 +11,7 @@ class CreateListCompForPreview extends React.Component {
         if (typeof elem === 'object') {
           return elem.inputElem()
         }
+        return null;
       })
     })()
   }

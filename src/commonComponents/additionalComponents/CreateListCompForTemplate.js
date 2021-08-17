@@ -40,7 +40,7 @@ class CreateListCompForTemplate extends React.Component {
       <ul>
         {Object.entries(this.props.subObj).map((item, id) => {
           if (typeof item[1] === 'object') {
-            return <InputComp scope={this} array={item} elem={this.collectionInputElements[id]} />
+            return <InputComp scope={this} array={item} elem={this.collectionInputElements[id]} key={id}/>
           } 
           return null;
         })}
