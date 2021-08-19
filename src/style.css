@@ -355,16 +355,14 @@ button {
   }
 }
 @media screen and (orientation: portrait) and (max-width: 680px) {
-  #root {
-    /*     input[type='button'] {
-      padding: 1.5vmin 3vmin;
-    } */
-    /*     .buttons input:not([value='Add information'])[value=' + '] {
-      padding: 1.5vmin;
-    } */
-  }
   #root > div #templateCV section form .infoBlocks .photo {
     width: 20%;
+  }
+  #root input[type='button'] {
+    padding: 1.5vmin 3vmin;
+  }
+  #root .buttons input:not([value='Add information'])[value=' + '] {
+    padding: 1.5vmin;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 500px) {
