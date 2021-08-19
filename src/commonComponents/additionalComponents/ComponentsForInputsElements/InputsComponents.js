@@ -178,8 +178,6 @@ class InputComp extends React.Component {
     let classNameForLi =  (this.parentScope.readonly) ? '' :
                           (this.state.isActive) ? 'active' :
                           (!this.state.isValidValue) ? 'error' : '';
-
-    console.log(this.parentScope)
                           
     return (
       <li key={uniqid()} className={classNameForLi}>
