@@ -3,18 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
-html,
+/* html, body {
+  //.size(100%, 100%);
+  min-width: 100vw;
+} */
 body {
-  width: 100%;
-  height: 100%;
-}
-body {
-  background: yellow;
+  background: gray;
 }
 #root {
+  width: 100%;
   background: gray;
 }
 #root header {
+  width: 100%;
   padding: 1vmin 0;
   background: #353333;
   color: white;
@@ -66,6 +67,9 @@ body {
 }
 #root > div #templateCV section form .infoBlocks > div:not(.photo) {
   margin-right: 3vmin;
+}
+#root > div #templateCV section form .infoBlocks > div:not(.photo) h2 {
+  text-align: center;
 }
 #root > div #templateCV section form .infoBlocks > div:not(.photo) > ul > li {
   grid-template-columns: 70px minmax(auto, 250px);
@@ -222,12 +226,14 @@ body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  margin-bottom: 3vmin;
 }
 #root > div #previewCV > div #personalInformation #photoBlock::after {
   content: '';
   display: block;
   padding-top: 150%;
+}
+#root > div #previewCV > div #personalInformation h2 {
+  text-align: center;
 }
 #root > div #previewCV > div #personalInformation ul {
   list-style-type: none;
@@ -326,17 +332,30 @@ body {
     height: 100%;
   }
 }
-@media screen and (orientation: portrait) and (max-width: 210mm) {
+@media screen and (max-width: 210mm) {
   #root header {
     padding: 3vmin 0;
   }
   #root > div #templateCV,
   #root > div #previewCV {
     width: 100%;
-    height: 100%;
+  }
+}
+@media screen and (orientation: portrait) and (max-width: 680px) {
+  #root > div #templateCV section form .infoBlocks .photo {
+    width: 20%;
+  }
+  #root input[type='button'] {
+    padding: 1.5vmin 3vmin;
+  }
+  #root .buttons input:not([value='Add information'])[value=' + '] {
+    padding: 1.5vmin;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 500px) {
+  #root > div #templateCV section form .infoBlocks .photo {
+    width: 30%;
+  }
   #root > div #previewCV > div {
     flex-direction: column-reverse;
     align-items: center;
@@ -350,7 +369,7 @@ body {
   #root > div #previewCV > div > #commonInformation input,
   #root > div #previewCV > div > #personalInformation textarea,
   #root > div #previewCV > div > #commonInformation textarea {
-    width: 200px;
+    max-width: 100%;
   }
   #root > div #previewCV > div > #personalInformation {
     flex-direction: row-reverse;
