@@ -127,6 +127,11 @@ body {
   grid-row-end: 2;
   z-index: 1;
   color: red;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  background: white;
+  background-clip: content-box;
 }
 #root > div #templateCV .error input:not([type=button]),
 #root > div #templateCV .error textarea {

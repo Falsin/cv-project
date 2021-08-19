@@ -180,7 +180,12 @@ class InputComp extends React.Component {
                           (!this.state.isValidValue) ? 'error' : '';
                           
     return (
-      <li key={uniqid()} className={classNameForLi}>
+      <li key={uniqid()} className={classNameForLi} 
+        onClick={(e) => {
+          if (e.target.localName === 'li') {
+            e.target.lastChild.focus();
+          }
+        }}>
         <label htmlFor={this.uniqIndex}>{this.objName}</label>
         {this.props.elem.call(this, this)}
       </li>
