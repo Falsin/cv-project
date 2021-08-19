@@ -2,9 +2,10 @@ import React from 'react'
 import cloneObj from '../../../additionalComponents/CloneObj';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
-import { input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
+//import { input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 import createBtnsAttr from '../../../additionalComponents/componentsForButtonSection/createBtnsAttr';
 
+import {input} from '../../../additionalComponents/ComponentsForInputsElements/funcForCreatingInputsElements'
 class EducationalExperience extends React.Component {
   constructor(props) {
     super(props);

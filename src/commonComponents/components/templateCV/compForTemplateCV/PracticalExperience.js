@@ -1,9 +1,10 @@
 import React from 'react';
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
 import cloneObj from '../../../additionalComponents/CloneObj';
-import { textArea, input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
+//import { textArea, input } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 import CreateListCompForTemplate from '../../../additionalComponents/CreateListCompForTemplate';
 import createBtnsAttr from '../../../additionalComponents/componentsForButtonSection/createBtnsAttr';
+import {input, textArea} from '../../../additionalComponents/ComponentsForInputsElements/funcForCreatingInputsElements'
 
 class PracticalExperience extends React.Component {
   constructor(props) {

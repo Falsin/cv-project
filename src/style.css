@@ -290,7 +290,7 @@ body {
 #root input[type='button'] {
   border-radius: 6px;
   margin: 0 2vmin;
-  padding: 1vmin;
+  padding: 1vmin 2vmin;
   border: none;
   outline: none;
   cursor: pointer;
@@ -312,10 +312,12 @@ body {
 #root .buttons input:not([value='Add information'])[value=' + '] {
   background: green;
   color: white;
+  padding: 1vmin;
 }
 #root .buttons input:not([value='Add information'])[value=' − '] {
   background: red;
   color: white;
+  padding: 1vmin;
 }
 @media print {
   * {
@@ -389,5 +391,8 @@ body {
 @media screen and (min-width: 210mm) {
   #root input[type='button'] {
     margin: 0 1vmin;
+  }
+  #root > div #previewCV > div #personalInformation #photoBlock {
+    margin-bottom: 1vmin;
   }
 }

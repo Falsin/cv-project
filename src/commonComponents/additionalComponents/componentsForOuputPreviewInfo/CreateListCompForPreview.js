@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputComp } from '../ComponentsForInputsElements/InputsComponents';
+import InputComp from '../ComponentsForInputsElements/InputsComponents';
 
 class CreateListCompForPreview extends React.Component {
   constructor(props) {

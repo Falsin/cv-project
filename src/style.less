@@ -368,7 +368,7 @@ body {
   input[type='button'] {
     border-radius: 6px;
     margin: 0 2vmin;
-    padding: 1vmin;
+    padding: 1vmin 2vmin;
     border: none;
     outline: none;
     cursor: pointer;
@@ -393,11 +393,13 @@ body {
         &[value=' + '] {
           background: green;
           color: white;
+          padding: 1vmin;
         }
   
         &[value=' − '] {
           background: red;
           color: white;
+          padding: 1vmin;
         }
       }
     }
@@ -507,6 +509,10 @@ body {
   #root {
     input[type='button'] {
       margin: 0 1vmin;
+    }
+
+    & > div #previewCV>div #personalInformation #photoBlock {
+      margin-bottom: 1vmin;
     }
   }
 }
