@@ -4,10 +4,8 @@ import Button from './ButtonComp';
 class ButtonsSection extends React.Component {
   render() {
     return (
-      <div className={'buttons'}>
-        {this.props.btns.map((elem, id) => {
-          return <Button class={elem.class} value={elem.value} func={elem.func} key={id}/>
-        })}
+      <div className='buttons'>
+        {this.props.btns.map((elem, id) => <Button elem={elem} key={id}/>)}
       </div>
     )
   }

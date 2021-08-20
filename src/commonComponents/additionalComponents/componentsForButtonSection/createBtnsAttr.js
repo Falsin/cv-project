@@ -17,12 +17,10 @@ function returnArrBtns(duplicateState, sectionName) {
         func: sendInfo.bind(this, duplicateState, sectionName)
       },
       {
-        //value: '+',
         class: 'plus', 
         func: addInfo.bind(this, duplicateState)
       },
       {
-        //value: '−',
         class: 'minus', 
         func: deleteInfoCard.bind(this, duplicateState)
       }]
@@ -33,7 +31,6 @@ function returnArrBtns(duplicateState, sectionName) {
         func: sendInfo.bind(this, duplicateState, sectionName)
       },
       {
-        //value: '+',
         class: 'plus', 
         func: addInfo.bind(this, duplicateState)
       }]

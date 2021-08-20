@@ -20,12 +20,10 @@ class PreviewCV extends React.Component {
     return (
       <section id='previewCV'>
         <div>
-        {this.state && <CommonInformation obj={this.state}/>}
+          {this.state && <CommonInformation obj={this.state}/>}
 
-        {this.state && <OutputPersonalInfo parentState={this.state} />}
+          {this.state && <OutputPersonalInfo parentState={this.state} />}
         </div>
-
-        {/* <input type='button' value='Print' onClick={() => window.print()}/> */}
 
         <button onClick={() => window.print()}>print</button>
       </section>

@@ -14,16 +14,6 @@ body {
 #root {
   width: 100%;
   background: gray;
-  /* input[type='button'] {
-    border-radius: 6px;
-    margin: 0 2vmin;
-    padding: 1vmin 2vmin;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background: green;
-    color: white;
-  } */
 }
 #root header {
   width: 100%;
@@ -380,15 +370,6 @@ button {
   }
 }
 @media screen and (orientation: portrait) and (max-width: 680px) {
-  #root {
-    /*     input[type='button'] {
-      padding: 1.5vmin 3vmin;
-    }
-
-    .buttons input:not([value='Add information'])[value=' + '] {
-      padding: 1.5vmin;
-    } */
-  }
   #root > div #templateCV section form .infoBlocks .photo {
     width: 20%;
   }
