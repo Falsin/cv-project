@@ -21,7 +21,7 @@ function createObj(duplicateState) {
 }
 
 function addInfo(duplicateState) {
-  let {arrayOfKeysAndValues, objectWithProps, arrayWithObjects, check} = createObj(duplicateState);
+  let {arrayOfKeysAndValues, objectWithProps, arrayWithObjects, check} = createObj(this.state);
 
   if (check) {
     arrayWithObjects.push(objectWithProps);
@@ -68,8 +68,6 @@ function sendSingleInformation() {
 function deleteInfoCard(duplicateState) {
   let arrayOfStateObj = Object.values(duplicateState);
   arrayOfStateObj[1].splice(-1, 1);
-  this.setState(duplicateState);
-
   this.setState(duplicateState);
 }
 

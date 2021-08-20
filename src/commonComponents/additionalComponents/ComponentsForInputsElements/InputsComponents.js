@@ -27,18 +27,19 @@ class InputComp extends React.Component {
 
   afterBlur(element) {
     element.blur()
+
     if (!element.value.length) {
       element.offsetParent.className = 'error';
       element.blur();
 
       this.setState({
         isValidValue: false,
-        isActive: false
+        isActive: false,
       });
     } else {
       this.setState({
         isValidValue: true,
-        isActive: true
+        isActive: true,
       });
     }
 
@@ -54,7 +55,11 @@ class InputComp extends React.Component {
         }
         return (this)
       })
-      .then(() => this.setState({defaultValue: element.value}))
+      .then(() => {
+        if (this.state.isValidValue && element.value) {
+          return (this.setState({defaultValue: element.value}))
+        }
+      })
   }
 
   afterFocus(e) {
@@ -75,6 +80,7 @@ class InputComp extends React.Component {
           this.state.queue[this.state.queue.length - 1].func();
         }
       })
+      .catch(() => null)
   }
 
   discoverAnimation(e) {
