@@ -345,6 +345,10 @@ button {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
+  body,
+  html {
+    background: white;
+  }
   header,
   footer,
   #templateCV {
