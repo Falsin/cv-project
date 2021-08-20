@@ -6,7 +6,7 @@ class ButtonsSection extends React.Component {
     return (
       <div className={'buttons'}>
         {this.props.btns.map((elem, id) => {
-          return <Button type='button' value={elem.value} func={elem.func} key={id}/>
+          return <Button class={elem.class} value={elem.value} func={elem.func} key={id}/>
         })}
       </div>
     )

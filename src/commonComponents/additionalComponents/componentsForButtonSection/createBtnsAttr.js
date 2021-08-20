@@ -5,30 +5,36 @@ function returnArrBtns(duplicateState, sectionName) {
     (!Object.values(this.state)[1]) 
     ?
       [{
-        value: 'Add information', 
+        class: 'addInfo',
+        value: 'add information', 
         func: sendSingleInformation.bind(this)
       }]
     : (Object.values(this.state)[1].length) 
     ?
       [{
-        value: 'Add information', 
+        value: 'add information',
+        class: 'addInfo', 
         func: sendInfo.bind(this, duplicateState, sectionName)
       },
       {
-        value: ' + ', 
+        //value: '+',
+        class: 'plus', 
         func: addInfo.bind(this, duplicateState)
       },
       {
-        value: ' − ', 
+        //value: '−',
+        class: 'minus', 
         func: deleteInfoCard.bind(this, duplicateState)
       }]
     : 
       [{
-        value: 'Add information', 
+        value: 'add information',
+        class: 'addInfo', 
         func: sendInfo.bind(this, duplicateState, sectionName)
       },
       {
-        value: ' + ', 
+        //value: '+',
+        class: 'plus', 
         func: addInfo.bind(this, duplicateState)
       }]
   )

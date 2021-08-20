@@ -365,7 +365,7 @@ body {
     }
   }
 
-  input[type='button'] {
+  /* input[type='button'] {
     border-radius: 6px;
     margin: 0 2vmin;
     padding: 1vmin 2vmin;
@@ -374,32 +374,63 @@ body {
     cursor: pointer;
     background: green;
     color: white;
+  } */
+
+  button {
+    border-radius: 6px;
+    margin: 0 2vmin;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    background: green;
+    padding: 1vmin 2vmin;
+    font-family: monospace;
+  }
+
+  section form .buttons button.addInfo {
+    height: 3.6vmin;
   }
 
   .buttons {
     margin-top: 2vmin;
+    display: flex;
 
-    input {
-      &[value='Add information'] {
-        border-radius: 6px;
-        background: rgb(138, 134, 134);
+    button {
+
+      &::after {
+        display: block;
+        position: absolute;
+        font-weight: 900;
+        transform: translate(-50%, -50%);
+        font-size: 16px;
       }
       
-      &:not([value='Add information']) {
-        text-align: center;
+      &.addInfo {
+        border-radius: 6px;
+        background: rgb(136, 120, 120);
+        padding: 0 2vmin;
+      }
+
+      &:not(.addInfo) {
         border-radius: 50%;
-        font-weight: 900;
-  
-        &[value=' + '] {
-          background: green;
-          color: white;
-          padding: 1vmin;
+        padding: 1.8vmin;
+      }
+
+      &.plus {
+        background: green;
+        position: relative;
+
+        &::after {
+          content: '+';
         }
-  
-        &[value=' − '] {
-          background: red;
-          color: white;
-          padding: 1vmin;
+      }
+
+      &.minus {
+        background: red;
+
+        &::after {
+          content: '−';
         }
       }
     }
@@ -460,13 +491,26 @@ input, button {
       }
     }
 
-    input[type='button'] {
+    section form .buttons button.addInfo {
+      height: 4.4vmin;
+    }
+
+    .buttons { 
+      button {
+        &:not(.addInfo) {
+          padding: 2.2vmin;
+        }
+      }
+    }
+
+
+/*     input[type='button'] {
       padding: 1.5vmin 3vmin;
     }
 
     .buttons input:not([value='Add information'])[value=' + '] {
       padding: 1.5vmin;
-    }
+    } */
   }
 }
 
@@ -504,6 +548,18 @@ input, button {
               width: 30%;
             }
           }
+        }
+      }
+    }
+
+    section form .buttons button.addInfo {
+      height: 5.6vmin;
+    }
+
+    .buttons { 
+      button {
+        &:not(.addInfo) {
+          padding: 2.8vmin;
         }
       }
     }

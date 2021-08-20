@@ -14,6 +14,16 @@ body {
 #root {
   width: 100%;
   background: gray;
+  /* input[type='button'] {
+    border-radius: 6px;
+    margin: 0 2vmin;
+    padding: 1vmin 2vmin;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: green;
+    color: white;
+  } */
 }
 #root header {
   width: 100%;
@@ -287,37 +297,52 @@ body {
   color: white;
   text-decoration: none;
 }
-#root input[type='button'] {
+#root button {
   border-radius: 6px;
   margin: 0 2vmin;
-  padding: 1vmin 2vmin;
   border: none;
   outline: none;
   cursor: pointer;
-  background: green;
   color: white;
+  background: green;
+  padding: 1vmin 2vmin;
+  font-family: monospace;
+}
+#root section form .buttons button.addInfo {
+  height: 3.6vmin;
 }
 #root .buttons {
   margin-top: 2vmin;
+  display: flex;
 }
-#root .buttons input[value='Add information'] {
-  border-radius: 6px;
-  background: #8a8686;
-}
-#root .buttons input:not([value='Add information']) {
-  text-align: center;
-  border-radius: 50%;
+#root .buttons button::after {
+  display: block;
+  position: absolute;
   font-weight: 900;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
 }
-#root .buttons input:not([value='Add information'])[value=' + '] {
+#root .buttons button.addInfo {
+  border-radius: 6px;
+  background: #887878;
+  padding: 0 2vmin;
+}
+#root .buttons button:not(.addInfo) {
+  border-radius: 50%;
+  padding: 1.8vmin;
+}
+#root .buttons button.plus {
   background: green;
-  color: white;
-  padding: 1vmin;
+  position: relative;
 }
-#root .buttons input:not([value='Add information'])[value=' − '] {
+#root .buttons button.plus::after {
+  content: '+';
+}
+#root .buttons button.minus {
   background: red;
-  color: white;
-  padding: 1vmin;
+}
+#root .buttons button.minus::after {
+  content: '−';
 }
 input,
 button {
@@ -355,14 +380,23 @@ button {
   }
 }
 @media screen and (orientation: portrait) and (max-width: 680px) {
+  #root {
+    /*     input[type='button'] {
+      padding: 1.5vmin 3vmin;
+    }
+
+    .buttons input:not([value='Add information'])[value=' + '] {
+      padding: 1.5vmin;
+    } */
+  }
   #root > div #templateCV section form .infoBlocks .photo {
     width: 20%;
   }
-  #root input[type='button'] {
-    padding: 1.5vmin 3vmin;
+  #root section form .buttons button.addInfo {
+    height: 4.4vmin;
   }
-  #root .buttons input:not([value='Add information'])[value=' + '] {
-    padding: 1.5vmin;
+  #root .buttons button:not(.addInfo) {
+    padding: 2.2vmin;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 500px) {
@@ -392,6 +426,12 @@ button {
   }
   #root > div #previewCV > div > #personalInformation #photoBlock {
     width: 30%;
+  }
+  #root section form .buttons button.addInfo {
+    height: 5.6vmin;
+  }
+  #root .buttons button:not(.addInfo) {
+    padding: 2.8vmin;
   }
 }
 @media screen and (min-width: 210mm) {

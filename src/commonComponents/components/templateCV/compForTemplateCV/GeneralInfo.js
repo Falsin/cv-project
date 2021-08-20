@@ -2,10 +2,9 @@ import React from 'react';
 import InfoBox from './commonInfoComponents/InfoBox';
 import PhotoComp from './commonInfoComponents/PhotoComp'
 import ButtonsSection from '../../../additionalComponents/componentsForButtonSection/ButtonsSectionComp';
-//import { input, countryComp } from '../../../additionalComponents/ComponentsForInputsElements/InputsComponents';
 import createBtnsAttr from '../../../additionalComponents/componentsForButtonSection/createBtnsAttr';
-
 import {input, countryComp} from '../../../additionalComponents/ComponentsForInputsElements/funcForCreatingInputsElements'
+
 class GeneralInfo extends React.Component {
   constructor(props) {
     super(props);
